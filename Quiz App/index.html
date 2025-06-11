@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App - TRIVEXUM</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .options label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .result {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-top: 20px;
+            color: var(--color-primary);
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+    <img src="../logo.png" alt="">
+    </header>
+    <nav id="navbar">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html">Blog</a>
+    </nav>
+    <br><br><br>
+
+    <div class="container" id="quiz-container">
+        <h1>Quiz App</h1>
+        <div id="quiz"></div>
+        <button id="nextBtn">Next</button>
+        <div id="result" class="result"></div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <footer>
+        © 2025 TRIVEXUM. All rights reserved.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

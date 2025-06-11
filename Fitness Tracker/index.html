@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker  - TRIVEXUM</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header id="header">
+    <img src="../logo.png" alt="">
+    </header> 
+    <nav id="navbar">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html">Blog</a>
+    </nav>
+    <br><br><br>
+
+        <section id="workout-section" class="container">
+            <h2>Workout Tracking</h2>
+            <form id="workout-form">
+                <label for="workout-name">Workout Name:</label>
+                <input type="text" id="workout-name" required>
+                <label for="workout-duration">Duration (minutes):</label>
+                <input type="number" id="workout-duration" required>
+                <button type="submit">Add Workout</button>
+            </form>
+            <ul id="workout-list"></ul>
+            <p id="total-calories-burned">Total Calories Burned: 0</p>
+        </section>
+
+        <section id="nutrition-section" class="container">
+            <h2>Nutrition Tracking</h2>
+            <form id="nutrition-form">
+                <label for="meal-name">Meal Name:</label>
+                <input type="text" id="meal-name" required>
+                <label for="calories">Calories:</label>
+                <input type="number" id="calories" required>
+                <button type="submit">Add Meal</button>
+            </form>
+            <ul id="meal-list"></ul>
+            <p id="total-calories-intake">Total Calories Intake: 0</p>
+        </section>
+        <section class="container">
+            <p>Want to claculate your Body Mass Index (BMI), <a target="_blank" href="https://tateerybutt.github.io/Project-Portico/BMI%20Calculator/index.html">Click Here</a></p>
+        </section>
+    <br><br><br>
+
+    <footer>
+        <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

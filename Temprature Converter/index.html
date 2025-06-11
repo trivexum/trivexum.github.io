@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-...your-sha-hash-here..." crossorigin="anonymous" />
+    <link rel="stylesheet" href="../style.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <title>Temperature Converter  - TRIVEXUM</title>
+</head>
+
+<body>
+    <header id="header">
+    <img src="../logo.png" alt="">
+    </header> 
+    <nav id="navbar">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html">Blog</a>
+    </nav>
+    <br><br><br>
+
+
+    <div class="container">
+        <h2>Temperature Converter</h2><br>
+
+        <div class="container">
+            <select id="inputUnit" onchange="convertTemperature()">
+                <option value="celsius">Celsius</option>
+                <option value="fahrenheit">Fahrenheit</option>
+                <option value="kelvin">Kelvin</option>
+            </select>
+
+            <div class="converter-input">
+                <input type="number" id="inputTemperature" placeholder="Temperature" oninput="convertTemperature()">
+            </div>
+        </div>
+
+        <button class="arrow-container" onclick="swapUnits()">
+            &#8652;
+        </button>
+
+        <div class="container">
+            <select id="outputUnit" onchange="convertTemperature()">
+                <option value="fahrenheit">Fahrenheit</option>
+                <option value="celsius">Celsius</option>
+                <option value="kelvin">Kelvin</option>
+            </select>
+
+            <div class="converter-input">
+                <input type="number" id="outputTemperature" placeholder="Result" readonly>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+
+    <footer>
+        <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js">
+    </script>
+</body>
+
+</html>

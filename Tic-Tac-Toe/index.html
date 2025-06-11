@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="Stylesheet" href="../style.css">
+    <title>Tic-Tac-Toe - TRIVEXUM</title>
+    <style>
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            margin: auto;
+        }
+
+        .cell {
+            padding: 10px;
+            background-color: var(--color-white);
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+            font-weight: bold;
+            font-size: xx-large;
+            cursor: pointer;
+            border-radius: 50%;
+            margin: 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .cell:hover {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="header">
+    <img src="../logo.png" alt="">
+    </header>
+    <nav id="navbar">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html">Blog</a>
+    </nav>
+    <br><br><br>
+
+    <div class="container" style="width: fit-content;">
+        <h1>Tic-Tac-Toe</h1>
+        <div id="board" class="board"></div>
+        <div id="result"></div>
+        <button id="restartBtn" style="display: none; margin: 10px auto;" onclick="restartGame()">Restart Game</button>
+    </div>
+    <br><br><br>
+
+    <footer>
+        <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js">
+    </script>
+
+</body>
+
+</html>

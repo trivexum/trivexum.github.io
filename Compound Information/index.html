@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <title>Compound Information  - TRIVEXUM</title>
+</head>
+
+<body>
+    <header id="header">
+    <img src="../logo.png" alt="">
+    </header> 
+    <nav id="navbar">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html">Blog</a>
+    </nav>
+    <br><br><br>
+    <div class="container">
+        <h2>Compound Information</h2>
+        <form id="compoundForm" onsubmit="getCompoundInfo(event)">
+            <input type="text" id="compoundInput" name="compoundName" placeholder="Enter compound name">
+            <button type="submit">Get Info</button>
+        </form>
+        <div id="output"></div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <footer>
+        <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

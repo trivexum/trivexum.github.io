@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TRIVEXUM</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header id="header">
+    <img src="logo.png" alt="">
+  </header>
+
+
+  <nav id="navbar">
+    <a class="active" href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+  </nav>
+
+  <section class="section-header">
+    <h2>Latest Projects</h2>
+    <a href="Projects.html">View All Projects</a>
+  </section>
+
+  <section class="card-container">
+    <article class="card" onclick="openLink('Portfolio Website/index.html')">
+      <img src="images/Portfolio Website Image.jpg" alt="Portfolio Website Image">
+      <h2>Portfolio Website</h2>
+      <p>Portfolio Website: Express yourself in a better way.</p>
+    </article>
+
+    <article class="card" onclick="openLink('Science from Quran/index.html')">
+      <img src="images/Quran-Image.png" alt="Science from Quran Image">
+      <h2>Science from Qur'an</h2>
+      <p>Explore the wonders of science as mentioned in the Qur'an.</p>
+    </article>
+
+    <article class="card" onclick="openLink('NoteNest/index.html')">
+      <img src="images/NoteNest Image.jpg" alt="NoteNest Image">
+      <h2>NoteNest</h2>
+      <p>Capture Every Thought, Anytime, Anywhere.</p>
+    </article>
+  </section>
+
+  <section class="section-header">
+    <h2>Latest Posts</h2>
+    <a href="blog.html">View All Posts</a>
+  </section>
+
+  <section class="posts">
+    <article class="post">
+      <h4 class="title">TRIVEXUM Update: New Theme + Portfolio Website Project!</h4>
+
+      <h3>Hey there, fellow devs! 👋</h3>
+      <p>We’re pumped to roll out a fresh new look for <span style="color: var(--color-primary);">Project
+          Portico</span>, powered by a clean,
+        modern theme that makes your projects shine brighter than your code on deadline night! Plus — drumroll, please —
+        we just dropped
+        a <b>brand new Portfolio Website project</b> that’s perfect for showing off your skills and projects in style.
+        💼✨
+      </p>
+
+      <h3>What’s the New Theme?</h3>
+      <p>The whole site now rocks these chill vibes:</p>
+      <pre style="background: var(--color-bg); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+  <code>:root {
+    --color-bg: #f9f9f9;
+    --color-primary: #34495e;
+    --color-secondary: #2c3e50;
+    --color-accent: #2980b9;
+    --color-text: #2d3436;
+    --color-light-text: #7f8c8d;
+    --color-border: #dfe6e9;
+    --color-white: #ffffff;
+  }
+  </code>
+      </pre>
+      <p>Simple, sleek, and easy on the eyes — just how a portfolio should be!</p>
+
+      <h3>Meet the Portfolio Project 🚀</h3>
+      <p>This project is your personal brand’s new BFF — a minimalist portfolio website that highlights your best work,
+        your story,
+        and your contact info. Whether you’re pitching clients or just showing off your progress, this site keeps it
+        professional
+        and approachable.</p>
+
+      <h3>Why It’s a Big Deal</h3>
+      <p>Because having a clean, easy-to-navigate portfolio is clutch when you want to get noticed. Plus, it’s built
+        using our
+        new theme colors to keep everything consistent across TRIVEXUM. Customize it, add more projects, and flex
+        your
+        unique style!</p>
+
+      <h3>What’s Next?</h3>
+      <p>More mini projects coming your way — maybe a quiz app, a fitness tracker, or a random quote generator. Use this
+        portfolio
+        project as your hub to bring them all together.</p>
+
+      <h3>Get Started Now!</h3>
+      <p>Ready to take your portfolio to the next level? Dive into the new project, tweak it, and show the world what
+        you’re made of.
+        Because you’re not just coding — you’re building your future. 💪🔥</p>
+
+      <h3>Keep the Momentum Going</h3>
+      <p><span style="color: var(--color-primary);">TRIVEXUM</span> is growing every day, and your support and
+        feedback keep it
+        moving forward. Got ideas or want code for a new mini project? Hit me up — we’re in this journey together!</p>
+
+    </article>
+
+  </section>
+
+  <footer>
+    © 2025 TRIVEXUM. All rights reserved.
+  </footer>
+
+  <script>
+    // Helper function to open links safely in new tabs
+    function openProject(url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  </script>
+</body>
+
+</html>

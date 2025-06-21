@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WordWise - Trivexum</title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="nav-left">
+            <img src="../icon.png" alt="Icon">
+            <p>TRIVEXUM</p>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+            <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+            <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="../about.html"><i class="fas fa-user"></i> About</a>
+            <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+    <br><br><br>
+    <div class="container">
+        <h1>WordWise</h1>
+        <input type="text" id="wordInput" placeholder="Enter a word...">
+        <button onclick="searchWord()">Search</button>
+        <div id="result" class="container">Result will be shown here</div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <footer>
+        <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function clean(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+        }
+
+        async function searchWord() {
+            const word = document.getElementById("wordInput").value.trim();
+            const resultDiv = document.getElementById("result");
+
+            if (word === "") {
+                resultDiv.innerHTML = "<p>Please enter a word 😅</p>";
+                return;
+            }
+
+            resultDiv.innerHTML = "<p>Searching... 🔍</p>";
+
+            try {
+                const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+                if (!res.ok) throw new Error("Word not found");
+
+                const data = await res.json();
+                const entry = data[0];
+                const meaning = entry.meanings?.[0];
+                const def = meaning?.definitions?.[0];
+                const phonetic = entry.phonetic || "";
+
+                if (!meaning || !def) throw new Error("Definition not found");
+
+                resultDiv.innerHTML = `
+          <h2>${entry.word} <span>${clean(phonetic)}</span></h2>
+          <p><strong>Part of Speech:</strong> ${clean(meaning.partOfSpeech)}</p>
+          <p><strong>Definition:</strong> ${clean(def.definition)}</p>
+          ${def.example ? `<p><strong>Example:</strong> ${clean(def.example)}</p>` : ""}
+        `;
+            } catch (error) {
+                resultDiv.innerHTML = `<p>Oops! ${error.message} 😕</p>`;
+            }
+        }
+
+        // Optional: Allow Enter key to trigger search
+        document.getElementById("wordInput").addEventListener("keypress", (e) => {
+            if (e.key === "Enter") searchWord();
+        });
+    </script>
+    <script src="../script.js"></script>
+    <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

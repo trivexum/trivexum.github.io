@@ -5,24 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-    <title>Luxury Calculator  - TRIVEXUM</title>
+    <link rel="shortcut icon" href="../icon.png" type="image/x-icon">
+    <title>CalcCraze - TRIVEXUM</title>
 </head>
 
 <body>
-    <header id="header">
-    <img src="../logo.png" alt="">
-    </header> 
     <nav id="navbar">
-        <a href="../index.html">Home</a>
-        <a href="../projects.html">Projects</a>
-        <a href="../contact.html">Contact</a>
-        <a href="../about.html">About</a>
-        <a href="../blog.html">Blog</a>
+        <div class="nav-left">
+            <img src="../icon.png" alt="Icon">
+            <p>TRIVEXUM</p>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+            <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+            <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="../about.html"><i class="fas fa-user"></i> About</a>
+            <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
     </nav>
     <br><br><br>
     <div class="container">
-        <h1>Calculator</h1>
+        <h1>CalcCraze</h1>
         <input type="text" id="display" readonly placeholder="display...">
         <br>
         <button onclick="clearDisplay()" class="clr-btn">Clear the display</button>
@@ -55,13 +61,69 @@
         </div>
     </div>
 
-    <script src="script.js">
-    </script>
-    <br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     <footer>
         <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
     </footer>
+
+    <script>
+        let display = document.getElementById('display');
+        let history = document.getElementById('history');
+        let lastClicked = null; // Variable to track the last clicked button
+
+        function append(value) {
+            // If the last clicked button was '=' and the current button is a number, clear the display
+            if (lastClicked === '=' || lastClicked === '√' || lastClicked === '^2') {
+                clearDisplay();
+            }
+
+            display.value += value;
+            lastClicked = value;
+        }
+
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        function calculate() {
+            try {
+                let result = eval(display.value);
+                addToHistory(`${display.value} = ${result}`);
+                display.value = result;
+                lastClicked = '=';
+            } catch (error) {
+                display.value = 'Error';
+            }
+        }
+
+        function squareRoot() {
+            try {
+                display.value = Math.sqrt(eval(display.value));
+                addToHistory(`√(${display.value})`);
+                lastClicked = '√';
+            } catch (error) {
+                display.value = 'Error';
+            }
+        }
+
+        function exponentiation() {
+            try {
+                display.value = eval(display.value) ** 2;
+                addToHistory(`(${display.value})²`);
+                lastClicked = '^2';
+            } catch (error) {
+                display.value = 'Error';
+            }
+        }
+
+        function addToHistory(entry) {
+            history.innerHTML += `<p>${entry}</p>`;
+            history.scrollTop = history.scrollHeight; // Auto-scroll to the bottom
+        }
+    </script>
+    <script src="../script.js"></script>
+    <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

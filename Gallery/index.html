@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Photo Gallery - TRIVEXUM</title>
+    <title>PixelPorch - TRIVEXUM</title>
     <link rel="stylesheet" href="../style.css">
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../icon.png">
     <STYle>
         #gallery img {
             width: 200px;
@@ -27,26 +27,70 @@
 </head>
 
 <body>
-    <header id="header">
-    <img src="../logo.png" alt="">
-    </header>
     <nav id="navbar">
-        <a href="../index.html">Home</a>
-        <a href="../projects.html">Projects</a>
-        <a href="../contact.html">Contact</a>
-        <a href="../about.html">About</a>
-        <a href="../blog.html">Blog</a>
+        <div class="nav-left">
+            <img src="../icon.png" alt="Icon">
+            <p>TRIVEXUM</p>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+            <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+            <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="../about.html"><i class="fas fa-user"></i> About</a>
+            <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
     </nav>
     <br><br><br>
-        <div class="container" id="gallery">
-            <h1>Gallery</h1>
-        </div>
+    <div class="container" id="gallery">
+        <h1>PixelPorch</h1>
+    </div>
     <br><br><br>
 
     <footer>
         <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
     </footer>
-    <script src="script.js"></script>
+    <script>
+        const images = ["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg", "image5.jpg", "image6.jpg", "image7.jpg", "image8.jpg", "image9.jpg", "image10.jpg", "image11.jpg", "image12.jpg", "image13.jpg", "image14.jpg", "image15.jpg", "image16.jpg", "image17.jpg", "image18.jpg", "image19.jpg", "image20.jpg", "image21.jpg", "image22.jpg", "image23.jpg", "image24.jpg", "image25.jpg"];
+
+        const gallery = document.getElementById("gallery");
+
+        // Populate gallery with images
+        images.forEach(image => {
+            const img = document.createElement("img");
+            img.src = `images/${image}`;
+            img.alt = "Image";
+            img.addEventListener("click", () => openModal(img.src));
+            gallery.appendChild(img);
+        });
+
+        // Function to open modal with full-size image
+        function openModal(src) {
+            const modal = document.createElement("div");
+            modal.classList.add("modal");
+            modal.innerHTML = `
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img src="${src}" alt="Full-size Image">
+    </div>
+  `;
+            document.body.appendChild(modal);
+
+            const closeModal = () => modal.remove();
+
+            modal.querySelector(".close").addEventListener("click", closeModal);
+            window.addEventListener("click", (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+        }
+
+    </script>
+    <script src="../script.js"></script>
+    <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

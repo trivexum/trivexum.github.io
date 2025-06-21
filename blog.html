@@ -5,36 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - TRIVEXUM</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header id="header">
-    <img src="logo.png" alt="">
-    </header>
     <nav id="navbar">
-        <a href="index.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-        <a href="about.html">About</a>
-        <a class="active" href="blog.html">Blog</a>
+        <div class="nav-left">
+            <img src="icon.png" alt="Icon">
+            <p>TRIVEXUM</p>
+        </div>
+        <div class="nav-right">
+            <a href="index.html"><i class="fas fa-house"></i> Home</a>
+            <a href="projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="about.html"><i class="fas fa-user"></i> About</a>
+            <a class="active" href="blog.html"><i class="fas fa-blog"></i> Blog</a>
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
     </nav>
+
+    <section class="section-header">
+        <h2>Our Posts</h2>
+    </section>
     <section class="posts">
         <article class="post">
-            <h4 class="title">TRIVEXUM Update: New Theme + Portfolio Website Project!</h4>
+            <h4 class="title">TRIVEXUM Update: Rebrand, Dark Theme & New Sections Unleashed!</h4>
 
-            <h3>Hey there, fellow devs! 👋</h3>
-            <p>We’re pumped to roll out a fresh new look for <span style="color: var(--color-primary);">Project
-                    Portico</span>, powered by a clean,
-                modern theme that makes your projects shine brighter than your code on deadline night! Plus — drumroll,
-                please — we just dropped
-                a <b>brand new Portfolio Website project</b> that’s perfect for showing off your skills and projects in
-                style. 💼✨
-            </p>
+            <h3>Hey there, digital explorers! 🧑‍💻✨</h3>
+            <p>The platform formerly known as <span style="color: var(--color-primary);">Project Portico</span> has
+                officially evolved into <b>TRIVEXUM</b> — a name that speaks to tech, curiosity, and boundless
+                creativity. We’re not just rebranding… we’re redefining the vibe. 💥</p>
 
-            <h3>What’s the New Theme?</h3>
-            <p>The whole site now rocks these chill vibes:</p>
+            <h3>What’s New?</h3>
+            <p>Everything. Literally.</p>
+            <ul>
+                <li><b>✅ New name:</b> Say hello to <span style="color: var(--color-primary);">TRIVEXUM</span> — same
+                    vision, way cooler branding.</li>
+                <li><b>🧠 Fresh logo:</b> Sleek, bold, and built for the future.</li>
+                <li><b>🏡 Revamped Homepage:</b> Now with featured projects, mini tools, blog previews, and even more ✨
+                    personality.</li>
+                <li><b>🙋‍♂️ About Page:</b> Real backstory, clear goals, and the whole Trivexum journey laid out.</li>
+            </ul>
+
+            <h3>🌙 Dark Theme Activated</h3>
+            <p>You asked. We listened. Dark mode is here and it's absolutely gorgeous. Check it out:</p>
             <pre style="background: var(--color-bg); padding: 1rem; border-radius: 8px; overflow-x: auto;">
 <code>:root {
   --color-bg: #f9f9f9;
@@ -47,41 +64,40 @@
   --color-white: #ffffff;
 }
 </code>
-    </pre>
-            <p>Simple, sleek, and easy on the eyes — just how a portfolio should be!</p>
+        </pre>
+            <p>And of course, there’s a dark variant with colors adjusted perfectly for those late-night coding sprints
+                🌌</p>
 
-            <h3>Meet the Portfolio Project 🚀</h3>
-            <p>This project is your personal brand’s new BFF — a minimalist portfolio website that highlights your best
-                work, your story,
-                and your contact info. Whether you’re pitching clients or just showing off your progress, this site
-                keeps it professional
-                and approachable.</p>
+            <h3>🎯 Reorganizing All Projects Under TRIVEXUM</h3>
+            <p>No more separate names — all mini-projects now live under one unified umbrella: <b>TRIVEXUM</b>. That
+                includes your faves like:</p>
+            <ul>
+                <li>📝 <b>Scribbly</b> (Note app)</li>
+                <li>📊 <b>SpendSense</b> (Expense tracker)</li>
+                <li>🌍 <b>SpaceScale</b> (Planet age/weight calculator)</li>
+                <li>🧠 <b>Divine Discoveries</b> (Qur’an meets science, in a simplified static version)</li>
+            </ul>
 
-            <h3>Why It’s a Big Deal</h3>
-            <p>Because having a clean, easy-to-navigate portfolio is clutch when you want to get noticed. Plus, it’s
-                built using our
-                new theme colors to keep everything consistent across TRIVEXUM. Customize it, add more projects,
-                and flex your
-                unique style!</p>
+            <h3>Why This Update Slaps</h3>
+            <p>This ain’t just a facelift — it’s a full-on evolution. Consistent theming, stronger UX, and a brand
+                identity you can proudly build on. It’s like your dev portfolio just hit the gym and came out swole 💪
+            </p>
 
-            <h3>What’s Next?</h3>
-            <p>More mini projects coming your way — maybe a quiz app, a fitness tracker, or a random quote generator.
-                Use this portfolio
-                project as your hub to bring them all together.</p>
+            <h3>What’s Coming Next?</h3>
+            <ul>
+                <li>⚙️ Theme switcher memory (so it remembers your dark/light choice)</li>
+                <li>🔍 Search feature in Divine Discoveries</li>
+                <li>🌐 Urdu/Arabic support</li>
+                <li>📬 Newsletter + update signup system</li>
+            </ul>
 
-            <h3>Get Started Now!</h3>
-            <p>Ready to take your portfolio to the next level? Dive into the new project, tweak it, and show the world
-                what you’re made of.
-                Because you’re not just coding — you’re building your future. 💪🔥</p>
-
-            <h3>Keep the Momentum Going</h3>
-            <p><span style="color: var(--color-primary);">TRIVEXUM</span> is growing every day, and your support
-                and feedback keep it
-                moving forward. Got ideas or want code for a new mini project? Hit me up — we’re in this journey
-                together!</p>
+            <h3>Final Words 💌</h3>
+            <p><span style="color: var(--color-primary);">TRIVEXUM</span> is growing fast, and this rebrand sets the
+                stage for even more creative, useful, and inspiring content. Thanks for being part of the journey —
+                we’re just getting started!</p>
 
         </article>
-        <hr>
+
         <article class="post">
             <h4 class="title">Introducing "Science from the Qur’an" + Our Brand New Blog Page!</h4>
 
@@ -140,13 +156,14 @@
                 world. Stay curious, stay inspired —
                 and don’t forget to reflect on the ayahs that speak louder than textbooks 📚❤️</p>
         </article>
-        <hr>
+
 
         <article class="post">
             <h4 class="title">Introducing NoteNest: Your Ultimate Note-Taking Solution!</h4>
             <h3>Hello and Welcome to NoteNest!</h3>
             <p>We’re excited to unveil <span style="color: var(--color-primary);">NoteNest</span>, the newest addition
-                to TRIVEXUM! Designed with simplicity and efficiency in mind, NoteNest is here to help you stay organized
+                to TRIVEXUM! Designed with simplicity and efficiency in mind, NoteNest is here to help you stay
+                organized
                 effortlessly. Whether it’s capturing quick ideas or managing daily tasks, NoteNest makes organization a
                 breeze.</p>
 
@@ -186,7 +203,7 @@
                 professionals, and creatives alike. Stay tuned for more updates, and thank you for being a part of our
                 journey!</p>
         </article>
-        <hr>
+
         <article class="post">
             <h4 class="title">Discover What's New at TRIVEXUM: Enhanced Interface, Exciting Projects, and More!
             </h4>
@@ -246,27 +263,8 @@
         <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
     </footer>
 
-    <script>
-        function openLink(link) {
-            window.open(link, '_blank');
-        }
-        window.onscroll = function () {
-            stick()
-        };
-
-        var navbar = document.getElementById("navbar");
-        var header = document.getElementById("header");
-        var sticky = navbar.offsetTop;
-
-        function stick() {
-            if (window.pageYOffset >= sticky) {
-                navbar.classList.add("sticky")
-            } else {
-                navbar.classList.remove("sticky");
-            }
-        }
-    </script>
-
+    <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

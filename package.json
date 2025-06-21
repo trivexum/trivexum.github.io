@@ -1,0 +1,21 @@
+{
+  "name": "trivexum",
+  "version": "1.0.0",
+  "description": "Welcome to ProjectPortico, a showcase of my web and full-stack development projects. Explore a diverse range of applications that highlight creativity, functionality, and expertise in various technologies.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trivexum/trivexum.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trivexum/trivexum.github.io/issues"
+  },
+  "homepage": "https://github.com/trivexum/trivexum.github.io#readme",
+  "devDependencies": {}
+}

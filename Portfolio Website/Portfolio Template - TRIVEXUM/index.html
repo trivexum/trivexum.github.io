@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>John Doe - Web Developer</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons --> 
+   <link rel="shortcut icon" href="assets/img/apple-touch-icon.png" type="image/x-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex flex-column justify-content-center">
+
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i><span>Home</span></a></li>
+        <li><a href="#about"><i class="bi bi-person navicon"></i><span>About</span></a></li>
+        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i><span>Resume</span></a></li>
+        <li><a href="#portfolio"><i class="bi bi-images navicon"></i><span>Portfolio</span></a></li>
+        <li><a href="#services"><i class="bi bi-hdd-stack navicon"></i><span>Services</span></a></li>
+        <li><a href="#contact"><i class="bi bi-envelope navicon"></i><span>Contact</span></a></li>
+      </ul>
+    
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+
+    </nav>
+
+  </header>
+
+  <main class="main">
+
+    <section id="hero" class="hero section">
+
+      <img src="assets/img/hero-bg.jpg" alt="">
+
+      <div class="container" data-aos="zoom-out">
+        <div class="row justify-content-center">
+          <div class="col-lg-9">
+            <h2>Joh Doe</h2>
+            <p>I'm Web <span class="typed" data-typed-items="Designer, Debugger, Developer">Developer</span><span
+                class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+            <div class="social-links">
+              <a target="_blank" href="#"><i class="linkedin-icon"></i></a>
+              <a target="_blank" href=""><i class="github-icon"></i></a>
+              <a target="_blank" href=""><i class="upw-icon"></i></a>
+              <a target="_blank" href=""><i class="fi-icon"></i></a>
+              <a target="_blank" href="#"><i class="pph-icon"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>About</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius nesciunt maiores recusandae aperiam, ad
+          inventore at numquam temporibus distinctio quibusdam. Laudantium et sint eius consequuntur earum pariatur
+          officia consectetur error! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo inventore dolor quod
+          odio, deserunt similique consequatur, ratione error omnis debitis vitae optio explicabo officiis hic animi ut
+          in molestias expedita!
+        </p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4 justify-content-center">
+          <div class="col-lg-4">
+            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-8 content">
+            <h2>Web Developer & Designer.</h2>
+            <p class="fst-italic py-3">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora inventore, libero modi eos accusamus
+              velit repellendus mollitia nemo neque a, illo et minima veritatis laborum aperiam labore ipsum, sequi
+              quasi?
+            </p>
+            <div class="row">
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.example.com</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+12 345 6789012</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>New York</span></li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong>
+                    <span>someone@example.com</span>
+                  </li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
+                </ul>
+              </div>
+            </div>
+            <p class="py-3">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, quibusdam natus? Doloribus, architecto
+              cupiditate odit culpa et optio reprehenderit consectetur similique, quo asperiores rem repellat,
+              repellendus dolorem. Maxime, atque at! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem
+              deserunt saepe consequatur tempora aspernatur incidunt, voluptatum laudantium, assumenda blanditiis
+              accusantium vero ut quia molestiae doloribus non voluptates corporis. Esse, impedit.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Skills</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae id dolore voluptate est, esse voluptatibus.
+        </p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row skills-content skills-animation">
+
+          <div class="col-lg-6">
+
+            <div class="progress">
+              <span class="skill"><span>HTML</span> <i class="val">95%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
+            </div><!-- End Skills Item -->
+
+            <div class="progress">
+              <span class="skill"><span>JavaScript</span> <i class="val">90%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
+            </div><!-- End Skills Item -->
+
+            <div class="progress">
+              <span class="skill"><span>Adobe Iluslator</span> <i class="val">85%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
+            </div><!-- End Skills Item -->
+
+          </div>
+
+          <div class="col-lg-6">
+
+            <div class="progress">
+              <span class="skill"><span>CSS</span> <i class="val">90%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
+            </div><!-- End Skills Item -->
+
+            <div class="progress">
+              <span class="skill"><span>Adobe Photoshop</span> <i class="val">85%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
+            </div><!-- End Skills Item -->
+
+            <div class="progress">
+              <span class="skill"><span>Version Control</span> <i class="val">80%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
+            </div><!-- End Skills Item -->
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Skills Section -->
+    <!-- Resume Section -->
+    <section id="resume" class="resume section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Resume</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut molestiae porro fugiat! Recusandae explicabo iure
+          quaerat voluptates, vero nemo, minus ipsam similique eligendi exercitationem consequatur molestias
+          reprehenderit consectetur quae modi. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas soluta ea
+          dolore earum impedit quo? Saepe voluptatem quaerat cumque velit! Commodi fuga sapiente rerum praesentium
+          consectetur possimus cupiditate tempore nostrum?</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="resume-title">Summary</h3>
+
+            <div class="resume-item pb-0">
+              <h4>John Doe</h4>
+              <p><em>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci deleniti quod culpa nam
+                  excepturi sint harum odio ullam, ipsam, libero cum distinctio tenetur necessitatibus assumenda
+                  dignissimos! Distinctio eligendi ut provident.</em></p>
+              <ul>
+                <li>Portland par 127,Orlando, FL</li>
+                <li>someone@example.com</li>
+              </ul>
+            </div><!-- End Resume Item -->
+
+            <h3 class="resume-title">Education</h3>
+            <div class="resume-item">
+              <h4>Bachelor of Computer Science</h4>
+              <h5>Start - End</h5>
+              <p><em>Horward University, Canada</em></p>
+              <p><b>Grade:</b> 3.37</p>
+            </div><!-- End Resume Item -->
+
+            <div class="resume-item">
+              <h4>High Secondary School Certificate (HSSC), Pre-Engineering</h4>
+              <h5>Start - End</h5>
+              <p><em>Government College, Washington</em></p>
+              <p><b>Grade:</b> A</p>
+            </div><!-- End Resume Item -->
+
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="resume-title">Professional Experience</h3>
+            <div class="resume-item">
+              <h4>Designantion</h4>
+              <h5>Start - End</h5>
+              <p><em>Remote</em></p>
+              <ul>
+                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat nulla necessitatibus vitae non id
+                  officia</li>
+                <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore sequi fugit fuga accusamus</li>
+                <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum aut, adipisci ea, dolorem iusto eius
+                  unde minus</li>
+              </ul>
+            </div><!-- End Resume Item -->
+
+            <div class="resume-item">
+              <h4>Internee</h4>
+              <h5>Start - End</h5>
+              <p><em>Xeven Solutions, New York, USA</em></p>
+              <ul>
+                <li>Lorem ipsum dolor sit amet</li>
+                <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem solut rerum.</li>
+                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur saepe totam quo beatae quibusdam.
+                </li>
+              </ul>
+            </div><!-- End Resume Item -->
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Resume Section -->
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Portfolio</h2>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni esse cupiditate, illum sint asperiores
+          numquam dolor repellat molestiae quibusdam non aliquid architecto unde sit vel deleniti? Quibusdam, molestias
+          est. Aspernatur.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          <!-- Portfolio Items -->
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+            <!-- Embedded Projects -->
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Ecommerce</h4>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" title="EFI for Single Cylinder Engine"
+                  data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Blog Website</h4>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" title="Variable Frequency PWM Generation"
+                  data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <!-- App Projects -->
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Interface for home control</h4>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" title="Gesture Controlled Car"
+                  data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <img src="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Portfolio Website</h4>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <a href="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" title="EFI Testing and Assembly"
+                  data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+          </div><!-- End Portfolio Items -->
+
+        </div><!-- End Isotope Layout -->
+
+      </div><!-- End Container -->
+
+    </section><!-- /Portfolio Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente odit dolor accusamus itaque mollitia
+          placeat ea commodi expedita corrupti, delectus aliquam quae suscipit nobis, dolorum asperiores earum
+          distinctio cum et.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item item-#70d249 position-relative">
+              <div class="icon">
+                <i class="bi bi-braces"></i>
+              </div>
+              <h3>Embedded System Design</h3>
+              </a>
+              <p>Designing efficient and robust embedded systems for various applications, including sensors, devices,
+                and real-time processing.</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item item-orange position-relative">
+              <div class="icon">
+                <i class="bi bi-laptop"></i>
+              </div>
+              <h3>FPGA Design and Devlopment</h3>
+              </a>
+              <p>Designing FPGA-based systems for applications that require high performance, such as signal processing,
+                data acquisition, and more.</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item item-teal position-relative">
+              <div class="icon">
+                <i class="bi bi-cloud-upload"></i>
+              </div>
+              <h3>IoT Integration</h3>
+              </a>
+              <p>Developing IoT systems to enable real-time monitoring, automation, and data exchange across various
+                devices and platforms.</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item item-red position-relative">
+              <div class="icon">
+                <i class="bi bi-code-slash"></i>
+              </div>
+              <h3>Firmware Development</h3>
+              </a>
+              <p>IWriting efficient firmware in languages like C and Python to control embedded devices and enable
+                real-time processing capabilities.</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-item item-indigo position-relative">
+              <div class="icon">
+                <i class="bi bi-gear"></i>
+              </div>
+              <h3>System optimization</h3>
+              </a>
+              <p>Optimizing embedded systems for better performance, lower power consumption, and enhanced reliability
+                in real-world applications.</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item item-pink position-relative">
+              <div class="icon">
+                <i class="bi bi-heart"></i>
+              </div>
+              <h3>Prototyping and Testing</h3>
+              </a>
+              <p>Providing prototype development and testing services to ensure your embedded system works efficiently
+                before final production.</p>
+            </div>
+          </div><!-- End Service Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Testimonials</h2>
+        <p>Passion, dedication, and continuous learning drive my work. But don't just take my word for it — here's what
+          clients and collaborators have to say about working with me!</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              }
+            }
+          </script>
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="testimonial-content">
+                      <a target="_blank" href="#"><img src="assets/img/fiverr-icon.png" alt=""></a>
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        <span>A really proactive response from someone very technically adept who was focussed on
+                          getting the right outcome. Even when that required communicating at times that were not
+                          convenient given his time zone, very helpful response. He took the time to understand the
+                          details of the task at hand and when it came to debugging a complex task, was patient and
+                          determined to rapidly locate the challenges and resolve them. Brilliant!!!</span>
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                      <h3>Marcus Hem</h3>
+                      <h4>United States</h4>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                          class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="testimonial-content">
+                      <a target="_blank" href="#"><img src="assets/img/fiverr-icon.png" alt=""></a>
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        <span>Thank you for your work on the VHDL code. I appreciate your attention to detail and the
+                          efficiency with which you handled the tasks. Great job overall</span>
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                      <h3>Luyum_1</h3>
+                      <h4>United States America</h4>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                          class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="testimonial-content">
+                      <a target="_blank" href="#"><img src="assets/img/fiverr-icon.png" alt=""></a>
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        <span>
+                          I had use Ata_hum's service before and once again he did not fail to impress and deliver a
+                          great solution to my project. He goes to the extra mile of ensuring that you're kept in the
+                          loop and the quality of work is up to your standard. The project was delivered couple of
+                          days before the given deadline, Ata_hum happen to work fast but efficient! Great communication
+                          skills. Broad knowledge on software engineering. Super friendly and helpful. I would 10/10
+                          recommend anyone his service, very reasonable pricing and delivers high quality work with
+                          satisfaction!
+                        </span>
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                      <h3>Smoustafa</h3>
+                      <h4>United States</h4>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                          class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="testimonial-content">
+                      <a target="_blank" href=""><img src="assets/img/pph-icon.png" alt="" style="width: 50px;"></a>
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        <span>
+                          He is an excellent software developer, passionate with great skills and methodology. I
+                          suggest cooperate with him 100%!
+                        </span>
+                        <i class="bi bi-quote quote-icon-right"></i><br><br>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        <span>
+                          Once more Danish has accomplish the Arduino based programming project in time (in fact very
+                          fast), paying attention to the detail.<br>
+                          Recommend 100% to cooperate with Danish.
+                        </span>
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                      <h3>George S.</h3>
+                      <h4>London</h4>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                          class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="testimonial-content">
+                      <a target="_blank" href=""><img src="assets/img/pph-icon.png" alt="" style="width: 50px;"></a>
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        <span>
+                          Danish is excellent in all elements.
+                          Will definitely use hos knowledge again.
+                          Highly recommended.
+                        </span>
+                        <i class="bi bi-quote quote-icon-right"></i><br><br>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        <span>
+                          This is second job Danish did for me and he was brilliant.
+                          Highly recommended and will use him definitely in the future
+                        </span>
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                      <h3>Jane W.</h3>
+                      <h4>London</h4>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                          class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->
+
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="testimonial-content">
+                      <a target="_blank" href="#"><img src="assets/img/upwork-icon.png" alt="" style="width: 50px;"></a>
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        <span>Eman has done superb work on this project, his communication is excellent, and his work
+                          is highly dedicated. He produced a highly effective and elegant deliverable. I highly
+                          recommend hiring Eman.
+                        </span>
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                      <h3>AJ. Palmgrem</h3>
+                      <h4>Kenya</h4>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                          class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <div class="row gy-4 justify-content-center">
+                  <div class="col-lg-6">
+                    <div class="testimonial-content">
+                      <a target="_blank" href="#"><img src="assets/img/upwork-icon.png" alt="" style="width: 50px;"></a>
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                        <span>
+                          Danish is a good engineer, he knows what to do with FPGAs
+                        </span>
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                      <h3>Jame T.</h3>
+                      <h4>London</h4>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                          class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+    </section><!-- /Testimonials Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Feel free to reach me and Hire for any type of Embedded Work.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>Address</h3>
+                <p>Anywhere</p>
+              </div>
+            </div><!-- End Info Item -->
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+              <a href="tel:+923319665225"></a>
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Call Us</h3>
+                <p>+12 345 6789012</p>
+              </div>
+            </div><!-- End Info Item -->
+
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Email Us</h3>
+                <p>someone@example.com</p>
+              </div>
+            </div><!-- End Info Item -->
+
+          </div>
+
+          <div class="col-lg-8">
+            <form action="#" method="post" data-aos="fade-up" data-aos-delay="200">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                </div>
+
+                <div class="col-md-6 ">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <button type="submit" class="button">Send Message</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Contact Form -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer position-relative">
+    <div class="container">
+      <h3 class="sitename">John Doe</h3>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis animi quis inventore ullam natus! Quam
+        voluptatem, eum, eveniet facere architecto, recusandae blanditiis quas asperiores debitis officiis impedit
+        aliquam repellat distinctio. </p>
+      <div class="social-links d-flex justify-content-center">
+        <a href="#"><i class="linkedin-icon"></i></a>
+        <a href="#"><i class="github-icon"></i></a>
+        <a href="#"><i class="x-icon"></i></a>
+        <a href="#"><i class="fb-icon"></i></a>
+        <a href="#"><i class="fi-icon"></i></a>
+        <a href="#"><i class="upw-icon"></i></a>
+        <a href="#"><i class="pph-icon"></i></a>
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <span>Copyright</span> <strong class="px-1 sitename">Danish Anwar</strong>. <span>All Rights Reserved</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

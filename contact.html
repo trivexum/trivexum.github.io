@@ -6,24 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - TRIVEXUM</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
 </head>
 
 <body>
-    <header id="header">
-    <img src="logo.png" alt="">
-    </header>
-    <nav id="navbar">
-        <a href="index.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a class="active" href="contact.html">Contact</a>
-        <a href="about.html">About</a>
-        <a href="blog.html">Blog</a>
-    </nav>
+
+  <nav id="navbar">
+    <div class="nav-left">
+      <img src="icon.png" alt="Icon">
+      <p>TRIVEXUM</p>
+    </div>
+    <div class="nav-right">
+      <a href="index.html"><i class="fas fa-house"></i> Home</a>
+      <a href="projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+      <a class="active" href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+      <a href="about.html"><i class="fas fa-user"></i> About</a>
+      <a href="blog.html"><i class="fas fa-blog"></i> Blog</a>
+      <button id="theme-toggle" aria-label="Toggle Theme">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+  </nav>
     <div class="section-header">
         <h2>Contact Us</h2>
     </div>
+    
+    <section class="container">
+        <form action="https://formspree.io/f/mkgnjpqo" method="POST">
+            <h3>Contact Form</h3>
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
     <section id="contact" class="container">
+        <h1>Social Links</h1>
         <p>Feel free to reach out!</p>
 
         <!-- Contact Information -->
@@ -36,14 +55,6 @@
         <h3 class="title ">Facebook</h3>
         <a target="_blank" href="https://www.facebook.com/profile.php?id=61553774336707">Facebook</a>
 
-
-        <form action="https://formspree.io/f/mkgnjpqo" method="POST">
-            <h3>Contact Form</h3>
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
-            <button type="submit">Submit</button>
-        </form>
     </section>
     <br><br><br>
 
@@ -51,23 +62,8 @@
         <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
     </footer>
 
-    <script>
-        window.onscroll = function () {
-            stick()
-        };
-
-        var navbar = document.getElementById("navbar");
-        var header = document.getElementById("header");
-        var sticky = navbar.offsetTop;
-
-        function stick() {
-            if (window.pageYOffset >= sticky) {
-                navbar.classList.add("sticky")
-            } else {
-                navbar.classList.remove("sticky");
-            }
-        }
-    </script>
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
 
 </body>
 

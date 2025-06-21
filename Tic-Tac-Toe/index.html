@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../icon.png" type="image/x-icon">
     <link rel="Stylesheet" href="../style.css">
-    <title>Tic-Tac-Toe - TRIVEXUM</title>
+    <title>XO-Zone - TRIVEXUM</title>
     <style>
         .board {
             display: grid;
@@ -38,32 +38,137 @@
 
 <body>
 
-    <header id="header">
-    <img src="../logo.png" alt="">
-    </header>
     <nav id="navbar">
-        <a href="../index.html">Home</a>
-        <a href="../projects.html">Projects</a>
-        <a href="../contact.html">Contact</a>
-        <a href="../about.html">About</a>
-        <a href="../blog.html">Blog</a>
+        <div class="nav-left">
+            <img src="../icon.png" alt="Icon">
+            <p>TRIVEXUM</p>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+            <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+            <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="../about.html"><i class="fas fa-user"></i> About</a>
+            <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
     </nav>
     <br><br><br>
 
     <div class="container" style="width: fit-content;">
-        <h1>Tic-Tac-Toe</h1>
+        <h1>XO-Zone</h1>
         <div id="board" class="board"></div>
         <div id="result"></div>
         <button id="restartBtn" style="display: none; margin: 10px auto;" onclick="restartGame()">Restart Game</button>
     </div>
-    <br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     <footer>
         <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
     </footer>
 
-    <script src="script.js">
+    <script>
+
+        // Initialize the game board
+        const board = document.getElementById('board');
+        const result = document.getElementById('result');
+        const restartBtn = document.getElementById('restartBtn');
+        let currentPlayer = '✖';
+        let gameOver = false;
+
+        const cells = [];
+
+        function initializeBoard() {
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    const cell = document.createElement('button');
+                    cell.classList.add('cell');
+                    cell.dataset.row = i;
+                    cell.dataset.col = j;
+                    cell.addEventListener('click', handleCellClick);
+                    board.appendChild(cell);
+                    cells.push(cell);
+                }
+            }
+        }
+
+        function handleCellClick(event) {
+            if (gameOver) return;
+
+            const cell = event.target;
+            const row = cell.dataset.row;
+            const col = cell.dataset.col;
+
+            if (cell.textContent === '') {
+                cell.textContent = currentPlayer;
+                if (checkWinner(row, col)) {
+                    result.style.display = 'block';
+                    result.innerHTML = `Player <span style="font-weight: bolder; color: var(--color-accent);">${currentPlayer}</span> wins!`;
+                    gameOver = true;
+                    showRestartButton();
+                } else if (isBoardFull()) {
+                    result.style.display = 'block';
+                    result.textContent = 'It\'s a draw!';
+                    gameOver = true;
+                    showRestartButton();
+                } else {
+                    currentPlayer = currentPlayer === '✖' ? 'Ｏ' : '✖';
+                }
+            }
+        }
+
+        function checkWinner(row, col) {
+            return (
+                checkLine(0, 0, 0, 1, 0, 2) || // Check row 0
+                checkLine(1, 0, 1, 1, 1, 2) || // Check row 1
+                checkLine(2, 0, 2, 1, 2, 2) || // Check row 2
+                checkLine(0, 0, 1, 0, 2, 0) || // Check column 0
+                checkLine(0, 1, 1, 1, 2, 1) || // Check column 1
+                checkLine(0, 2, 1, 2, 2, 2) || // Check column 2
+                checkLine(0, 0, 1, 1, 2, 2) || // Check diagonal \
+                checkLine(0, 2, 1, 1, 2, 0)    // Check diagonal /
+            );
+
+            function checkLine(r1, c1, r2, c2, r3, c3) {
+                return (
+                    cells[index(r1, c1)].textContent !== '' &&
+                    cells[index(r1, c1)].textContent === cells[index(r2, c2)].textContent &&
+                    cells[index(r1, c1)].textContent === cells[index(r3, c3)].textContent
+                );
+            }
+
+            function index(row, col) {
+                return row * 3 + col;
+            }
+        }
+
+        function isBoardFull() {
+            return cells.every(cell => cell.textContent !== '');
+        }
+
+        function showRestartButton() {
+            restartBtn.style.display = 'block';
+        }
+
+        function restartGame() {
+            // Reset the game state
+            currentPlayer = '✖';
+            gameOver = false;
+            result.textContent = '';
+            restartBtn.style.display = 'none';
+
+            // Clear the board
+            cells.forEach(cell => {
+                cell.textContent = '';
+            });
+        }
+
+        // Initialize the game
+        initializeBoard();
     </script>
+    <script src="../script.js"></script>
+    <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
 
 </body>
 

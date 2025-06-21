@@ -5,60 +5,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-    <title>One-Page Todo List  - TRIVEXUM</title>
+    <link rel="shortcut icon" href="../icon.png" type="image/x-icon">
+    <title>TaskTrek - TRIVEXUM</title>
     <style>
-        
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
+        li {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            margin: 10px;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
 
-li {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    margin: 10px;
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: box-shadow 0.3s, transform 0.3s;
-}
-
-li:hover {
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-  transform: translateY(-4px);
-}
+        li:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+        }
     </style>
 </head>
 
 <body>
-    <header id="header">
-    <img src="../logo.png" alt="">
-    </header> 
     <nav id="navbar">
-        <a href="../index.html">Home</a>
-        <a href="../projects.html">Projects</a>
-        <a href="../contact.html">Contact</a>
-        <a href="../about.html">About</a>
-        <a href="../blog.html">Blog</a>
+        <div class="nav-left">
+            <img src="../icon.png" alt="Icon">
+            <p>TRIVEXUM</p>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+            <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+            <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="../about.html"><i class="fas fa-user"></i> About</a>
+            <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
     </nav>
     <br><br><br>
     <div class="container">
-        <h1>Todo List</h1>
+        <h1>TaskTrek</h1>
         <input onkeydown="checkEnter(event)" type="text" id="taskInput" placeholder="Add a new task...">
         <button onclick="addTask()">Add Task</button>
         <ul id="taskList"></ul>
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     <footer>
         <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
     </footer>
-    <script src="script.js"></script>
+    <script>
+
+        function checkEnter(event) {
+            // Check if the key pressed is Enter (key code 13)
+            if (event.keyCode === 13) {
+                addTask();
+            }
+        }
+        // Function to add a new task
+        function addTask() {
+            const taskInput = document.getElementById("taskInput");
+            const taskList = document.getElementById("taskList");
+
+            // Check if the input is not empty
+            if (taskInput.value.trim() !== "") {
+                // Create a new list item
+                const listItem = document.createElement("li");
+                listItem.textContent = taskInput.value;
+
+                // Add a delete button to the list item
+                const deleteButton = document.createElement("button");
+                deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                deleteButton.classList.add('delete')
+                deleteButton.onclick = function () {
+                    taskList.removeChild(listItem);
+                };
+
+                listItem.appendChild(deleteButton);
+
+                // Add the new task to the list
+                taskList.appendChild(listItem);
+
+                // Clear the input field
+                taskInput.value = "";
+            }
+        }
+
+    </script>
+    <script src="../script.js"></script>
     <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
 </body>
 

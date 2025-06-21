@@ -4,7 +4,7 @@ Welcome to ProjectPortico, a showcase of my web and full-stack development proje
 
 ## Projects
 
-### 1. To-Do Application
+### 1. TaskTreklication
 - **Description:** A task management system to boost productivity.
 - **Technologies:** HTML5, CSS3, JavaScript.
 

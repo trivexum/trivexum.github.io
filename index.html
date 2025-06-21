@@ -5,127 +5,209 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TRIVEXUM</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="icon.png" type="image/x-icon" />
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-  <header id="header">
-    <img src="logo.png" alt="">
-  </header>
-
-
+<body class="home-page">
   <nav id="navbar">
-    <a class="active" href="index.html">Home</a>
-    <a href="projects.html">Projects</a>
-    <a href="contact.html">Contact</a>
-    <a href="about.html">About</a>
-    <a href="blog.html">Blog</a>
+    <div class="nav-left">
+      <img src="icon.png" alt="Icon">
+      <p>TRIVEXUM</p>
+    </div>
+    <div class="nav-right">
+      <a class="active" href="index.html"><i class="fas fa-house"></i> Home</a>
+      <a href="projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+      <a href="about.html"><i class="fas fa-user"></i> About</a>
+      <a href="blog.html"><i class="fas fa-blog"></i> Blog</a>
+      <button id="theme-toggle" aria-label="Toggle Theme">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
   </nav>
 
-  <section class="section-header">
-    <h2>Latest Projects</h2>
-    <a href="Projects.html">View All Projects</a>
+  <!-- Featured Projects -->
+  <section class="container">
+    <section class="section-header">
+      <h2>Featured Projects <i class="fas fa-wrench"></i></h2>
+      <p>Some handy mini tools made with 💙 for devs, learners, and curious minds.</p>
+    </section>
+
+    <section class="card-container">
+      <article class="card" onclick="openLink('Planets/index.html')">
+        <img src="images/Planets image.jpg" alt="Temperature Converter Image">
+        <h2>SpaceScale</h2>
+        <p>What’s your age on Mars? Let’s find out.</p>
+      </article>
+
+      <article class="card" onclick="openLink('Portfolio Website/index.html')">
+        <img src="images/Portfolio Website Image.jpg" alt="Portfolio Website Image">
+        <h2>ShowCaseMe</h2>
+        <p>You. Your skills. All in one shiny spot.</p>
+      </article>
+
+      <article class="card" onclick="openLink('Quiz App/index.html')">
+        <img src="images/Quiz App image.jpg" alt="Quiz Application Image">
+        <h2>BrainRush</h2>
+        <p>Tough Questions: Tough Questions with Many types</p>
+      </article>
+    </section>
   </section>
 
-  <section class="card-container">
-    <article class="card" onclick="openLink('Portfolio Website/index.html')">
-      <img src="images/Portfolio Website Image.jpg" alt="Portfolio Website Image">
-      <h2>Portfolio Website</h2>
-      <p>Portfolio Website: Express yourself in a better way.</p>
-    </article>
+  <!-- Latest Projects -->
+  <section class="container">
+    <section class="section-header">
+      <h2>Latest Projects <i class="fas fa-rocket"></i></h2>
+      <a href="Projects.html">View All Projects</a>
+    </section>
 
-    <article class="card" onclick="openLink('Science from Quran/index.html')">
-      <img src="images/Quran-Image.png" alt="Science from Quran Image">
-      <h2>Science from Qur'an</h2>
-      <p>Explore the wonders of science as mentioned in the Qur'an.</p>
-    </article>
+    <section class="card-container">
+      <article class="card" onclick="openLink('Portfolio Website/index.html')">
+        <img src="images/Portfolio Website Image.jpg" alt="Portfolio Website Image">
+        <h2>ShowCaseMe</h2>
+        <p>You. Your skills. All in one shiny spot.</p>
+      </article>
 
-    <article class="card" onclick="openLink('NoteNest/index.html')">
-      <img src="images/NoteNest Image.jpg" alt="NoteNest Image">
-      <h2>NoteNest</h2>
-      <p>Capture Every Thought, Anytime, Anywhere.</p>
-    </article>
+      <article class="card" onclick="openLink('Science from Quran/index.html')">
+        <img src="images/Quran-Image.png" alt="Science from Quran Image">
+        <h2>Divine Discoveries</h2>
+        <p>Unlock the science woven into revelation.</p>
+      </article>
+
+      <article class="card" onclick="openLink('NoteNest/index.html')">
+        <img src="images/NoteNest Image.jpg" alt="NoteNest Image">
+        <h2>Scribbly</h2>
+        <p>Capture Every Thought, Anytime, Anywhere.</p>
+      </article>
+    </section>
   </section>
 
-  <section class="section-header">
-    <h2>Latest Posts</h2>
-    <a href="blog.html">View All Posts</a>
+  <!-- In Progress -->
+  <section class="container">
+    <section class="section-header">
+      <h2>In Progress <i class="fas fa-tools"></i></h2>
+      <p>Cooking up some new stuff — stay tuned 😏</p>
+    </section>
+
+    <section class="card-container">
+      <article class="card">
+        <img src="images/Coming Soon.jpg" alt="Coming Soon">
+        <h2>LexiLookup</h2>
+        <p>A Digital Dictionary</p>
+      </article>
+
+      <article class="card">
+        <img src="images/Coming Soon.jpg" alt="Coming Soon">
+        <h2>Carveo</h2>
+        <p>An app for finding information of a car</p>
+      </article>
+    </section>
   </section>
 
-  <section class="posts">
-    <article class="post">
-      <h4 class="title">TRIVEXUM Update: New Theme + Portfolio Website Project!</h4>
-
-      <h3>Hey there, fellow devs! 👋</h3>
-      <p>We’re pumped to roll out a fresh new look for <span style="color: var(--color-primary);">Project
-          Portico</span>, powered by a clean,
-        modern theme that makes your projects shine brighter than your code on deadline night! Plus — drumroll, please —
-        we just dropped
-        a <b>brand new Portfolio Website project</b> that’s perfect for showing off your skills and projects in style.
-        💼✨
+  <!-- Subscribe Section -->
+  <section class="container">
+    <section class="section-header">
+      <h2>Subscribe to Newsletter <i class="fas fa-envelope"></i></h2>
+      <p>Get the latest updates, tips, and project drops straight to your inbox.</p>
+    </section>
+    <section style="text-align: center; padding: 2rem 1rem;">
+      <h3>📨 Stay in the Loop with Newsletter</h3>
+      <p class="neslester-text">
+        Get mini project drops, coding tips, and TRIVEXUM updates delivered right to your inbox. No spam, just 🔥 stuff.
       </p>
 
-      <h3>What’s the New Theme?</h3>
-      <p>The whole site now rocks these chill vibes:</p>
-      <pre style="background: var(--color-bg); padding: 1rem; border-radius: 8px; overflow-x: auto;">
-  <code>:root {
-    --color-bg: #f9f9f9;
-    --color-primary: #34495e;
-    --color-secondary: #2c3e50;
-    --color-accent: #2980b9;
-    --color-text: #2d3436;
-    --color-light-text: #7f8c8d;
-    --color-border: #dfe6e9;
-    --color-white: #ffffff;
-  }
-  </code>
-      </pre>
-      <p>Simple, sleek, and easy on the eyes — just how a portfolio should be!</p>
-
-      <h3>Meet the Portfolio Project 🚀</h3>
-      <p>This project is your personal brand’s new BFF — a minimalist portfolio website that highlights your best work,
-        your story,
-        and your contact info. Whether you’re pitching clients or just showing off your progress, this site keeps it
-        professional
-        and approachable.</p>
-
-      <h3>Why It’s a Big Deal</h3>
-      <p>Because having a clean, easy-to-navigate portfolio is clutch when you want to get noticed. Plus, it’s built
-        using our
-        new theme colors to keep everything consistent across TRIVEXUM. Customize it, add more projects, and flex
-        your
-        unique style!</p>
-
-      <h3>What’s Next?</h3>
-      <p>More mini projects coming your way — maybe a quiz app, a fitness tracker, or a random quote generator. Use this
-        portfolio
-        project as your hub to bring them all together.</p>
-
-      <h3>Get Started Now!</h3>
-      <p>Ready to take your portfolio to the next level? Dive into the new project, tweak it, and show the world what
-        you’re made of.
-        Because you’re not just coding — you’re building your future. 💪🔥</p>
-
-      <h3>Keep the Momentum Going</h3>
-      <p><span style="color: var(--color-primary);">TRIVEXUM</span> is growing every day, and your support and
-        feedback keep it
-        moving forward. Got ideas or want code for a new mini project? Hit me up — we’re in this journey together!</p>
-
-    </article>
-
+      <div id="mc_embed_signup">
+        <form
+          action="https://github.us2.list-manage.com/subscribe/post?u=22ec907994324381e9a37b589&amp;id=7f9cf8e121&amp;f_id=005377e1f0"
+          method="post" target="_blank" novalidate>
+          <div id="mc_embed_signup_scroll">
+            <input type="email" name="EMAIL" class="required email" placeholder="you@example.com" required>
+            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+              <input type="text" name="b_22ec907994324381e9a37b589_7f9cf8e121" tabindex="-1" value="">
+            </div>
+            <button type="submit" name="subscribe">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </section>
   </section>
 
-  <footer>
-    © 2025 TRIVEXUM. All rights reserved.
-  </footer>
+  <!-- Join the Community -->
+  <section class="container">
+    <section class="section-header">
+      <h2>Join the Community <i class="fas fa-users"></i></h2>
+      <p>Wanna collab, give feedback, or share your mini projects? You’re totally welcome 👇</p>
+    </section>
 
-  <script>
-    // Helper function to open links safely in new tabs
-    function openProject(url) {
-      window.open(url, '_blank', 'noopener,noreferrer');
-    }
-  </script>
+    <section style="text-align: center; padding: 1rem;">
+      <p>
+        TRIVEXUM is for learners, dreamers, and doers. Whether you’re a total beginner or lowkey a JS wizard — you
+        belong here.
+      </p>
+      <a href="contact.html">📬 Contact Us</a><br><br>
+      <a href="https://github.com/trivexum/trivexum.github.io" target="_blank" class="btn">⭐ Star Us on GitHub</a>
+    </section>
+  </section>
+
+  <!-- Latest Posts -->
+  <section class="container">
+    <section class="section-header">
+      <h2>Latest Posts <i class="fas fa-blog"></i></h2>
+      <a href="blog.html">View All Posts</a>
+    </section>
+
+    <section class="posts">
+      <article class="post">
+        <h4 class="title">TRIVEXUM Update: New Theme + Portfolio Website Project!</h4>
+
+        <h3>Hey there, fellow devs! 👋</h3>
+        <p>
+          We’re pumped to roll out a fresh new look for <span style="color: var(--color-primary);">Project
+            Portico</span>,
+          powered by a clean, modern theme that makes your projects shine brighter than your code on deadline night!
+          Plus — drumroll, please — we just dropped a <b>brand new Portfolio Website project</b> that’s perfect for
+          showing off your skills and projects in style. 💼✨
+        </p>
+
+        <h3>What’s the New Theme?</h3>
+        <p>The whole site now rocks these chill vibes:</p>
+
+        <pre style="background: var(--color-bg); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+<code>:root {
+  --color-bg: #f9f9f9;
+  --color-primary: #34495e;
+  --color-secondary: #2c3e50;
+  --color-accent: #2980b9;
+  --color-text: #2d3436;
+  --color-light-text: #7f8c8d;
+  --color-border: #dfe6e9;
+  --color-white: #ffffff;
+}
+</code>
+        </pre>
+
+        <p>Simple, sleek, and easy on the eyes — just how a portfolio should be!</p>
+
+        <h3>Meet the Portfolio Project 🚀</h3>
+        <p>
+          This project is your personal brand’s new BFF — a minimalist portfolio website that highlights your best work,
+          your story, and your contact info. Whether you’re pitching clients or just showing off your progress, this
+          site
+          keeps it professional and approachable.
+        </p>
+
+        <h3>Why It’s a Big Deal</h3>
+        <p>
+          Because having a clean, easy-to-navigate portfolio is clutch when you want to get noticed. Plus, it’s built
+          using our...
+        </p>
+      </article>
+    </section>
+  </section>
+
+  <script src="script.js"></script>
+  <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

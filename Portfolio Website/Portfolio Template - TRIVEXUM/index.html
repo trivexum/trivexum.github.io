@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>John Doe - Web Developer</title>
+  <title>John Doe | Web Developer</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -39,7 +39,7 @@
 
     <nav id="navmenu" class="navmenu">
       <ul>
-        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i><span>Home</span></a></li>
+        <li><a href="#hero" ><i class="bi bi-house navicon"></i><span>Home</span></a></li>
         <li><a href="#about"><i class="bi bi-person navicon"></i><span>About</span></a></li>
         <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i><span>Resume</span></a></li>
         <li><a href="#portfolio"><i class="bi bi-images navicon"></i><span>Portfolio</span></a></li>
@@ -51,7 +51,34 @@
                 <i class="fas fa-moon"></i>
             </button>
 
-    </nav>
+    
+
+    <div class="hamburger" onclick="openSidebar()">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <div id="sidebar" class="sidebar hidden">
+    <div class="sidebar-brand-horizontal">
+      <img src="../icon.png" alt="Trivexum Icon" />
+      <p>TRIVEXUM</p>
+    </div>
+    
+    <hr class="sidebar-divider">
+
+    <div class="close-btn" onclick="closeSidebar()">
+      <i class="fas fa-times"></i>
+    </div>
+
+    <a  href="../index.html"><i class="fas fa-house"></i> Home</a>
+    <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+    <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+    <a href="../about.html"><i class="fas fa-user"></i> About</a>
+    <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+  </div>
+
+  <div id="overlay" class="overlay hidden" onclick="closeSidebar()"></div>
+
 
   </header>
 
@@ -584,11 +611,11 @@
                           He is an excellent software developer, passionate with great skills and methodology. I
                           suggest cooperate with him 100%!
                         </span>
-                        <i class="bi bi-quote quote-icon-right"></i><br><br>
+                        <i class="bi bi-quote quote-icon-right"></i>
                         <i class="bi bi-quote quote-icon-left"></i>
                         <span>
                           Once more Danish has accomplish the Arduino based programming project in time (in fact very
-                          fast), paying attention to the detail.<br>
+                          fast), paying attention to the detail.
                           Recommend 100% to cooperate with Danish.
                         </span>
                         <i class="bi bi-quote quote-icon-right"></i>
@@ -618,7 +645,7 @@
                           Will definitely use hos knowledge again.
                           Highly recommended.
                         </span>
-                        <i class="bi bi-quote quote-icon-right"></i><br><br>
+                        <i class="bi bi-quote quote-icon-right"></i>
                         <i class="bi bi-quote quote-icon-left"></i>
                         <span>
                           This is second job Danish did for me and he was brilliant.

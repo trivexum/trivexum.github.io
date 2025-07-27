@@ -12,9 +12,10 @@
 <body class="home-page">
   <nav id="navbar">
     <div class="nav-left">
-      <img src="icon.png" alt="Icon">
+      <img src="icon.png" alt="Icon" />
       <p>TRIVEXUM</p>
     </div>
+
     <div class="nav-right">
       <a class="active" href="index.html"><i class="fas fa-house"></i> Home</a>
       <a href="projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
@@ -25,7 +26,37 @@
         <i class="fas fa-moon"></i>
       </button>
     </div>
+
+    <div class="hamburger" onclick="openSidebar()">
+      <i class="fas fa-bars"></i>
+    </div>
+
+
+    <div class="hamburger" onclick="openSidebar()">
+      <i class="fas fa-bars"></i>
+    </div>
   </nav>
+
+  <div id="sidebar" class="sidebar hidden">
+    <div class="sidebar-brand-horizontal">
+      <img src="icon.png" alt="Trivexum Icon" />
+      <p>TRIVEXUM</p>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="close-btn" onclick="closeSidebar()">
+      <i class="fas fa-times"></i>
+    </div>
+
+    <a class="active" href="index.html"><i class="fas fa-house"></i> Home</a>
+    <a href="projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+    <a href="about.html"><i class="fas fa-user"></i> About</a>
+    <a href="blog.html"><i class="fas fa-blog"></i> Blog</a>
+  </div>
+
+  <div id="overlay" class="overlay hidden" onclick="closeSidebar()"></div>
 
   <!-- Featured Projects -->
   <section class="container">
@@ -63,6 +94,12 @@
     </section>
 
     <section class="card-container">
+      <article class="card" onclick="openLink('LexiLookup/index.html')">
+        <img src="images/LexiLookup Image.JPG" alt="LexiLookup Image">
+        <h2>LexiLookup</h2>
+        <p>Words, Defined. Knowledge, Amplified.</p>
+      </article>
+
       <article class="card" onclick="openLink('Portfolio Website/index.html')">
         <img src="images/Portfolio Website Image.jpg" alt="Portfolio Website Image">
         <h2>ShowCaseMe</h2>
@@ -73,12 +110,6 @@
         <img src="images/Quran-Image.png" alt="Science from Quran Image">
         <h2>Divine Discoveries</h2>
         <p>Unlock the science woven into revelation.</p>
-      </article>
-
-      <article class="card" onclick="openLink('NoteNest/index.html')">
-        <img src="images/NoteNest Image.jpg" alt="NoteNest Image">
-        <h2>Scribbly</h2>
-        <p>Capture Every Thought, Anytime, Anywhere.</p>
       </article>
     </section>
   </section>
@@ -145,7 +176,7 @@
         TRIVEXUM is for learners, dreamers, and doers. Whether you’re a total beginner or lowkey a JS wizard — you
         belong here.
       </p>
-      <a href="contact.html">📬 Contact Us</a><br><br>
+      <a href="contact.html">📬 Contact Us</a>
       <a href="https://github.com/trivexum/trivexum.github.io" target="_blank" class="btn">⭐ Star Us on GitHub</a>
     </section>
   </section>
@@ -159,49 +190,70 @@
 
     <section class="posts">
       <article class="post">
-        <h4 class="title">TRIVEXUM Update: New Theme + Portfolio Website Project!</h4>
+        <h4 class="title">TRIVEXUM Update: LexiLookup is LIVE + Mobile Sidebar Added!</h4>
 
-        <h3>Hey there, fellow devs! 👋</h3>
+        <h3>Hey word lovers and tech fam! 📚✨</h3>
         <p>
-          We’re pumped to roll out a fresh new look for <span style="color: var(--color-primary);">Project
-            Portico</span>,
-          powered by a clean, modern theme that makes your projects shine brighter than your code on deadline night!
-          Plus — drumroll, please — we just dropped a <b>brand new Portfolio Website project</b> that’s perfect for
-          showing off your skills and projects in style. 💼✨
+          Big news from the Trivexum dev cave — <span style="color: var(--color-primary);">LexiLookup</span> is now
+          officially <b>LIVE</b>! It’s your ultimate word companion packed with all the essential language tools,
+          wrapped in a
+          clean UI that actually makes you want to learn. 😎 And that’s not all — we’ve also added a responsive
+          <b>mobile sidebar</b> to make LexiLookup feel super smooth on small screens. 🎉📱
         </p>
 
-        <h3>What’s the New Theme?</h3>
-        <p>The whole site now rocks these chill vibes:</p>
-
-        <pre style="background: var(--color-bg); padding: 1rem; border-radius: 8px; overflow-x: auto;">
-<code>:root {
-  --color-bg: #f9f9f9;
-  --color-primary: #34495e;
-  --color-secondary: #2c3e50;
-  --color-accent: #2980b9;
-  --color-text: #2d3436;
-  --color-light-text: #7f8c8d;
-  --color-border: #dfe6e9;
-  --color-white: #ffffff;
-}
-</code>
-        </pre>
-
-        <p>Simple, sleek, and easy on the eyes — just how a portfolio should be!</p>
-
-        <h3>Meet the Portfolio Project 🚀</h3>
+        <h3>What is LexiLookup? 🔤</h3>
         <p>
-          This project is your personal brand’s new BFF — a minimalist portfolio website that highlights your best work,
-          your story, and your contact info. Whether you’re pitching clients or just showing off your progress, this
-          site
-          keeps it professional and approachable.
+          It’s not your average dictionary. LexiLookup helps you explore and understand words like a boss:
+        </p>
+        <ul>
+          <li>📖 Definitions</li>
+          <li>🔊 Pronunciation (Audio included!)</li>
+          <li>🔁 Synonyms & Antonyms</li>
+          <li>💬 Clean Example Sentences</li>
+          <li>📸 <b>LexiSnap</b> – Capture any meaning as an image</li>
+        </ul>
+
+        <h3>Sidebar for Small Screens 📱</h3>
+        <p>
+          Mobile users, you’re in for a treat! We’ve rolled out a brand-new <b>collapsible sidebar</b> that works like a
+          charm on phones and tablets. Whether you're searching, snapping, or switching views, this sidebar has your
+          back.
         </p>
 
-        <h3>Why It’s a Big Deal</h3>
         <p>
-          Because having a clean, easy-to-navigate portfolio is clutch when you want to get noticed. Plus, it’s built
-          using our...
+          Here’s what it brings:
         </p>
+        <ul>
+          <li>✅ Slide-in design</li>
+          <li>✅ Clean mobile navigation</li>
+          <li>✅ Easy feature access</li>
+          <li>✅ Feels like a real app experience</li>
+        </ul>
+
+        <h3>Built with the TRIVEXUM Theme 🖌️</h3>
+        <p>Of course, it uses the same beautiful theme as the rest of Portico apps.</p>
+
+        <p>It’s clean, consistent, and super easy on the eyes — just how we like it 😌</p>
+
+        <h3>What’s Next? 👀</h3>
+        <p>We’re already cooking up more features for future updates:</p>
+        <ul>
+          <li>🗓️ Word of the Day</li>
+          <li>💾 Bookmark & Favorite Words</li>
+          <li>📡 Offline Word Cache</li>
+          <li>🧠 AI-powered mnemonics</li>
+        </ul>
+
+        <h3>Final Thoughts 💬</h3>
+        <p>
+          LexiLookup started as a simple idea — but now it’s a fully-featured word tool for curious learners, devs,
+          writers,
+          and anyone who’s ever typed "define ____" into a search bar. Try it, explore it, and don’t forget to share it
+          with
+          your crew. 💙
+        </p>
+
+        <p>🔗 <b>LexiLookup is now LIVE — dive in!</b></p>
       </article>
     </section>
   </section>

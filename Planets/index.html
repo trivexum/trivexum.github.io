@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpaceScale - TRIVEXUM</title>
+    <title>SpaceScale | TRIVEXUM</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="shortcut icon" href="../icon.png" type="image/x-icon">
     <STYle>
@@ -36,15 +36,42 @@
                 <i class="fas fa-moon"></i>
             </button>
         </div>
-    </nav>
-    <br><br><br>
+    
+
+    <div class="hamburger" onclick="openSidebar()">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <div id="sidebar" class="sidebar hidden">
+    <div class="sidebar-brand-horizontal">
+      <img src="../icon.png" alt="Trivexum Icon" />
+      <p>TRIVEXUM</p>
+    </div>
+    
+    <hr class="sidebar-divider">
+
+    <div class="close-btn" onclick="closeSidebar()">
+      <i class="fas fa-times"></i>
+    </div>
+
+    <a  href="../index.html"><i class="fas fa-house"></i> Home</a>
+    <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+    <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+    <a href="../about.html"><i class="fas fa-user"></i> About</a>
+    <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+  </div>
+
+  <div id="overlay" class="overlay hidden" onclick="closeSidebar()"></div>
+
+    
 
     <div class="container">
         <h1>SpaceScale</h1>
         <div id="inputs">
             <label for="age"><b>Your Age (in years):</b></label>
             <input type="number" id="age" required>
-            <br>
+            
             <label for="weight"><b>Your Weight (in kg):</b></label>
             <input type="number" id="weight" required>
         </div>
@@ -96,7 +123,7 @@
             <div id="pluto-results"></div>
         </div>
     </div>
-    <br><br><br>
+    
 
     <footer>
         <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
@@ -142,7 +169,7 @@
 
             const newWeight = weight * (planetGravity / 9.81);
 
-            const results = `<b>Age: </b>${newAge.toFixed(2)} years<br><b>Weight: </b>${newWeight.toFixed(2)} kg`;
+            const results = `<b>Age: </b>${newAge.toFixed(2)} years<b>Weight: </b>${newWeight.toFixed(2)} kg`;
 
             // Clear results from other boxes
             clearResults();

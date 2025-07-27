@@ -4,8 +4,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WordWise - Trivexum</title>
+    <title>LexiLookup | Trivexum</title>
+    <link rel="shortcut icon" href="../icon.png" type="image/x-icon">
     <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .result {
+            padding: 10px 20px;
+            border: 1px solid var(--color-accent);
+            border-radius: 12px;
+            width: 70%;
+            margin: 10px auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,69 +39,122 @@
                 <i class="fas fa-moon"></i>
             </button>
         </div>
-    </nav>
-    <br><br><br>
-    <div class="container">
-        <h1>WordWise</h1>
-        <input type="text" id="wordInput" placeholder="Enter a word...">
-        <button onclick="searchWord()">Search</button>
-        <div id="result" class="container">Result will be shown here</div>
-    </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
+    
 
+    <div class="hamburger" onclick="openSidebar()">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <div id="sidebar" class="sidebar hidden">
+    <div class="sidebar-brand-horizontal">
+      <img src="../icon.png" alt="Trivexum Icon" />
+      <p>TRIVEXUM</p>
+    </div>
+    
+    <hr class="sidebar-divider">
+
+    <div class="close-btn" onclick="closeSidebar()">
+      <i class="fas fa-times"></i>
+    </div>
+
+    <a  href="../index.html"><i class="fas fa-house"></i> Home</a>
+    <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+    <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+    <a href="../about.html"><i class="fas fa-user"></i> About</a>
+    <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+  </div>
+
+  <div id="overlay" class="overlay hidden" onclick="closeSidebar()"></div>
+
+
+    <div class="container">
+        <h1>LexiLookup</h1>
+        <input type="text" id="wordInput" placeholder="Enter a word..." />
+        <button onclick="lookupWord()">Search</button>
+
+        <div id="resultBox" class="result hidden">
+            <div class="word-header">
+                <h2 id="wordTitle"></h2>
+                <button id="soundBtn" class="sound-btn hidden" onclick="playAudio()">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+
+            <p id="phonetic"></p>
+            <audio id="audio"></audio>
+
+            <h3>Definition</h3>
+            <p id="definition"></p>
+
+            <h3>Synonyms</h3>
+            <p id="synonyms"></p>
+
+            <h3>Antonyms</h3>
+            <p id="antonyms"></p>
+
+            <h3>Example</h3>
+            <p id="example"></p>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br>
     <footer>
         <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
     </footer>
 
     <script>
-        function clean(text) {
-            return text
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;");
+        function playAudio() {
+            const audio = document.getElementById("audio");
+            if (audio && audio.src) {
+                audio.play();
+            }
         }
 
-        async function searchWord() {
+        async function lookupWord() {
             const word = document.getElementById("wordInput").value.trim();
-            const resultDiv = document.getElementById("result");
+            if (!word) return;
 
-            if (word === "") {
-                resultDiv.innerHTML = "<p>Please enter a word 😅</p>";
-                return;
-            }
-
-            resultDiv.innerHTML = "<p>Searching... 🔍</p>";
+            const resultBox = document.getElementById("resultBox");
+            resultBox.classList.add("hidden");
 
             try {
                 const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
-                if (!res.ok) throw new Error("Word not found");
-
                 const data = await res.json();
+
+                if (!data || data.title === "No Definitions Found") {
+                    alert("No definitions found!");
+                    return;
+                }
+
                 const entry = data[0];
-                const meaning = entry.meanings?.[0];
-                const def = meaning?.definitions?.[0];
-                const phonetic = entry.phonetic || "";
+                document.getElementById("wordTitle").textContent = entry.word;
+                document.getElementById("phonetic").textContent = entry.phonetic || "—";
 
-                if (!meaning || !def) throw new Error("Definition not found");
+                const audioData = entry.phonetics.find(p => p.audio);
+                const audioEl = document.getElementById("audio");
+                const soundBtn = document.getElementById("soundBtn");
 
-                resultDiv.innerHTML = `
-          <h2>${entry.word} <span>${clean(phonetic)}</span></h2>
-          <p><strong>Part of Speech:</strong> ${clean(meaning.partOfSpeech)}</p>
-          <p><strong>Definition:</strong> ${clean(def.definition)}</p>
-          ${def.example ? `<p><strong>Example:</strong> ${clean(def.example)}</p>` : ""}
-        `;
-            } catch (error) {
-                resultDiv.innerHTML = `<p>Oops! ${error.message} 😕</p>`;
+                if (audioData && audioData.audio) {
+                    audioEl.src = audioData.audio;
+                    soundBtn.classList.remove("hidden");
+                } else {
+                    soundBtn.classList.add("hidden");
+                }
+
+                const meaning = entry.meanings[0];
+                document.getElementById("definition").textContent = meaning.definitions[0].definition || "—";
+                document.getElementById("example").textContent = meaning.definitions[0].example || "—";
+                document.getElementById("synonyms").textContent = meaning.synonyms?.slice(0, 5).join(", ") || "—";
+                document.getElementById("antonyms").textContent = meaning.antonyms?.slice(0, 5).join(", ") || "—";
+
+                resultBox.classList.remove("hidden");
+            } catch (err) {
+                console.error(err);
+                alert("Something went wrong. Try another word!");
             }
         }
-
-        // Optional: Allow Enter key to trigger search
-        document.getElementById("wordInput").addEventListener("keypress", (e) => {
-            if (e.key === "Enter") searchWord();
-        });
     </script>
     <script src="../script.js"></script>
-    <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

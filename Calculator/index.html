@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
     <link rel="shortcut icon" href="../icon.png" type="image/x-icon">
-    <title>CalcCraze - TRIVEXUM</title>
+    <title>CalcCraze | TRIVEXUM</title>
 </head>
 
 <body>
@@ -25,34 +25,61 @@
                 <i class="fas fa-moon"></i>
             </button>
         </div>
-    </nav>
-    <br><br><br>
+    
+
+    <div class="hamburger" onclick="openSidebar()">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <div id="sidebar" class="sidebar hidden">
+    <div class="sidebar-brand-horizontal">
+      <img src="../icon.png" alt="Trivexum Icon" />
+      <p>TRIVEXUM</p>
+    </div>
+    
+    <hr class="sidebar-divider">
+
+    <div class="close-btn" onclick="closeSidebar()">
+      <i class="fas fa-times"></i>
+    </div>
+
+    <a  href="../index.html"><i class="fas fa-house"></i> Home</a>
+    <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+    <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+    <a href="../about.html"><i class="fas fa-user"></i> About</a>
+    <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+  </div>
+
+  <div id="overlay" class="overlay hidden" onclick="closeSidebar()"></div>
+
+    
     <div class="container">
         <h1>CalcCraze</h1>
         <input type="text" id="display" readonly placeholder="display...">
-        <br>
+        
         <button onclick="clearDisplay()" class="clr-btn">Clear the display</button>
-        <br>
+        
         <button onclick="append('7')">7</button>
         <button onclick="append('8')">8</button>
         <button onclick="append('9')">9</button>
         <button onclick="append('/')">/</button>
-        <br>
+        
         <button onclick="append('4')">4</button>
         <button onclick="append('5')">5</button>
         <button onclick="append('6')">6</button>
         <button onclick="append('*')">*</button>
-        <br>
+        
         <button onclick="append('1')">1</button>
         <button onclick="append('2')">2</button>
         <button onclick="append('3')">3</button>
         <button onclick="append('-')">-</button>
-        <br>
+        
         <button onclick="append('0')">0</button>
         <button onclick="append('.')">.</button>
         <button onclick="calculate()">=</button>
         <button onclick="append('+')">+</button>
-        <br>
+        
         <button onclick="squareRoot()">√</button>
         <button onclick="exponentiation()">x²</button>
 
@@ -61,7 +88,7 @@
         </div>
     </div>
 
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    
 
     <footer>
         <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>

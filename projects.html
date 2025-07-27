@@ -4,34 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - TRIVEXUM</title>
+    <title>Projects | TRIVEXUM</title>
     <link rel="shortcut icon" href="icon.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <nav id="navbar">
-    <div class="nav-left">
-      <img src="icon.png" alt="Icon">
-      <p>TRIVEXUM</p>
+    <nav id="navbar">
+        <div class="nav-left">
+            <img src="icon.png" alt="Icon">
+            <p>TRIVEXUM</p>
+        </div>
+        <div class="nav-right">
+            <a href="index.html"><i class="fas fa-house"></i> Home</a>
+            <a class="active" href="projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="about.html"><i class="fas fa-user"></i> About</a>
+            <a href="blog.html"><i class="fas fa-blog"></i> Blog</a>
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+
+
+        <div class="hamburger" onclick="openSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <div id="sidebar" class="sidebar hidden">
+        <div class="sidebar-brand-horizontal">
+            <img src="icon.png" alt="Trivexum Icon" />
+            <p>TRIVEXUM</p>
+        </div>
+
+        <hr class="sidebar-divider">
+
+        <div class="close-btn" onclick="closeSidebar()">
+            <i class="fas fa-times"></i>
+        </div>
+
+        <a href="index.html"><i class="fas fa-house"></i> Home</a>
+        <a class="active" href="projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="about.html"><i class="fas fa-user"></i> About</a>
+        <a href="blog.html"><i class="fas fa-blog"></i> Blog</a>
     </div>
-    <div class="nav-right">
-      <a href="index.html"><i class="fas fa-house"></i> Home</a>
-      <a class="active" href="projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
-      <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-      <a href="about.html"><i class="fas fa-user"></i> About</a>
-      <a href="blog.html"><i class="fas fa-blog"></i> Blog</a>
-      <button id="theme-toggle" aria-label="Toggle Theme">
-        <i class="fas fa-moon"></i>
-      </button>
-    </div>
-  </nav>
-    
+
+    <div id="overlay" class="overlay hidden" onclick="closeSidebar()"></div>
+
+
     <div class="section-header">
         <h2>Our Projects</h2>
     </div>
 
     <section class="card-container">
+        <article class="card" onclick="openLink('LexiLookup/index.html')">
+            <img src="images/LexiLookup Image.JPG" alt="LexiLookup Image">
+            <h2>LexiLookup</h2>
+            <p>Words, Defined. Knowledge, Amplified.</p>
+        </article>
+        
         <article class="card" onclick="openLink('Portfolio Website/index.html')">
             <img src="images/Portfolio Website Image.jpg" alt="Portfolio Website Image">
             <h2>ShowCaseMe</h2>
@@ -146,7 +179,7 @@
             <p>Tic-Tac-Toe Pro: Classic game, endless fun.</p>
         </article>
     </section>
-    <br><br><br>
+
 
     <footer>
         <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>

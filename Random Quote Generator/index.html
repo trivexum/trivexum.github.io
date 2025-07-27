@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuotePop - TRIVEXUM</title>
+    <title>QuotePop | TRIVEXUM</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="shortcut icon" href="../icon.png" type="image/x-icon">
 </head>
@@ -25,8 +25,35 @@
                 <i class="fas fa-moon"></i>
             </button>
         </div>
-    </nav>
-    <br><br><br>
+    
+
+    <div class="hamburger" onclick="openSidebar()">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <div id="sidebar" class="sidebar hidden">
+    <div class="sidebar-brand-horizontal">
+      <img src="../icon.png" alt="Trivexum Icon" />
+      <p>TRIVEXUM</p>
+    </div>
+    
+    <hr class="sidebar-divider">
+
+    <div class="close-btn" onclick="closeSidebar()">
+      <i class="fas fa-times"></i>
+    </div>
+
+    <a  href="../index.html"><i class="fas fa-house"></i> Home</a>
+    <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+    <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+    <a href="../about.html"><i class="fas fa-user"></i> About</a>
+    <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+  </div>
+
+  <div id="overlay" class="overlay hidden" onclick="closeSidebar()"></div>
+
+    
 
     <div id="quote-container" class="container">
         <h1>QuotePop</h1>
@@ -39,7 +66,7 @@
             <p id="author-quotes">Number of quotes: N/A</p>
         </div>
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    
 
     <footer>
         <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>

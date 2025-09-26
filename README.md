@@ -1,6 +1,6 @@
-# ProjectPortico
+# TRIVEXUM
 
-Welcome to ProjectPortico, a showcase of my web and full-stack development projects. Explore a diverse range of applications that highlight creativity, functionality, and expertise in various technologies.
+Welcome to TRIVEXUM, a showcase of my web and full-stack development projects. Explore a diverse range of applications that highlight creativity, functionality, and expertise in various technologies.
 
 ## Projects
 
@@ -41,7 +41,7 @@ Welcome to ProjectPortico, a showcase of my web and full-stack development proje
 - **Technologies:** HTML5, CSS3, JavaScript.
 
 ### 10. Project Showcase
-- **Description:** Explore all projects in one place on the ProjectPortico website.
+- **Description:** Explore all projects in one place on the TRIVEXUM website.
 - **Technologies:** HTML5, CSS3, JavaScript.
 
 ### 11. Quiz Application
@@ -76,4 +76,4 @@ Welcome to ProjectPortico, a showcase of my web and full-stack development proje
 
 1. Clone the repository.
    ```bash
-   git clone https://github.com/Tateerybutt/ProjectPortico.git
+   git clone https://github.com/Tateerybutt/TRIVEXUM.git

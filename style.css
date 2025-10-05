@@ -54,13 +54,11 @@ a {
   text-decoration: none;
   padding: 2px;
   border-radius: 3px;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: text-decoration 1s ease;
 }
 
 a:hover {
-  animation: flash 2s infinite;
-  color: var(--color-white);
-  background-color: var(--color-accent);
+  text-decoration: underline;
 }
 
 button {
@@ -146,6 +144,7 @@ nav a {
 nav a:hover,
 nav a.active {
   animation: slideUp 0.6s ease forwards;
+  text-decoration: none;
   background-color: var(--color-accent);
   color: var(--color-white);
 }

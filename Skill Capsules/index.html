@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Capsules | TRIVEXUM</title>
+    <style>
+        .category-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .category-btn {
+            margin: auto;
+        }
+    </style>
+    <link rel="shortcut icon" href="../icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="nav-left">
+            <img src="../icon.png" alt="Icon">
+            <p>TRIVEXUM</p>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+            <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+            <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="../about.html"><i class="fas fa-user"></i> About</a>
+            <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <div class="hamburger" onclick="openSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <div id="sidebar" class="sidebar hidden">
+        <div class="sidebar-brand-horizontal">
+            <img src="../icon.png" alt="Trivexum Icon" />
+            <p>TRIVEXUM</p>
+        </div>
+        <hr class="sidebar-divider">
+        <div class="close-btn" onclick="closeSidebar()">
+            <i class="fas fa-times"></i>
+        </div>
+        <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+        <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+        <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="../about.html"><i class="fas fa-user"></i> About</a>
+        <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+    </div>
+
+    <div id="overlay" class="overlay hidden" onclick="closeSidebar()"></div>
+
+    <div class="container">
+        <h1>Skill Capsules</h1>
+        <p>Explore various mini projects and skills in development.</p>
+        <p>Click on a category to view related skills, or search/filter below.</p>
+
+        <!-- Search + Filter controls -->
+        <div class="controls">
+            <input type="text" id="search-bar" placeholder="Search skills...">
+            <select id="level-filter">
+                <option value="All">All Levels</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+            </select>
+        </div>
+
+        <br>
+
+        <div class="category-list" id="category-buttons">
+            <!-- Category buttons will be added dynamically -->
+        </div>
+
+        <section id="skills-container" class="card-container">
+            <!-- Skills will be loaded here dynamically -->
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 TRIVEXUM. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const skills = {
+            "Web Development": [
+                { name: "HTML", emoji: "📄", description: "Markup language for structuring web pages.", level: "Beginner", tutorial: "https://www.w3schools.com/html/" },
+                { name: "CSS", emoji: "🎨", description: "Stylesheet language for designing web pages.", level: "Beginner", tutorial: "https://www.w3schools.com/css/" },
+                { name: "JavaScript", emoji: "⚡", description: "Programming language for dynamic web apps.", level: "Intermediate", tutorial: "https://www.w3schools.com/js/" },
+                { name: "React", emoji: "⚛️", description: "Library for building dynamic user interfaces.", level: "Intermediate", tutorial: "https://react.dev/learn" },
+                { name: "Angular", emoji: "📐", description: "Framework for building scalable web apps.", level: "Intermediate", tutorial: "https://angular.io/start" },
+                { name: "Vue.js", emoji: "🖼️", description: "Lightweight framework for building UIs.", level: "Intermediate", tutorial: "https://vuejs.org/guide/introduction.html" },
+                { name: "Next.js", emoji: "🚀", description: "React framework for server-rendered apps.", level: "Intermediate", tutorial: "https://nextjs.org/learn" },
+                { name: "Svelte", emoji: "🔥", description: "Compiler that turns declarative components into JS.", level: "Intermediate", tutorial: "https://svelte.dev/tutorial/basics" },
+                { name: "Bootstrap", emoji: "📦", description: "CSS framework for responsive design.", level: "Beginner", tutorial: "https://getbootstrap.com/docs/" },
+                { name: "Tailwind CSS", emoji: "🌬️", description: "Utility-first CSS framework for custom designs.", level: "Intermediate", tutorial: "https://tailwindcss.com/docs" },
+                { name: "jQuery", emoji: "💡", description: "Simplified JS library for DOM manipulation.", level: "Beginner", tutorial: "https://learn.jquery.com/" },
+                { name: "TypeScript", emoji: "📝", description: "Superset of JavaScript with static typing.", level: "Intermediate", tutorial: "https://www.typescriptlang.org/docs/" },
+                { name: "WebAssembly", emoji: "⚙️", description: "Binary format for running code at near-native speed.", level: "Advanced", tutorial: "https://webassembly.org/getting-started/" },
+                { name: "Gatsby", emoji: "🌐", description: "React framework for static site generation.", level: "Intermediate", tutorial: "https://www.gatsbyjs.com/docs/" },
+                { name: "Nuxt.js", emoji: "📦", description: "Vue framework for server-rendered apps.", level: "Intermediate", tutorial: "https://nuxt.com/docs" },
+                { name: "Alpine.js", emoji: "⛰️", description: "Lightweight JS framework for simple interactivity.", level: "Beginner", tutorial: "https://alpinejs.dev/start-here" },
+                { name: "Lit", emoji: "💡", description: "Library for building fast web components.", level: "Intermediate", tutorial: "https://lit.dev/docs/" },
+                { name: "D3.js", emoji: "📊", description: "JS library for data visualization.", level: "Intermediate", tutorial: "https://d3js.org/" },
+                { name: "Three.js", emoji: "🎮", description: "3D graphics library built on WebGL.", level: "Advanced", tutorial: "https://threejs.org/docs/" },
+                { name: "WebRTC", emoji: "📹", description: "API for real-time video, audio, and data communication.", level: "Advanced", tutorial: "https://webrtc.org/getting-started/overview" }
+            ],
+
+
+            "Programming": [
+                { name: "C", emoji: "🔧", description: "Procedural language used for system programming.", level: "Intermediate", tutorial: "https://www.learn-c.org/" },
+                { name: "C++", emoji: "💻", description: "Extension of C with object-oriented programming.", level: "Intermediate", tutorial: "https://cplusplus.com/doc/tutorial/" },
+                { name: "Python", emoji: "🐍", description: "General-purpose language for automation, AI, and more.", level: "Beginner", tutorial: "https://www.learnpython.org/" },
+                { name: "Java", emoji: "☕", description: "Object-oriented language for enterprise applications.", level: "Advanced", tutorial: "https://www.w3schools.com/java/" },
+                { name: "C#", emoji: "#️⃣", description: "Language developed by Microsoft for .NET framework.", level: "Intermediate", tutorial: "https://learn.microsoft.com/en-us/dotnet/csharp/" },
+                { name: "Go", emoji: "🐹", description: "Efficient and scalable programming language by Google.", level: "Intermediate", tutorial: "https://go.dev/learn/" },
+                { name: "Rust", emoji: "🦀", description: "Safe and fast systems programming language.", level: "Advanced", tutorial: "https://www.rust-lang.org/learn" },
+                { name: "PHP", emoji: "🐘", description: "Server-side scripting language for web development.", level: "Beginner", tutorial: "https://www.php.net/manual/en/" },
+                { name: "Ruby", emoji: "💎", description: "Dynamic language often used with Rails.", level: "Intermediate", tutorial: "https://www.ruby-lang.org/en/documentation/" },
+                { name: "Kotlin", emoji: "📱", description: "Modern language for Android development.", level: "Intermediate", tutorial: "https://developer.android.com/kotlin" },
+                { name: "Swift", emoji: "🕊️", description: "Apple’s language for iOS/macOS development.", level: "Intermediate", tutorial: "https://developer.apple.com/swift/resources/" },
+                { name: "Perl", emoji: "🐪", description: "Practical language for text manipulation.", level: "Intermediate", tutorial: "https://perldoc.perl.org/" },
+                { name: "R", emoji: "📈", description: "Statistical computing language for data science.", level: "Intermediate", tutorial: "https://www.r-project.org/other-docs.html" },
+                { name: "MATLAB", emoji: "📊", description: "Language for numerical computing and simulations.", level: "Advanced", tutorial: "https://matlabacademy.mathworks.com/" },
+                { name: "Scala", emoji: "⚖️", description: "Language combining OOP and functional programming.", level: "Advanced", tutorial: "https://docs.scala-lang.org/tutorials/" },
+                { name: "Haskell", emoji: "🔗", description: "Purely functional programming language.", level: "Advanced", tutorial: "https://www.haskell.org/learn.html" },
+                { name: "Dart", emoji: "🎯", description: "Language optimized for UI development.", level: "Intermediate", tutorial: "https://dart.dev/learn" },
+                { name: "Objective-C", emoji: "🍏", description: "Older Apple language for iOS/macOS apps.", level: "Advanced", tutorial: "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html" },
+                { name: "Lua", emoji: "🌙", description: "Lightweight scripting language for games.", level: "Intermediate", tutorial: "https://www.lua.org/start.html" },
+                { name: "Assembly", emoji: "⚙️", description: "Low-level programming for hardware control.", level: "Advanced", tutorial: "https://asmtutor.com/" }
+            ],
+
+            "Design": [
+                { name: "UI/UX", emoji: "🎨", description: "Designing intuitive and user-friendly interfaces.", level: "Intermediate", tutorial: "https://www.interaction-design.org/courses" },
+                { name: "Graphic Design", emoji: "🖌️", description: "Creating visuals with colors, shapes, and typography.", level: "Beginner", tutorial: "https://www.canva.com/learn/design/" },
+                { name: "Figma", emoji: "🔗", description: "Collaborative tool for designing and prototyping.", level: "Beginner", tutorial: "https://help.figma.com/hc/en-us/articles/360040518034" },
+                { name: "Adobe Photoshop", emoji: "🖼️", description: "Software for image editing and digital art.", level: "Intermediate", tutorial: "https://helpx.adobe.com/photoshop/tutorials.html" },
+                { name: "Adobe Illustrator", emoji: "✒️", description: "Vector graphics editor for logos and illustrations.", level: "Intermediate", tutorial: "https://helpx.adobe.com/illustrator/tutorials.html" },
+                { name: "Sketch", emoji: "📐", description: "Mac-based design tool for UI and UX projects.", level: "Intermediate", tutorial: "https://www.sketch.com/docs/" },
+                { name: "InVision", emoji: "👥", description: "Prototyping and collaboration tool for design teams.", level: "Intermediate", tutorial: "https://www.invisionapp.com/inside-design/design-resources/" },
+                { name: "Canva", emoji: "🖍️", description: "Easy online graphic design tool.", level: "Beginner", tutorial: "https://www.canva.com/designschool/" },
+                { name: "CorelDRAW", emoji: "📊", description: "Vector graphics and layout software.", level: "Intermediate", tutorial: "https://www.coreldraw.com/en/pages/tutorials/" },
+                { name: "Blender", emoji: "🔶", description: "Open-source 3D modeling and animation software.", level: "Advanced", tutorial: "https://www.blender.org/support/tutorials/" },
+                { name: "After Effects", emoji: "✨", description: "Tool for motion graphics and visual effects.", level: "Intermediate", tutorial: "https://helpx.adobe.com/after-effects/tutorials.html" },
+                { name: "Premiere Pro", emoji: "🎬", description: "Video editing software from Adobe.", level: "Intermediate", tutorial: "https://helpx.adobe.com/premiere-pro/tutorials.html" },
+                { name: "Cinema 4D", emoji: "🎥", description: "3D modeling, animation, and rendering software.", level: "Advanced", tutorial: "https://www.maxon.net/en/cinema-4d/tutorials" },
+                { name: "Affinity Designer", emoji: "🖋️", description: "Alternative to Illustrator for vector graphics.", level: "Intermediate", tutorial: "https://affinity.serif.com/en-gb/tutorials/designer/" },
+                { name: "Marvel App", emoji: "📱", description: "Design, prototype, and collaborate on mobile apps.", level: "Beginner", tutorial: "https://marvelapp.com/learn" },
+                { name: "Framer", emoji: "⚡", description: "Interactive design and prototyping tool.", level: "Intermediate", tutorial: "https://www.framer.com/learn/" },
+                { name: "Zeplin", emoji: "📝", description: "Tool for designer-developer collaboration.", level: "Intermediate", tutorial: "https://support.zeplin.io/hc/en-us/categories/360000031174-Getting-Started" },
+                { name: "Maya", emoji: "🎭", description: "3D animation and modeling software.", level: "Advanced", tutorial: "https://area.autodesk.com/learning/resources/maya/" },
+                { name: "GIMP", emoji: "🆓", description: "Free alternative to Photoshop for image editing.", level: "Beginner", tutorial: "https://www.gimp.org/tutorials/" },
+                { name: "Adobe XD", emoji: "📲", description: "UI/UX design and prototyping tool.", level: "Intermediate", tutorial: "https://helpx.adobe.com/xd/tutorials.html" }
+            ],
+
+            "Databases": [
+                { name: "MySQL", emoji: "🐬", description: "Relational database for structured data.", level: "Beginner", tutorial: "https://www.mysqltutorial.org/" },
+                { name: "PostgreSQL", emoji: "🐘", description: "Advanced open-source relational database.", level: "Intermediate", tutorial: "https://www.postgresql.org/docs/" },
+                { name: "SQLite", emoji: "💾", description: "Lightweight embedded relational database.", level: "Beginner", tutorial: "https://www.sqlite.org/docs.html" },
+                { name: "MongoDB", emoji: "🍃", description: "NoSQL database for scalable applications.", level: "Intermediate", tutorial: "https://www.mongodb.com/docs/manual/" },
+                { name: "Redis", emoji: "🔥", description: "In-memory data store for caching and real-time apps.", level: "Intermediate", tutorial: "https://redis.io/docs/" },
+                { name: "Cassandra", emoji: "📦", description: "Distributed NoSQL database for big data.", level: "Advanced", tutorial: "https://cassandra.apache.org/doc/latest/" },
+                { name: "MariaDB", emoji: "🌊", description: "Fork of MySQL with advanced features.", level: "Intermediate", tutorial: "https://mariadb.org/documentation/" },
+                { name: "Firebase Firestore", emoji: "☁️", description: "Serverless NoSQL database from Google.", level: "Beginner", tutorial: "https://firebase.google.com/docs/firestore" },
+                { name: "CouchDB", emoji: "🛋️", description: "NoSQL database using JSON to store data.", level: "Intermediate", tutorial: "https://docs.couchdb.org/en/stable/" },
+                { name: "Neo4j", emoji: "🕸️", description: "Graph database for connected data.", level: "Advanced", tutorial: "https://neo4j.com/docs/" },
+                { name: "DynamoDB", emoji: "⚡", description: "AWS’s fully managed NoSQL database.", level: "Intermediate", tutorial: "https://docs.aws.amazon.com/dynamodb/" },
+                { name: "Oracle Database", emoji: "🏛️", description: "Enterprise-grade relational database.", level: "Advanced", tutorial: "https://docs.oracle.com/en/database/" },
+                { name: "Microsoft SQL Server", emoji: "🪟", description: "Relational database from Microsoft.", level: "Intermediate", tutorial: "https://learn.microsoft.com/en-us/sql/" },
+                { name: "Supabase", emoji: "🚀", description: "Open-source Firebase alternative with Postgres.", level: "Beginner", tutorial: "https://supabase.com/docs" },
+                { name: "Elasticsearch", emoji: "🔍", description: "Search and analytics engine for big data.", level: "Advanced", tutorial: "https://www.elastic.co/guide/index.html" },
+                { name: "Snowflake", emoji: "❄️", description: "Cloud data warehouse for analytics.", level: "Advanced", tutorial: "https://docs.snowflake.com/en/" },
+                { name: "CockroachDB", emoji: "🐓", description: "Distributed SQL database for cloud apps.", level: "Advanced", tutorial: "https://www.cockroachlabs.com/docs/" },
+                { name: "ArangoDB", emoji: "🔺", description: "Multi-model database supporting documents and graphs.", level: "Intermediate", tutorial: "https://www.arangodb.com/docs/stable/" },
+                { name: "TiDB", emoji: "🧩", description: "Distributed SQL database compatible with MySQL.", level: "Advanced", tutorial: "https://docs.pingcap.com/tidb/stable" },
+                { name: "OrientDB", emoji: "🧭", description: "Multi-model database for documents and graphs.", level: "Intermediate", tutorial: "https://orientdb.org/docs/" }
+            ],
+
+            "Mobile Development": [
+                { name: "Android Development", emoji: "🤖", description: "Building apps for Android using Java or Kotlin.", level: "Intermediate", tutorial: "https://developer.android.com/courses" },
+                { name: "iOS Development", emoji: "🍎", description: "Creating iOS apps using Swift and Xcode.", level: "Intermediate", tutorial: "https://developer.apple.com/learn/curriculum/" },
+                { name: "React Native", emoji: "⚛️", description: "Framework for building cross-platform mobile apps with React.", level: "Intermediate", tutorial: "https://reactnative.dev/docs/getting-started" },
+                { name: "Flutter", emoji: "🪶", description: "Google’s framework for cross-platform apps with Dart.", level: "Intermediate", tutorial: "https://docs.flutter.dev/" },
+                { name: "Xamarin", emoji: "🔷", description: "Microsoft’s tool for cross-platform app development with C#.", level: "Intermediate", tutorial: "https://dotnet.microsoft.com/en-us/apps/xamarin" },
+                { name: "Swift", emoji: "🦅", description: "Programming language for native iOS development.", level: "Intermediate", tutorial: "https://developer.apple.com/swift/resources/" },
+                { name: "Kotlin", emoji: "☕", description: "Modern language for Android development.", level: "Intermediate", tutorial: "https://kotlinlang.org/docs/home.html" },
+                { name: "Ionic", emoji: "🌐", description: "Hybrid mobile app framework using HTML, CSS, and JS.", level: "Beginner", tutorial: "https://ionicframework.com/docs" },
+                { name: "PhoneGap", emoji: "📞", description: "Framework for building hybrid mobile apps (discontinued but legacy).", level: "Intermediate", tutorial: "https://cordova.apache.org/docs/en/latest/" },
+                { name: "Apache Cordova", emoji: "🧩", description: "Open-source mobile app development framework.", level: "Intermediate", tutorial: "https://cordova.apache.org/docs/en/latest/" },
+                { name: "Mobile UI/UX", emoji: "📱", description: "Designing intuitive mobile experiences.", level: "Intermediate", tutorial: "https://www.interaction-design.org/courses/mobile-user-experience-design" },
+                { name: "ARKit", emoji: "🕶️", description: "Apple’s framework for augmented reality apps.", level: "Advanced", tutorial: "https://developer.apple.com/augmented-reality/" },
+                { name: "ARCore", emoji: "🌍", description: "Google’s platform for augmented reality experiences.", level: "Advanced", tutorial: "https://developers.google.com/ar" },
+                { name: "Unity Mobile", emoji: "🎮", description: "Using Unity for mobile game development.", level: "Intermediate", tutorial: "https://learn.unity.com/" },
+                { name: "Firebase Mobile", emoji: "🔥", description: "Integrating Firebase for backend services in mobile apps.", level: "Beginner", tutorial: "https://firebase.google.com/docs" },
+                { name: "PWA (Progressive Web Apps)", emoji: "⚡", description: "Web apps that behave like mobile apps.", level: "Intermediate", tutorial: "https://web.dev/learn/pwa/" },
+                { name: "App Testing with Appium", emoji: "🧪", description: "Automated testing tool for mobile apps.", level: "Intermediate", tutorial: "https://appium.io/docs/en/about-appium/intro/" },
+                { name: "Jetpack Compose", emoji: "🧵", description: "Modern toolkit for Android UI development.", level: "Intermediate", tutorial: "https://developer.android.com/jetpack/compose/documentation" },
+                { name: "UIKit", emoji: "📲", description: "Apple’s framework for building iOS interfaces.", level: "Intermediate", tutorial: "https://developer.apple.com/documentation/uikit" },
+                { name: "Mobile Security", emoji: "🔐", description: "Practices for securing mobile applications.", level: "Advanced", tutorial: "https://owasp.org/www-project-mobile-security/" }
+            ],
+
+            "DevOps & Cloud": [
+                { name: "Git", emoji: "🌳", description: "Version control system for tracking changes in code.", level: "Beginner", tutorial: "https://git-scm.com/doc" },
+                { name: "GitHub", emoji: "🐙", description: "Platform for hosting and collaborating on code.", level: "Beginner", tutorial: "https://docs.github.com/en" },
+                { name: "GitLab", emoji: "🦊", description: "DevOps platform for CI/CD pipelines.", level: "Intermediate", tutorial: "https://docs.gitlab.com/" },
+                { name: "Docker", emoji: "🐳", description: "Tool for containerizing applications.", level: "Intermediate", tutorial: "https://docs.docker.com/get-started/" },
+                { name: "Kubernetes", emoji: "☸️", description: "Container orchestration system.", level: "Advanced", tutorial: "https://kubernetes.io/docs/tutorials/" },
+                { name: "Jenkins", emoji: "🏭", description: "Automation server for CI/CD.", level: "Intermediate", tutorial: "https://www.jenkins.io/doc/" },
+                { name: "Travis CI", emoji: "🚦", description: "Continuous integration service.", level: "Intermediate", tutorial: "https://docs.travis-ci.com/" },
+                { name: "CircleCI", emoji: "⭕", description: "CI/CD platform for automation.", level: "Intermediate", tutorial: "https://circleci.com/docs/" },
+                { name: "AWS", emoji: "☁️", description: "Amazon Web Services cloud computing platform.", level: "Intermediate", tutorial: "https://docs.aws.amazon.com/" },
+                { name: "Microsoft Azure", emoji: "🟦", description: "Cloud computing services by Microsoft.", level: "Intermediate", tutorial: "https://learn.microsoft.com/en-us/azure/" },
+                { name: "Google Cloud Platform", emoji: "🔴", description: "Google’s suite of cloud services.", level: "Intermediate", tutorial: "https://cloud.google.com/docs" },
+                { name: "Terraform", emoji: "🏗️", description: "Infrastructure as code tool.", level: "Advanced", tutorial: "https://developer.hashicorp.com/terraform/tutorials" },
+                { name: "Ansible", emoji: "🤖", description: "Automation tool for configuration management.", level: "Intermediate", tutorial: "https://docs.ansible.com/" },
+                { name: "Chef", emoji: "👨‍🍳", description: "Infrastructure automation platform.", level: "Intermediate", tutorial: "https://docs.chef.io/" },
+                { name: "Puppet", emoji: "🎭", description: "Configuration management tool.", level: "Intermediate", tutorial: "https://puppet.com/docs/" },
+                { name: "Nagios", emoji: "🔔", description: "Monitoring tool for networks and infrastructure.", level: "Intermediate", tutorial: "https://www.nagios.org/documentation/" },
+                { name: "Prometheus", emoji: "🔥", description: "Monitoring and alerting toolkit.", level: "Intermediate", tutorial: "https://prometheus.io/docs/" },
+                { name: "Grafana", emoji: "📊", description: "Visualization tool for metrics and logs.", level: "Intermediate", tutorial: "https://grafana.com/docs/" },
+                { name: "ELK Stack", emoji: "🔍", description: "Elasticsearch, Logstash, Kibana for log management.", level: "Advanced", tutorial: "https://www.elastic.co/what-is/elk-stack" },
+                { name: "CI/CD Concepts", emoji: "🚀", description: "Continuous Integration and Continuous Deployment practices.", level: "Beginner", tutorial: "https://www.redhat.com/en/topics/devops/what-is-ci-cd" }
+            ],
+
+            "Cybersecurity": [
+                { name: "Network Security", emoji: "🛡️", description: "Protecting networks from unauthorized access and attacks.", level: "Intermediate", tutorial: "https://www.coursera.org/learn/it-security" },
+                { name: "Ethical Hacking", emoji: "🕵️", description: "Finding vulnerabilities in systems to fix them.", level: "Advanced", tutorial: "https://www.eccouncil.org/programs/certified-ethical-hacker-ceh/" },
+                { name: "Cryptography", emoji: "🔑", description: "Securing data through encryption techniques.", level: "Advanced", tutorial: "https://www.khanacademy.org/computing/computer-science/cryptography" },
+                { name: "Web Security", emoji: "🕸️", description: "Protecting web apps from threats like XSS and SQL injection.", level: "Intermediate", tutorial: "https://portswigger.net/web-security" },
+                { name: "Malware Analysis", emoji: "🦠", description: "Studying malicious software to understand and defend.", level: "Advanced", tutorial: "https://www.sans.org/cyber-security-courses/malware-analysis-tools-techniques/" },
+                { name: "Penetration Testing", emoji: "⚔️", description: "Simulating attacks to test system defenses.", level: "Advanced", tutorial: "https://tryhackme.com/" },
+                { name: "Incident Response", emoji: "🚨", description: "Responding to and managing cyber incidents.", level: "Intermediate", tutorial: "https://www.coursera.org/learn/incident-response" },
+                { name: "Identity & Access Management", emoji: "👤", description: "Managing user authentication and authorization.", level: "Intermediate", tutorial: "https://www.okta.com/identity-101/" },
+                { name: "SIEM Tools", emoji: "📊", description: "Monitoring and analyzing security events.", level: "Intermediate", tutorial: "https://www.splunk.com/en_us/solutions/siem.html" },
+                { name: "Firewall Management", emoji: "🧱", description: "Configuring firewalls to block unauthorized access.", level: "Beginner", tutorial: "https://www.cisco.com/c/en/us/products/security/firewalls/what-is-a-firewall.html" },
+                { name: "Threat Hunting", emoji: "🏹", description: "Actively searching for hidden cyber threats.", level: "Advanced", tutorial: "https://www.crowdstrike.com/cybersecurity-101/threat-hunting/" },
+                { name: "Zero Trust Security", emoji: "🔒", description: "A model that never trusts and always verifies.", level: "Intermediate", tutorial: "https://www.microsoft.com/security/business/zero-trust" },
+                { name: "Cloud Security", emoji: "🌩️", description: "Securing cloud environments like AWS and Azure.", level: "Intermediate", tutorial: "https://cloudsecurityalliance.org/" },
+                { name: "Security Auditing", emoji: "📝", description: "Reviewing systems for compliance and vulnerabilities.", level: "Intermediate", tutorial: "https://www.isaca.org/resources" },
+                { name: "Digital Forensics", emoji: "🔬", description: "Investigating cybercrimes and recovering evidence.", level: "Advanced", tutorial: "https://www.coursera.org/learn/digital-forensics" },
+                { name: "Password Cracking", emoji: "🔨", description: "Testing password strengths with ethical use.", level: "Intermediate", tutorial: "https://hashcat.net/hashcat/" },
+                { name: "DDoS Defense", emoji: "🚧", description: "Preventing and mitigating denial-of-service attacks.", level: "Advanced", tutorial: "https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/" },
+                { name: "Vulnerability Assessment", emoji: "🩹", description: "Identifying weaknesses in systems.", level: "Intermediate", tutorial: "https://owasp.org/www-project-vulnerability-assessment/" },
+                { name: "IoT Security", emoji: "📱", description: "Securing Internet of Things devices.", level: "Intermediate", tutorial: "https://www.iotsecurityfoundation.org/" },
+                { name: "Phishing Prevention", emoji: "🎣", description: "Protecting users from deceptive phishing attacks.", level: "Beginner", tutorial: "https://www.phishing.org/what-is-phishing" }
+            ],
+
+            "Artificial Intelligence": [
+                { name: "Machine Learning", emoji: "🧠", description: "Teaching computers to learn from data.", level: "Intermediate", tutorial: "https://www.coursera.org/learn/machine-learning" },
+                { name: "Deep Learning", emoji: "💡", description: "Neural networks for advanced pattern recognition.", level: "Advanced", tutorial: "https://www.deeplearning.ai/" },
+                { name: "Natural Language Processing", emoji: "🗣️", description: "AI that understands and processes human language.", level: "Advanced", tutorial: "https://www.coursera.org/learn/natural-language-processing" },
+                { name: "Computer Vision", emoji: "👁️", description: "AI that interprets and analyzes visual data.", level: "Intermediate", tutorial: "https://www.pyimagesearch.com/" },
+                { name: "Reinforcement Learning", emoji: "🎮", description: "Training agents via rewards and penalties.", level: "Advanced", tutorial: "https://spinningup.openai.com/" },
+                { name: "AI Ethics", emoji: "⚖️", description: "Ensuring responsible and fair use of AI.", level: "Beginner", tutorial: "https://www.edx.org/course/ethics-of-ai" },
+                { name: "Generative AI", emoji: "✨", description: "Creating new content like images and text with AI.", level: "Advanced", tutorial: "https://www.coursera.org/specializations/generative-ai" },
+                { name: "Speech Recognition", emoji: "🎤", description: "AI that converts speech into text.", level: "Intermediate", "tutorial": "https://cmusphinx.github.io/" },
+                { name: "Recommendation Systems", emoji: "⭐", description: "Building engines like Netflix or Amazon suggestions.", level: "Intermediate", tutorial: "https://www.coursera.org/learn/recommender-systems" },
+                { name: "AI in Healthcare", emoji: "⚕️", description: "Applications of AI in medical diagnosis and treatment.", level: "Intermediate", tutorial: "https://www.coursera.org/learn/ai-healthcare" },
+                { name: "AI Agents", emoji: "🧑‍💻", description: "Autonomous entities that interact with environments.", level: "Advanced", tutorial: "https://gym.openai.com/" },
+                { name: "Transformers", emoji: "🔄", description: "Deep learning models for NLP and vision tasks.", level: "Advanced", tutorial: "https://huggingface.co/course/chapter1" },
+                { name: "AI for Games", emoji: "👾", description: "Designing AI for game characters and environments.", level: "Intermediate", tutorial: "https://www.coursera.org/learn/fundamentals-of-game-ai" },
+                { name: "AI Optimization", emoji: "⚙️", description: "Improving AI model performance and efficiency.", level: "Advanced", tutorial: "https://www.tensorflow.org/guide/optimizations" },
+                { name: "AI in Robotics", emoji: "🦾", description: "Using AI to enhance robotic control and autonomy.", level: "Advanced", tutorial: "https://www.coursera.org/learn/ai-for-robotics" },
+                { name: "Sentiment Analysis", emoji: "😊", description: "Determining emotions in text using AI.", level: "Intermediate", tutorial: "https://monkeylearn.com/sentiment-analysis/" },
+                { name: "AI Chatbots", emoji: "💬", description: "Building intelligent conversational systems.", level: "Intermediate", tutorial: "https://dialogflow.cloud.google.com/" },
+                { name: "AI Model Deployment", emoji: "🚢", description: "Serving and scaling AI models in production.", level: "Intermediate", tutorial: "https://www.tensorflow.org/tfx" },
+                { name: "AI Hardware", emoji: "💻", description: "Specialized chips and GPUs for AI workloads.", level: "Beginner", tutorial: "https://developer.nvidia.com/deep-learning" },
+                { name: "Explainable AI", emoji: "❓", description: "Making AI decisions transparent and understandable.", level: "Advanced", tutorial: "https://www.ibm.com/watson/explainable-ai" }
+            ],
+
+            "Data Science": [
+                { name: "Data Analysis", emoji: "📊", description: "Extracting insights from datasets.", level: "Beginner", tutorial: "https://www.coursera.org/learn/data-analysis-with-python" },
+                { name: "Data Visualization", emoji: "📈", description: "Creating charts and visuals to understand data.", level: "Beginner", tutorial: "https://www.tableau.com/learn/training" },
+                { name: "Statistics", emoji: "➗", description: "Mathematical methods for data interpretation.", level: "Intermediate", tutorial: "https://www.khanacademy.org/math/statistics-probability" },
+                { name: "Probability", emoji: "🎲", description: "Modeling uncertainty in data.", level: "Intermediate", tutorial: "https://www.khanacademy.org/math/statistics-probability/probability-library" },
+                { name: "Big Data", emoji: "🗄️", description: "Handling massive datasets with distributed systems.", level: "Advanced", tutorial: "https://hadoop.apache.org/" },
+                { name: "Data Cleaning", emoji: "🧹", description: "Preparing and fixing messy datasets.", level: "Beginner", tutorial: "https://www.datacamp.com/tutorial/data-cleaning-python" },
+                { name: "Exploratory Data Analysis", emoji: "🔍", description: "Investigating data patterns and distributions.", level: "Intermediate", tutorial: "https://towardsdatascience.com/exploratory-data-analysis-8fc1cb20fd15" },
+                { name: "Data Wrangling", emoji: "🛠️", description: "Transforming raw data into usable formats.", level: "Intermediate", tutorial: "https://pandas.pydata.org/docs/" },
+                { name: "Data Engineering", emoji: "⚙️", description: "Building pipelines to process data at scale.", level: "Advanced", tutorial: "https://www.coursera.org/professional-certificates/data-engineering-google-cloud" },
+                { name: "Time Series Analysis", emoji: "⏳", description: "Analyzing sequential data over time.", level: "Advanced", tutorial: "https://otexts.com/fpp3/" },
+                { name: "Data Mining", emoji: "⛏️", description: "Discovering patterns in large datasets.", level: "Intermediate", tutorial: "https://www.ibm.com/topics/data-mining" },
+                { name: "Business Intelligence", emoji: "💼", description: "Using data for strategic decision-making.", level: "Intermediate", tutorial: "https://powerbi.microsoft.com/" },
+                { name: "SQL for Data Science", emoji: "🗃️", description: "Using SQL to query and manipulate data.", level: "Beginner", tutorial: "https://www.sqlcourse.com/" },
+                { name: "Pandas", emoji: "🐼", description: "Python library for data manipulation.", level: "Beginner", tutorial: "https://pandas.pydata.org/" },
+                { name: "NumPy", emoji: "🔢", description: "Python library for numerical computing.", level: "Beginner", tutorial: "https://numpy.org/learn/" },
+                { name: "Matplotlib", emoji: "📉", description: "Python plotting library.", level: "Beginner", tutorial: "https://matplotlib.org/stable/tutorials/index.html" },
+                { name: "Seaborn", emoji: "🌊", description: "Statistical data visualization library in Python.", level: "Intermediate", tutorial: "https://seaborn.pydata.org/tutorial.html" },
+                { name: "Scikit-learn", emoji: "🤖", description: "Machine learning library for Python.", level: "Intermediate", tutorial: "https://scikit-learn.org/stable/tutorial/index.html" },
+                { name: "Data Ethics", emoji: "⚖️", description: "Responsible use and privacy in data science.", level: "Beginner", tutorial: "https://datascience.berkeley.edu/online-programs/data-ethics/" },
+                { name: "Kaggle Competitions", emoji: "🏆", description: "Hands-on data science challenges.", level: "Intermediate", tutorial: "https://www.kaggle.com/" }
+            ],
+
+            "Game Development": [
+                { name: "Unity", emoji: "🎮", description: "Cross-platform game engine.", level: "Intermediate", tutorial: "https://learn.unity.com/" },
+                { name: "Unreal Engine", emoji: "💎", description: "High-end game engine for AAA games.", level: "Advanced", tutorial: "https://www.unrealengine.com/en-US/learn" },
+                { name: "C# for Games", emoji: "📜", description: "Programming language for Unity.", level: "Intermediate", tutorial: "https://learn.microsoft.com/en-us/dotnet/csharp/" },
+                { name: "C++ for Games", emoji: "⚡", description: "Main language for Unreal Engine.", level: "Advanced", tutorial: "https://www.learncpp.com/" },
+                { name: "Game Physics", emoji: "🌌", description: "Simulating real-world physics in games.", level: "Advanced", tutorial: "https://natureofcode.com/" },
+                { name: "Game AI", emoji: "🧠", description: "Artificial intelligence for NPCs and gameplay.", level: "Intermediate", tutorial: "https://www.gamedevelopment.blog/ai-in-games/" },
+                { name: "2D Game Dev", emoji: "🕹️", description: "Creating 2D games with engines and frameworks.", level: "Beginner", tutorial: "https://www.raywenderlich.com/ios/paths/learn" },
+                { name: "3D Game Dev", emoji: "🏗️", description: "Creating 3D environments and characters.", level: "Intermediate", tutorial: "https://learn.unity.com/pathway/3d-game-kit" },
+                { name: "Shaders", emoji: "✨", description: "Graphics programming for effects.", level: "Advanced", tutorial: "https://thebookofshaders.com/" },
+                { name: "Game UI/UX", emoji: "🎨", description: "Designing menus and user flows in games.", level: "Beginner", tutorial: "https://gamedevacademy.org/" },
+                { name: "Multiplayer Networking", emoji: "🌐", description: "Creating online multiplayer games.", level: "Advanced", tutorial: "https://www.photonengine.com/en-US/PUN" },
+                { name: "Mobile Game Dev", emoji: "📱", description: "Building games for mobile devices.", level: "Intermediate", tutorial: "https://developer.android.com/games" },
+                { name: "VR Development", emoji: "🕶️", description: "Creating virtual reality games.", level: "Advanced", tutorial: "https://developer.oculus.com/" },
+                { name: "AR Development", emoji: "📡", description: "Building augmented reality games.", level: "Advanced", tutorial: "https://developer.apple.com/augmented-reality/" },
+                { name: "Sound Design", emoji: "🎧", description: "Adding music and effects to games.", level: "Beginner", tutorial: "https://www.gamasutra.com/" },
+                { name: "Game Storytelling", emoji: "📖", description: "Narrative design for engaging gameplay.", level: "Intermediate", tutorial: "https://www.coursera.org/learn/video-game-storytelling" },
+                { name: "Pixel Art", emoji: "🟦", description: "Retro-style game art.", level: "Beginner", tutorial: "https://www.pixelart.com/learn" },
+                { name: "Level Design", emoji: "🗺️", description: "Designing maps and challenges in games.", level: "Intermediate", tutorial: "https://gamedevacademy.org/learn-level-design/" },
+                { name: "Godot", emoji: "🐙", description: "Open-source game engine.", level: "Intermediate", tutorial: "https://docs.godotengine.org/" },
+                { name: "Game Testing", emoji: "🔧", description: "Ensuring games are bug-free.", level: "Beginner", tutorial: "https://www.gamedesigning.org/learn/game-testing/" }
+            ],
+
+            "Blockchain & Web3": [
+                { name: "Blockchain Basics", emoji: "⛓️", description: "Understanding how blockchain works.", level: "Beginner", tutorial: "https://www.ibm.com/topics/what-is-blockchain" },
+                { name: "Ethereum", emoji: "💠", description: "Popular blockchain platform for smart contracts.", level: "Intermediate", tutorial: "https://ethereum.org/en/developers/docs/" },
+                { name: "Solidity", emoji: "📜", description: "Programming language for Ethereum smart contracts.", level: "Intermediate", tutorial: "https://docs.soliditylang.org/" },
+                { name: "Smart Contracts", emoji: "✍️", description: "Self-executing contracts on blockchain.", level: "Intermediate", tutorial: "https://ethereum.org/en/developers/docs/smart-contracts/" },
+                { name: "NFTs", emoji: "🖼️", description: "Non-fungible tokens for digital ownership.", level: "Beginner", tutorial: "https://www.investopedia.com/non-fungible-tokens-nft-5115211" },
+                { name: "DeFi", emoji: "🏦", description: "Decentralized finance applications.", level: "Intermediate", tutorial: "https://ethereum.org/en/defi/" },
+                { name: "Crypto Wallets", emoji: "👛", description: "Tools to store and manage cryptocurrency.", level: "Beginner", tutorial: "https://www.coinbase.com/learn/crypto-basics/what-is-a-crypto-wallet" },
+                { name: "Blockchain Security", emoji: "🛡️", description: "Protecting blockchain networks from attacks.", level: "Advanced", tutorial: "https://www.coursera.org/learn/blockchain-security" },
+                { name: "Hyperledger", emoji: "📂", description: "Open-source enterprise blockchain framework.", level: "Intermediate", tutorial: "https://www.hyperledger.org/learn" },
+                { name: "Solana", emoji: "🌞", description: "High-performance blockchain platform.", level: "Intermediate", tutorial: "https://docs.solana.com/" },
+                { name: "Polygon", emoji: "🔷", description: "Ethereum scaling solution.", level: "Intermediate", tutorial: "https://docs.polygon.technology/" },
+                { name: "IPFS", emoji: "📡", description: "Decentralized file storage protocol.", level: "Intermediate", tutorial: "https://docs.ipfs.io/" },
+                { name: "DApps", emoji: "📱", description: "Decentralized applications running on blockchain.", level: "Intermediate", tutorial: "https://ethereum.org/en/developers/docs/dapps/" },
+                { name: "Web3.js", emoji: "🌐", description: "JavaScript library to interact with Ethereum.", level: "Intermediate", tutorial: "https://web3js.readthedocs.io/" },
+                { name: "Chainlink", emoji: "🔗", description: "Decentralized oracle network for smart contracts.", level: "Intermediate", tutorial: "https://docs.chain.link/" },
+                { name: "Consensus Mechanisms", emoji: "🤝", description: "Algorithms to achieve agreement in blockchain.", level: "Advanced", tutorial: "https://www.geeksforgeeks.org/consensus-mechanisms-in-blockchain/" },
+                { name: "Tokenomics", emoji: "💹", description: "Economics and design of blockchain tokens.", level: "Intermediate", tutorial: "https://academy.binance.com/en/articles/what-is-tokenomics" },
+                { name: "Layer 2 Solutions", emoji: "📶", description: "Scaling blockchain using secondary layers.", level: "Advanced", tutorial: "https://ethereum.org/en/developers/docs/scaling/layer-2-rollups/" },
+                { name: "Decentralized Identity", emoji: "🪪", description: "Self-sovereign identity on blockchain.", level: "Advanced", tutorial: "https://www.w3.org/TR/did-core/" },
+                { name: "Blockchain Governance", emoji: "⚙️", description: "How blockchain projects are managed and updated.", level: "Advanced", tutorial: "https://academy.binance.com/en/articles/blockchain-governance-explained" }
+            ],
+
+            "Embedded Systems & IoT": [
+                { name: "Embedded Systems Basics", emoji: "🔌", description: "Introduction to embedded devices and microcontrollers.", level: "Beginner", tutorial: "https://www.tutorialspoint.com/embedded_systems/index.htm" },
+                { name: "Arduino", emoji: "🛠️", description: "Popular microcontroller platform.", level: "Beginner", tutorial: "https://www.arduino.cc/en/Tutorial/HomePage" },
+                { name: "Raspberry Pi", emoji: "🥧", description: "Small single-board computer for projects.", level: "Beginner", tutorial: "https://www.raspberrypi.com/documentation/" },
+                { name: "ESP32", emoji: "📡", description: "Wi-Fi & Bluetooth microcontroller for IoT.", level: "Intermediate", tutorial: "https://docs.espressif.com/projects/esp-idf/en/latest/esp32/" },
+                { name: "Sensors & Actuators", emoji: "⚙️", description: "Devices to sense and act in embedded systems.", level: "Beginner", tutorial: "https://www.electronics-tutorials.ws/io/io_1.html" },
+                { name: "IoT Protocols", emoji: "🌐", description: "MQTT, CoAP, HTTP for device communication.", level: "Intermediate", tutorial: "https://www.hivemq.com/mqtt-essentials/" },
+                { name: "MicroPython", emoji: "🐍", description: "Python for microcontrollers.", level: "Intermediate", tutorial: "https://docs.micropython.org/en/latest/" },
+                { name: "Embedded C", emoji: "💻", description: "C programming for embedded systems.", level: "Intermediate", tutorial: "https://www.geeksforgeeks.org/embedded-c-programming/" },
+                { name: "Wireless Communication", emoji: "📶", description: "Bluetooth, Wi-Fi, Zigbee, LoRa.", level: "Intermediate", tutorial: "https://www.rfwireless-world.com/Terminology/Wireless-Communication.html" },
+                { name: "RTOS", emoji: "⏱️", description: "Real-Time Operating Systems for embedded apps.", level: "Advanced", tutorial: "https://www.freertos.org/Documentation/RTOS_book.html" },
+                { name: "IoT Security", emoji: "🔒", description: "Securing IoT devices and networks.", level: "Advanced", tutorial: "https://www.coursera.org/learn/iot-security" },
+                { name: "Edge Computing", emoji: "💡", description: "Processing data close to IoT devices.", level: "Advanced", tutorial: "https://www.ibm.com/topics/edge-computing" },
+                { name: "Wearable Devices", emoji: "⌚", description: "Design and programming of smart wearables.", level: "Intermediate", tutorial: "https://developer.android.com/wear" },
+                { name: "Home Automation", emoji: "🏠", description: "IoT systems for smart homes.", level: "Beginner", tutorial: "https://www.home-assistant.io/docs/" },
+                { name: "Industrial IoT (IIoT)", emoji: "🏭", description: "IoT in manufacturing and industry.", level: "Advanced", tutorial: "https://www.ibm.com/topics/industrial-iot" },
+                { name: "Sensor Networks", emoji: "🛰️", description: "Interconnected sensors for monitoring.", level: "Intermediate", tutorial: "https://www.tutorialspoint.com/wireless_sensor_networks/index.htm" },
+                { name: "Actuator Control", emoji: "🔧", description: "Controlling motors, relays, and valves.", level: "Intermediate", tutorial: "https://www.electronics-tutorials.ws/io/io_2.html" },
+                { name: "IoT Analytics", emoji: "📊", description: "Analyzing data from IoT devices.", level: "Intermediate", tutorial: "https://www.coursera.org/learn/iot-analytics" },
+                { name: "LoRaWAN", emoji: "📡", description: "Low-power wide-area network protocol.", level: "Intermediate", tutorial: "https://lora-alliance.org/about-lorawan/" },
+                { name: "Zigbee", emoji: "🔗", description: "Wireless protocol for IoT devices.", level: "Intermediate", tutorial: "https://zigbeealliance.org/solution/zigbee/" }
+            ],
+
+            "AR/VR & Metaverse": [
+                { name: "AR Basics", emoji: "📱", description: "Understanding augmented reality concepts.", level: "Beginner", tutorial: "https://www.coursera.org/learn/introduction-augmented-reality" },
+                { name: "VR Basics", emoji: "🎮", description: "Understanding virtual reality concepts.", level: "Beginner", tutorial: "https://www.coursera.org/learn/virtual-reality" },
+                { name: "Unity for AR/VR", emoji: "🕹️", description: "Using Unity engine for immersive experiences.", level: "Intermediate", tutorial: "https://learn.unity.com/learn-paths/vr-development" },
+                { name: "Unreal Engine for VR", emoji: "🔥", description: "Developing VR apps with Unreal Engine.", level: "Intermediate", tutorial: "https://www.unrealengine.com/en-US/onlinelearning-courses/vr-development" },
+                { name: "ARKit", emoji: "🍎", description: "Apple’s AR development framework for iOS.", level: "Intermediate", tutorial: "https://developer.apple.com/augmented-reality/arkit/" },
+                { name: "ARCore", emoji: "🤖", description: "Google’s AR development framework for Android.", level: "Intermediate", tutorial: "https://developers.google.com/ar" },
+                { name: "Mixed Reality", emoji: "🔮", description: "Combining real and virtual environments.", level: "Intermediate", tutorial: "https://learn.microsoft.com/en-us/windows/mixed-reality/" },
+                { name: "3D Modeling for AR/VR", emoji: "🧊", description: "Creating 3D assets for immersive apps.", level: "Intermediate", tutorial: "https://www.blender.org/support/tutorials/" },
+                { name: "Metaverse Basics", emoji: "🌌", description: "Understanding virtual worlds and metaverse concepts.", level: "Beginner", tutorial: "https://www.coursera.org/learn/metaverse" },
+                { name: "XR Interaction Toolkit", emoji: "👐", description: "Building interactive AR/VR apps in Unity.", level: "Intermediate", tutorial: "https://docs.unity3d.com/Manual/com.unity.xr.interaction.toolkit.html" },
+                { name: "Oculus Development", emoji: "🥽", description: "Creating VR apps for Oculus devices.", level: "Intermediate", tutorial: "https://developer.oculus.com/documentation/" },
+                { name: "VR Hardware Setup", emoji: "⚙️", description: "Configuring headsets and sensors for VR.", level: "Beginner", tutorial: "https://www.vive.com/us/setup/" },
+                { name: "AR Navigation", emoji: "🧭", description: "Implementing AR-based navigation apps.", level: "Intermediate", tutorial: "https://developers.google.com/ar/develop/java/sceneform/augmented-images" },
+                { name: "Spatial Mapping", emoji: "🗺️", description: "Mapping real-world environments for AR.", level: "Advanced", tutorial: "https://learn.microsoft.com/en-us/windows/mixed-reality/spatial-mapping" },
+                { name: "VR UI/UX Design", emoji: "🎨", description: "Designing user interfaces for virtual environments.", level: "Intermediate", tutorial: "https://learn.unity.com/tutorial/vr-ui-design" },
+                { name: "AR Object Tracking", emoji: "🎯", description: "Detecting and tracking objects in AR.", level: "Intermediate", tutorial: "https://developers.google.com/ar/develop/java/augmented-images" },
+                { name: "Haptics in VR", emoji: "✋", description: "Using touch feedback in VR experiences.", level: "Advanced", tutorial: "https://developer.oculus.com/documentation/unity/unity-haptics/" },
+                { name: "VR Game Mechanics", emoji: "🕹️", description: "Building engaging gameplay for VR apps.", level: "Intermediate", tutorial: "https://learn.unity.com/project/vr-template" },
+                { name: "Metaverse Social Apps", emoji: "💬", description: "Creating virtual social platforms.", level: "Intermediate", tutorial: "https://developer.roblox.com/" },
+                { name: "XR Performance Optimization", emoji: "⚡", description: "Optimizing AR/VR apps for smooth performance.", level: "Advanced", tutorial: "https://learn.unity.com/tutorial/xr-performance-optimization" }
+            ],
+
+            "Big Data & Distributed Systems": [
+                { name: "Big Data Basics", emoji: "📊", description: "Understanding big data concepts and use cases.", level: "Beginner", tutorial: "https://www.coursera.org/learn/big-data-introduction" },
+                { name: "Hadoop", emoji: "🐘", description: "Framework for distributed storage and processing.", level: "Intermediate", tutorial: "https://hadoop.apache.org/docs/" },
+                { name: "Spark", emoji: "⚡", description: "Fast distributed computing engine.", level: "Intermediate", tutorial: "https://spark.apache.org/docs/latest/" },
+                { name: "Kafka", emoji: "📨", description: "Distributed streaming platform for data pipelines.", level: "Intermediate", tutorial: "https://kafka.apache.org/documentation/" },
+                { name: "NoSQL Databases", emoji: "🗄️", description: "Handling large-scale unstructured data.", level: "Intermediate", tutorial: "https://www.mongodb.com/nosql-explained" },
+                { name: "HDFS", emoji: "📂", description: "Hadoop Distributed File System for big data.", level: "Intermediate", tutorial: "https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HdfsUserGuide.html" },
+                { name: "MapReduce", emoji: "🧮", description: "Programming model for processing big datasets.", level: "Intermediate", tutorial: "https://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html" },
+                { name: "Distributed Systems Basics", emoji: "🌐", description: "Understanding distributed computing principles.", level: "Beginner", tutorial: "https://www.coursera.org/learn/cloud-computing" },
+                { name: "Data Lakes", emoji: "💧", description: "Centralized repository for raw big data.", level: "Intermediate", tutorial: "https://aws.amazon.com/big-data/datalakes-and-analytics/" },
+                { name: "Data Warehousing", emoji: "🏢", description: "Organizing and storing big data for analysis.", level: "Intermediate", tutorial: "https://www.coursera.org/learn/data-warehousing" },
+                { name: "ETL Pipelines", emoji: "🔄", description: "Extract, Transform, Load processes for big data.", level: "Intermediate", tutorial: "https://www.talend.com/resources/what-is-etl/" },
+                { name: "Cassandra", emoji: "🌀", description: "Distributed NoSQL database for high scalability.", level: "Advanced", tutorial: "https://cassandra.apache.org/_/index.html" },
+                { name: "Zookeeper", emoji: "🦓", description: "Coordination service for distributed systems.", level: "Advanced", tutorial: "https://zookeeper.apache.org/doc/current/" },
+                { name: "Flume", emoji: "💨", description: "Data ingestion system for Hadoop.", level: "Intermediate", tutorial: "https://flume.apache.org/" },
+                { name: "Storm", emoji: "🌩️", description: "Real-time computation system.", level: "Intermediate", tutorial: "https://storm.apache.org/documentation.html" },
+                { name: "YARN", emoji: "🧵", description: "Resource management for Hadoop.", level: "Intermediate", tutorial: "https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/YARN.html" },
+                { name: "Hive", emoji: "🐝", description: "Data warehouse for querying large datasets.", level: "Intermediate", tutorial: "https://cwiki.apache.org/confluence/display/Hive/Home" },
+                { name: "Pig", emoji: "🐷", description: "High-level platform for Hadoop.", level: "Intermediate", tutorial: "https://pig.apache.org/docs/r0.17.0/" },
+                { name: "Big Data Security", emoji: "🔒", description: "Securing distributed data systems.", level: "Advanced", tutorial: "https://www.coursera.org/learn/big-data-security" },
+                { name: "Scalable Architecture", emoji: "🏗️", description: "Designing distributed systems for scalability.", level: "Advanced", tutorial: "https://www.edx.org/course/scalable-microservices-with-akka" }
+            ],
+
+            "Testing & Quality Assurance": [
+                { name: "Manual Testing", emoji: "📝", description: "Testing software manually without automation.", level: "Beginner", tutorial: "https://www.guru99.com/manual-testing.html" },
+                { name: "Automation Testing", emoji: "🤖", description: "Using scripts/tools to test software automatically.", level: "Intermediate", tutorial: "https://www.guru99.com/automation-testing.html" },
+                { name: "Selenium", emoji: "🕷️", description: "Popular tool for web automation.", level: "Intermediate", tutorial: "https://www.selenium.dev/documentation/en/" },
+                { name: "JUnit", emoji: "☕", description: "Java testing framework for unit tests.", level: "Intermediate", tutorial: "https://junit.org/junit5/docs/current/user-guide/" },
+                { name: "TestNG", emoji: "🧪", description: "Testing framework inspired by JUnit.", level: "Intermediate", tutorial: "https://testng.org/doc/" },
+                { name: "Cypress", emoji: "🌲", description: "End-to-end testing framework for web apps.", level: "Intermediate", tutorial: "https://www.cypress.io/" },
+                { name: "Load Testing", emoji: "📈", description: "Testing system performance under heavy load.", level: "Intermediate", tutorial: "https://www.guru99.com/load-testing.html" },
+                { name: "Performance Testing", emoji: "⚡", description: "Measuring system responsiveness and stability.", level: "Intermediate", tutorial: "https://www.guru99.com/performance-testing.html" },
+                { name: "API Testing", emoji: "🔗", description: "Testing application programming interfaces.", level: "Intermediate", tutorial: "https://www.guru99.com/api-testing.html" },
+                { name: "JMeter", emoji: "📊", description: "Tool for performance and load testing.", level: "Intermediate", tutorial: "https://jmeter.apache.org/" },
+                { name: "Bug Tracking", emoji: "🐞", description: "Recording and managing software bugs.", level: "Beginner", tutorial: "https://www.atlassian.com/software/jira" },
+                { name: "Regression Testing", emoji: "🔁", description: "Ensuring new changes don’t break existing features.", level: "Intermediate", tutorial: "https://www.guru99.com/regression-testing.html" },
+                { name: "Unit Testing", emoji: "🧩", description: "Testing individual components of software.", level: "Beginner", tutorial: "https://www.guru99.com/unit-testing-guide.html" },
+                { name: "Integration Testing", emoji: "🔄", description: "Testing combined components for correct behavior.", level: "Intermediate", tutorial: "https://www.guru99.com/integration-testing.html" },
+                { name: "Acceptance Testing", emoji: "✅", description: "Verifying software meets business requirements.", level: "Intermediate", tutorial: "https://www.guru99.com/acceptance-testing.html" },
+                { name: "Security Testing", emoji: "🔐", description: "Testing software for vulnerabilities.", level: "Advanced", tutorial: "https://www.guru99.com/security-testing.html" },
+                { name: "Mobile App Testing", emoji: "📱", description: "Testing mobile applications on various devices.", level: "Intermediate", tutorial: "https://www.guru99.com/mobile-testing.html" },
+                { name: "Continuous Testing", emoji: "♾️", description: "Automated testing integrated in DevOps pipelines.", level: "Advanced", tutorial: "https://www.cognizant.com/whitepapers/continuous-testing-in-the-age-of-devops-codex5433.pdf" },
+                { name: "Behavior Driven Development", emoji: "🎭", description: "Testing based on system behavior with real examples.", level: "Intermediate", tutorial: "https://cucumber.io/docs/bdd/" },
+                { name: "Test Automation Frameworks", emoji: "🛠️", description: "Structures and tools to automate testing efficiently.", level: "Advanced", tutorial: "https://www.guru99.com/test-automation-framework.html" }
+            ],
+
+            "Project Management & Agile": [
+                { name: "Project Management Basics", emoji: "📋", description: "Foundations of planning, executing, and closing projects.", level: "Beginner", tutorial: "https://www.coursera.org/learn/project-management-principles" },
+                { name: "Agile Methodology", emoji: "⚡", description: "Iterative project management framework.", level: "Intermediate", tutorial: "https://www.atlassian.com/agile" },
+                { name: "Scrum", emoji: "🏉", description: "Agile framework with sprints and ceremonies.", level: "Intermediate", tutorial: "https://www.scrum.org/resources/what-is-scrum" },
+                { name: "Kanban", emoji: "🗂️", description: "Visual workflow management for teams.", level: "Intermediate", tutorial: "https://www.atlassian.com/agile/kanban" },
+                { name: "Lean Project Management", emoji: "⚖️", description: "Minimizing waste and maximizing value.", level: "Intermediate", tutorial: "https://www.pmi.org/learning/library/lean-project-management-approach-8320" },
+                { name: "JIRA", emoji: "🐞", description: "Tool for tracking tasks and projects.", level: "Beginner", tutorial: "https://www.atlassian.com/software/jira" },
+                { name: "Trello", emoji: "🗒️", description: "Simple visual project management tool.", level: "Beginner", tutorial: "https://trello.com/guide" },
+                { name: "Risk Management", emoji: "⚠️", description: "Identifying and mitigating project risks.", level: "Intermediate", tutorial: "https://www.pmi.org/learning/library/risk-management-process-steps-8333" },
+                { name: "Stakeholder Management", emoji: "🤝", description: "Engaging and managing project stakeholders.", level: "Intermediate", tutorial: "https://www.pmi.org/learning/library/stakeholder-engagement-8327" },
+                { name: "Time Management", emoji: "⏳", description: "Effectively planning and tracking project timelines.", level: "Beginner", tutorial: "https://www.coursera.org/learn/time-management" },
+                { name: "Resource Management", emoji: "🛠️", description: "Optimizing allocation of project resources.", level: "Intermediate", tutorial: "https://www.pmi.org/learning/library/resource-management-project-8334" },
+                { name: "Budgeting & Cost Management", emoji: "💰", description: "Planning and tracking project costs.", level: "Intermediate", tutorial: "https://www.pmi.org/learning/library/cost-management-project-8335" },
+                { name: "Project Scheduling", emoji: "📆", description: "Planning tasks and timelines efficiently.", level: "Intermediate", tutorial: "https://www.guru99.com/project-scheduling.html" },
+                { name: "Scrum Master Skills", emoji: "🧑‍🏫", description: "Facilitating Scrum teams and ceremonies.", level: "Intermediate", tutorial: "https://www.scrum.org/resources/scrum-master-learning-path" },
+                { name: "Product Owner Skills", emoji: "🎯", description: "Managing backlog and product vision in Agile.", level: "Intermediate", tutorial: "https://www.scrum.org/resources/product-owner-learning-path" },
+                { name: "Critical Path Method", emoji: "📊", description: "Analyzing project timelines to identify key tasks.", level: "Advanced", tutorial: "https://www.guru99.com/critical-path-method.html" },
+                { name: "Project Documentation", emoji: "📝", description: "Creating reports, plans, and logs.", level: "Beginner", tutorial: "https://www.coursera.org/learn/project-documentation" },
+                { name: "Agile Metrics & KPIs", emoji: "📈", description: "Tracking performance in Agile projects.", level: "Intermediate", tutorial: "https://www.scrumalliance.org/why-scrum/scrum-metrics" },
+                { name: "Change Management", emoji: "🔄", description: "Handling changes and project adjustments effectively.", level: "Intermediate", tutorial: "https://www.prosci.com/change-management" },
+                { name: "Portfolio Management", emoji: "📂", description: "Managing multiple projects strategically.", level: "Advanced", tutorial: "https://www.pmi.org/learning/library/project-portfolio-management-8328" }
+            ],
+
+            "Automation & Scripting": [
+                { name: "Bash Scripting", emoji: "🐚", description: "Automating tasks in Linux/Unix shell.", level: "Intermediate", tutorial: "https://www.tutorialspoint.com/unix/shell_scripting.htm" },
+                { name: "Python Scripting", emoji: "🐍", description: "Automating tasks using Python.", level: "Intermediate", tutorial: "https://realpython.com/python-script/" },
+                { name: "PowerShell", emoji: "💻", description: "Windows automation and scripting.", level: "Intermediate", tutorial: "https://docs.microsoft.com/en-us/powershell/scripting/overview" },
+                { name: "Cron Jobs", emoji: "⏰", description: "Scheduling scripts to run automatically on Linux.", level: "Beginner", tutorial: "https://www.geeksforgeeks.org/cron-command-in-linux-with-examples/" },
+                { name: "Task Scheduler", emoji: "📌", description: "Automating tasks on Windows.", level: "Beginner", tutorial: "https://www.geeksforgeeks.org/windows-task-scheduler/" },
+                { name: "CI/CD Automation", emoji: "🚀", description: "Automating build, test, and deployment pipelines.", level: "Advanced", tutorial: "https://www.redhat.com/en/topics/devops/what-is-ci-cd" },
+                { name: "Ansible", emoji: "📦", description: "IT automation and configuration management tool.", level: "Intermediate", tutorial: "https://www.ansible.com/resources/get-started" },
+                { name: "Puppet", emoji: "🎭", description: "Automation tool for IT infrastructure.", level: "Intermediate", tutorial: "https://puppet.com/docs/puppet/latest/puppet_index.html" },
+                { name: "Chef", emoji: "👨‍🍳", description: "Automating infrastructure configuration.", level: "Intermediate", tutorial: "https://docs.chef.io/" },
+                { name: "Terraform", emoji: "🌍", description: "Infrastructure as code automation tool.", level: "Intermediate", tutorial: "https://developer.hashicorp.com/terraform/tutorials" },
+                { name: "Selenium Automation", emoji: "🕸️", description: "Automating browser tasks and tests.", level: "Intermediate", tutorial: "https://www.selenium.dev/documentation/en/" },
+                { name: "API Automation", emoji: "🔗", description: "Automating API testing and integration.", level: "Intermediate", tutorial: "https://www.soapui.org/learn/api-automation/" },
+                { name: "Database Scripting", emoji: "🗄️", description: "Automating database tasks with SQL scripts.", level: "Intermediate", tutorial: "https://www.tutorialspoint.com/sql/sql-scripting.htm" },
+                { name: "File Automation", emoji: "📂", description: "Automating file management and processing.", level: "Beginner", tutorial: "https://realpython.com/working-with-files-in-python/" },
+                { name: "Email Automation", emoji: "✉️", description: "Sending and managing emails automatically.", level: "Intermediate", tutorial: "https://www.smartsheet.com/email-automation-tools" },
+                { name: "Web Scraping", emoji: "🌐", description: "Automating data extraction from websites.", level: "Intermediate", tutorial: "https://realpython.com/python-web-scraping-practical-introduction/" },
+                { name: "Task Automation with Zapier", emoji: "🤖", description: "Automating workflows between apps.", level: "Beginner", tutorial: "https://zapier.com/learn/" },
+                { name: "Macro Automation", emoji: "📊", description: "Automating repetitive tasks in applications.", level: "Beginner", tutorial: "https://www.excel-easy.com/vba/macros.html" },
+                { name: "Robot Framework", emoji: "🤖", description: "Open-source automation framework.", level: "Intermediate", tutorial: "https://robotframework.org/" },
+                { name: "Script Optimization", emoji: "⚙️", description: "Improving performance of automation scripts.", level: "Advanced", tutorial: "https://realpython.com/python-performance/" }
+            ]
+        };
+
+        // Generate category buttons
+        const categoryButtonsContainer = document.getElementById('category-buttons');
+
+        // Add "All" button first
+        const allBtn = document.createElement('button');
+        allBtn.classList.add('category-btn');
+        allBtn.textContent = "All";
+        allBtn.onclick = () => displayCategory("All");
+        categoryButtonsContainer.appendChild(allBtn);
+
+        // Add other category buttons
+        Object.keys(skills).forEach(category => {
+            const btn = document.createElement('button');
+            btn.classList.add('category-btn');
+            btn.textContent = category;
+            btn.onclick = () => displayCategory(category);
+            categoryButtonsContainer.appendChild(btn);
+        });
+
+        // Shuffle function (Fisher-Yates)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function displayCategory(category) {
+            const skillsContainer = document.getElementById('skills-container');
+            skillsContainer.innerHTML = ""; // Clear previous content
+
+            let categorySkills = [];
+
+            if (category === "All") {
+                Object.entries(skills).forEach(([catName, skillList]) => {
+                    skillList.forEach(skill => {
+                        categorySkills.push({ ...skill, category: catName });
+                    });
+                });
+                categorySkills = shuffleArray(categorySkills);
+            } else {
+                categorySkills = (skills[category] || []).map(skill => ({ ...skill, category }));
+            }
+
+            // Apply search filter
+            const searchQuery = document.getElementById('search-bar').value.toLowerCase();
+            if (searchQuery) {
+                categorySkills = categorySkills.filter(skill =>
+                    skill.name.toLowerCase().includes(searchQuery) ||
+                    skill.description.toLowerCase().includes(searchQuery) ||
+                    skill.category.toLowerCase().includes(searchQuery)
+                );
+            }
+
+            // Apply level filter
+            const selectedLevel = document.getElementById('level-filter').value;
+            if (selectedLevel !== "All") {
+                categorySkills = categorySkills.filter(skill => skill.level === selectedLevel);
+            }
+
+            if (categorySkills.length > 0) {
+                categorySkills.forEach(skill => {
+                    const skillCard = document.createElement('div');
+                    skillCard.classList.add('card');
+                    skillCard.innerHTML = `
+                        <h3>${skill.emoji} ${skill.name}</h3>
+                        <p>${skill.description}</p>
+                        <p><strong>Level:</strong> ${skill.level}</p>
+                        <p><strong>Category:</strong> ${skill.category}</p>
+                        <p><a href="${skill.tutorial}" target="_blank">Tutorial</a></p>
+                    `;
+                    skillsContainer.appendChild(skillCard);
+                });
+            } else {
+                skillsContainer.innerHTML = `<p>No skills found.</p>`;
+            }
+        }
+
+        // Event listeners for search + filter
+        document.getElementById('search-bar').addEventListener('input', () => displayCategory("All"));
+        document.getElementById('level-filter').addEventListener('change', () => displayCategory("All"));
+
+        // Initialize with All by default
+        displayCategory("All");
+    </script>
+    <script src="../script.js"></script>
+    <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

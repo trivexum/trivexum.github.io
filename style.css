@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
 /* === LIGHT THEME === */
 :root {
   --color-bg: #fafafa;
@@ -113,6 +115,7 @@ nav {
 }
 
 .nav-left p {
+  font-family: 'Orbitron', sans-serif;
   font-size: 2rem;
   font-weight: bold;
   color: var(--color-primary);
@@ -133,6 +136,7 @@ nav a {
   color: var(--color-secondary);
   text-decoration: none;
   font-weight: 600;
+  font-family: 'Orbitron', sans-serif;
   font-size: 1.1rem;
   padding: 8px 12px;
   border-radius: 6px;
@@ -537,6 +541,7 @@ footer {
   font-weight: 500;
   bottom: 0;
   width: 100%;
+  font-family: 'Orbitron', sans-serif;
   user-select: none;
   animation: fadeIn 0.8s ease-in-out;
 }
@@ -562,11 +567,13 @@ footer {
   background-color: var(--color-primary);
   animation: glow 3s infinite;
 }
+
 /* === Custom Scrollbar for Firefox === */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--color-accent) var(--color-white);
 }
+
 /* === ANIMATIONS === */
 @keyframes fadeIn {
   from {
@@ -760,6 +767,7 @@ footer {
 }
 
 @media (max-width: 600px) {
+
   body.home-page .card:nth-child(2),
   body.home-page .card:nth-child(3) {
     display: none;

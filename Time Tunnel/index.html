@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeTunnel | TRIVEXUM</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="shortcut icon" href="../icon.png" type="image/x-icon">
+    <style>
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        #datePicker {
+            margin: 15px 0;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid var(--color-dark);
+            font-size: 1rem;
+        }
+
+        .active {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+        }
+
+        #results {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        .card {
+            background: var(--color-white);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .year {
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+
+        .loading {
+            color: var(--color-dark);
+            font-style: italic;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .funfact {
+            background: var(--color-accent);
+            color: var(--color-white);
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <img src="../logo.png" alt="">
+    </header>
+    <nav id="navbar">
+        <div class="nav-left">
+            <img src="../icon.png" alt="Icon">
+            <p>TRIVEXUM</p>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+            <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+            <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="../about.html"><i class="fas fa-user"></i> About</a>
+            <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+
+        <div class="hamburger" onclick="openSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <div id="sidebar" class="sidebar hidden">
+        <div class="sidebar-brand-horizontal">
+            <img src="../icon.png" alt="Trivexum Icon" />
+            <p>TRIVEXUM</p>
+        </div>
+
+        <hr class="sidebar-divider">
+
+        <div class="close-btn" onclick="closeSidebar()">
+            <i class="fas fa-times"></i>
+        </div>
+
+        <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+        <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+        <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="../about.html"><i class="fas fa-user"></i> About</a>
+        <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+    </div>
+
+    <div id="overlay" class="overlay hidden" onclick="closeSidebar()"></div>
+
+    <div class="container">
+        <h1>🕰️ TimeTunnel</h1>
+        <p>Your portal into the past – explore what happened on this day.</p>
+        <input type="date" id="datePicker">
+
+        <div class="tabs">
+            <button class="tab active" data-type="events">📜 Events</button>
+            <button class="tab" data-type="births">🎂 Birthdays</button>
+            <button class="tab" data-type="deaths">⚰️ Deaths</button>
+        </div>
+
+        <div id="results">
+            <p class="loading">Fetching today’s history 🔎...</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const results = document.getElementById("results");
+        const tabs = document.querySelectorAll(".tab");
+        const datePicker = document.getElementById("datePicker");
+        let currentType = "events";
+
+        // Default = today
+        const today = new Date();
+        datePicker.value = today.toISOString().slice(0, 10);
+
+        // Fetch history
+        async function fetchHistory(date, type) {
+            results.innerHTML = `<p class="loading">Loading ${type}...</p>`;
+            const [year, month, day] = date.split("-");
+            const url = `https://en.wikipedia.org/api/rest_v1/feed/onthisday/${type}/${month}/${day}`;
+            try {
+                const res = await fetch(url);
+                const data = await res.json();
+                displayData(data[type]);
+
+                // Add Fun Fact only when Events are fetched
+                if (type === "events" && data[type]?.length) {
+                    addFunFact(data[type]);
+                }
+            } catch (err) {
+                results.innerHTML = `<p class="loading">Error loading data 😢</p>`;
+            }
+        }
+
+        function displayData(items) {
+            if (!items || items.length === 0) {
+                results.innerHTML = `<p class="loading">No records found 🤔</p>`;
+                return;
+            }
+            results.innerHTML = "";
+            items.slice(0, 15).forEach(item => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `<span class="year">${item.year}</span> – ${item.text}`;
+                results.appendChild(card);
+            });
+        }
+
+        // Fun Fact
+        function addFunFact(events) {
+            const random = events[Math.floor(Math.random() * events.length)];
+            const funFactCard = document.createElement("div");
+            funFactCard.className = "funfact";
+            funFactCard.innerHTML = `💡 Fun Fact: In <b>${random.year}</b>, ${random.text}`;
+            results.prepend(funFactCard);
+        }
+
+        // Tab switching
+        tabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                tabs.forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+                currentType = tab.dataset.type;
+                fetchHistory(datePicker.value, currentType);
+            });
+        });
+
+        // Date change
+        datePicker.addEventListener("change", () => {
+            fetchHistory(datePicker.value, currentType);
+        });
+
+        // Initial load
+        fetchHistory(datePicker.value, currentType);
+    </script>
+
+    <script src="../script.js"></script>
+    <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

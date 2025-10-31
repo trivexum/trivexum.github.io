@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snap Code | Trivexum</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css" rel="stylesheet" />
+    <style>
+        textarea {
+            width: 100%;
+        }
+
+        .snippet {
+            background: var(--color-bg);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            position: relative;
+            text-align: left;
+            border: 1px solid var(--color-accent);
+        }
+
+        .snippet h3 {
+            margin: 0 0 5px;
+            color: var(--color-text);
+        }
+
+        .snippet p {
+            color: var(--color-text);
+            font-size: 14px;
+        }
+
+        .actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 6px;
+        }
+
+        .no-snippets {
+            text-align: center;
+            margin-top: 20px;
+            color: #94a3b8;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <div class="nav-left">
+            <img src="../icon.png" alt="Icon">
+            <p>TRIVEXUM</p>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+            <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+            <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="../about.html"><i class="fas fa-user"></i> About</a>
+            <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+
+
+        <div class="hamburger" onclick="openSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <div id="sidebar" class="sidebar hidden">
+        <div class="sidebar-brand-horizontal">
+            <img src="../icon.png" alt="Trivexum Icon" />
+            <p>TRIVEXUM</p>
+        </div>
+
+        <hr class="sidebar-divider">
+
+        <div class="close-btn" onclick="closeSidebar()">
+            <i class="fas fa-times"></i>
+        </div>
+
+        <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+        <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+        <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="../about.html"><i class="fas fa-user"></i> About</a>
+        <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+    </div>
+
+    <div id="overlay" class="overlay hidden" onclick="closeSidebar()"></div>
+
+
+
+    <div class="container">
+        <h1>Snap Code</h1>
+        <input id="title" placeholder="Snippet Title..." />
+        <select id="language">
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="javascript">JavaScript</option>
+        </select><br><br>
+        <textarea id="code" rows="6" placeholder="Paste your code here..."></textarea><br>
+        <input id="tags" placeholder="Tags (comma separated)..." />
+        <button onclick="saveSnippet()"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+
+        <div id="snippets"></div>
+    </div>
+
+
+    <footer>
+        <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+
+    <script>
+        const snippetsDiv = document.getElementById('snippets');
+
+        const loadSnippets = () => {
+            snippetsDiv.innerHTML = '';
+            const snippets = JSON.parse(localStorage.getItem('snippets') || '[]');
+            if (snippets.length === 0) {
+                snippetsDiv.innerHTML = '<p class="no-snippets">No snippets saved yet. Time to create some magic! ✨</p>';
+                return;
+            }
+            snippets.forEach((snip, i) => {
+                const el = document.createElement('div');
+                el.className = 'snippet';
+                el.innerHTML = `
+          <h3>${snip.title}</h3>
+          <p><strong>Tags:</strong> ${snip.tags || 'None'}</p>
+          <pre><code class="language-${snip.lang}">${snip.code.replace(/[<>]/g, m => ({ '<': '&lt;', '>': '&gt;' }[m]))}</code></pre>
+          <div class="actions">
+            <button onclick="renameSnippet(${i})"><i class="fa-solid fa-file-pen"></i></button>
+            <button onclick="downloadSnippet(${i})"><i class="fa-solid fa-download"></i></button>
+            <button onclick="deleteSnippet(${i})"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        `;
+                snippetsDiv.appendChild(el);
+                Prism.highlightAllUnder(el);
+            });
+        };
+
+        const saveSnippet = () => {
+            const title = document.getElementById('title').value.trim();
+            const code = document.getElementById('code').value.trim();
+            const lang = document.getElementById('language').value;
+            const tags = document.getElementById('tags').value.trim();
+            if (!title || !code) return;
+            const snippets = JSON.parse(localStorage.getItem('snippets') || '[]');
+            snippets.push({ title, code, lang, tags });
+            localStorage.setItem('snippets', JSON.stringify(snippets));
+            document.getElementById('title').value = '';
+            document.getElementById('code').value = '';
+            document.getElementById('tags').value = '';
+            loadSnippets();
+        };
+
+        const deleteSnippet = (index) => {
+            const snippets = JSON.parse(localStorage.getItem('snippets') || '[]');
+            snippets.splice(index, 1);
+            localStorage.setItem('snippets', JSON.stringify(snippets));
+            loadSnippets();
+        };
+
+        const renameSnippet = (index) => {
+            const snippets = JSON.parse(localStorage.getItem('snippets') || '[]');
+            const snippet = snippets[index];
+            inlinePrompt(snippet.title).then(newTitle => {
+                if (newTitle && newTitle.trim()) {
+                    snippets[index].title = newTitle.trim();
+                    localStorage.setItem('snippets', JSON.stringify(snippets));
+                    loadSnippets();
+                }
+            });
+        };
+
+        const downloadSnippet = (index) => {
+            const snippets = JSON.parse(localStorage.getItem('snippets') || '[]');
+            const snip = snippets[index];
+            const extensions = { html: 'html', css: 'css', javascript: 'js' };
+            const ext = extensions[snip.lang] || 'txt';
+            const blob = new Blob([snip.code], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `${snip.title}.${ext}`;
+            a.click();
+        };
+
+        const inlinePrompt = (oldValue) => {
+            return new Promise((resolve) => {
+                const overlay = document.createElement('div');
+                overlay.style = `
+          position: fixed; top:0; left:0; width:100%; height:100%;
+          display:flex; align-items:center; justify-content:center;
+          background:#0009; z-index:1000;
+        `;
+                overlay.innerHTML = `
+          <div style="background:var(--tri-card);padding:20px;border-radius:10px;text-align:center;">
+            <h3 style="color:var(--tri-accent);margin-bottom:10px;">Rename Snippet</h3>
+            <input id="renameInput" value="${oldValue}" style="width:250px;padding:8px;border:none;border-radius:6px;background:#3b3f7b;color:white;">
+            <div style="margin-top:12px;">
+              <button id="okBtn">OK</button>
+              <button id="cancelBtn">Cancel</button>
+            </div>
+          </div>
+        `;
+                document.body.appendChild(overlay);
+                overlay.querySelector('#okBtn').onclick = () => {
+                    const val = overlay.querySelector('#renameInput').value;
+                    document.body.removeChild(overlay);
+                    resolve(val);
+                };
+                overlay.querySelector('#cancelBtn').onclick = () => {
+                    document.body.removeChild(overlay);
+                    resolve(null);
+                };
+            });
+        };
+
+        loadSnippets();
+    </script>
+    <script src="../script.js"></script>
+    <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

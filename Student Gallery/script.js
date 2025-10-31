@@ -14,15 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Arman Ali Butt', rollNumber: 8, image: 'images/8.jpg' },
         { name: 'M.Abdullah', rollNumber: 9, image: 'images/9.jpg' },
         { name: 'Saim Khaliq', rollNumber: 10, image: 'images/10.jpg' },
-        { name: 'Ahmed Shahzad', rollNumber: 11, image: 'images/11.jpg' },
-        { name: 'Syed Kamran Ali', rollNumber: 12, image: 'images/12.jpg' },
         { name: 'Syed Aoun Abbas', rollNumber: 13, image: 'images/13.jpg' },
         { name: 'Hussnain Ali', rollNumber: 14, image: 'images/14.jpg' },
         { name: 'M.Amnoon', rollNumber: 15, image: 'images/15.jpg' },
         { name: 'Hammad Hassan', rollNumber: 16, image: 'images/16.jpg' },
         { name: 'Movadat Ali', rollNumber: 17, image: 'images/17.jpg' },
         { name: 'Faraz Baig', rollNumber: 18, image: 'images/18.jpg' },
-        { name: 'Haseeb Ullah', rollNumber: 19, image: 'images/19.jpg' },
         { name: 'Ali Haider', rollNumber: 20, image: 'images/20.jpg' },
         { name: 'Tahir Asghar', rollNumber: 21, image: 'images/21.jpg' },
         { name: 'Fasih Ahmed', rollNumber: 22, image: 'images/22.jpg' },
@@ -41,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'M.Ammar Arif', rollNumber: 35, image: 'images/35.jpg' },
         { name: 'Usman Farooq', rollNumber: 36, image: 'images/36.jpg' },
         { name: 'M.Ahmed', rollNumber: 37, image: 'images/37.jpg' },
+        { name: 'Syed Kamran Ali', rollNumber: 36, image: 'images/12.jpg' },
     ];
 
     // Function to display students

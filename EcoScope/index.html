@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoScope | TRIVEXUM</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="shortcut icon" href="../icon.png" type="image/x-icon" />
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="nav-left">
+            <img src="../icon.png" alt="Icon" />
+            <p>TRIVEXUM</p>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+            <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+            <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="../about.html"><i class="fas fa-user"></i> About</a>
+            <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <div class="hamburger" onclick="openSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <div id="sidebar" class="sidebar hidden">
+        <div class="sidebar-brand-horizontal">
+            <img src="../icon.png" alt="Trivexum Icon" />
+            <p>TRIVEXUM</p>
+        </div>
+
+        <hr class="sidebar-divider" />
+
+        <div class="close-btn" onclick="closeSidebar()">
+            <i class="fas fa-times"></i>
+        </div>
+
+        <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+        <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+        <a href="../contact.html"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="../about.html"><i class="fas fa-user"></i> About</a>
+        <a href="../blog.html"><i class="fas fa-blog"></i> Blog</a>
+    </div>
+
+    <div id="overlay" class="overlay hidden" onclick="closeSidebar()"></div>
+
+    <div class="container">
+        <h1><i class="fa-solid fa-seedling"></i> EcoScope</h1>
+        <p>See Earth through science — track air quality, weather & climate live!</p>
+
+        <input type="text" id="cityInput" placeholder="Enter city (e.g. Lahore)" />
+        <button id="searchBtn"><i class="fa fa-search"></i> Search</button>
+
+        <div class="container" id="weatherCard">
+            <h3>Weather</h3>
+            <div id="weatherInfo">No data yet.</div>
+        </div>
+
+        <div class="container" id="airCard">
+            <h3>Air Quality</h3>
+            <div id="airInfo">No data yet.</div>
+        </div>
+
+        <div class="container">
+            <h3>🌱 Eco Fact</h3>
+            <p class="fact" id="ecoFact">Loading fact...</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const API_KEY = "d33939f4866c39cefa52e0746e55862a";
+        const cityInput = document.getElementById("cityInput");
+        const searchBtn = document.getElementById("searchBtn");
+        const weatherInfo = document.getElementById("weatherInfo");
+        const airInfo = document.getElementById("airInfo");
+        const ecoFact = document.getElementById("ecoFact");
+        const themeToggle = document.getElementById("themeToggle");
+        const body = document.body;
+
+        const facts = [
+            "A single tree can absorb up to 48 pounds of CO₂ each year.",
+            "Recycling one aluminum can saves enough energy to run a TV for 3 hours.",
+            "Over 70% of the Earth’s surface is covered by oceans.",
+            "Air pollution causes around 7 million deaths per year worldwide.",
+            "Solar energy is the most abundant energy source on Earth.",
+            "A 10-minute shower uses up to 95 liters of water.",
+            "Plastic can take more than 400 years to decompose.",
+            "Turning off lights when not in use saves up to 10% of your energy bill.",
+            "Earth is the only known planet with liquid water on its surface.",
+            "Deforestation accounts for about 20% of global greenhouse gas emissions.",
+            "More than 1 million seabirds die each year from plastic ingestion.",
+            "Composting reduces the amount of waste sent to landfills.",
+            "LED bulbs use 75% less energy than incandescent ones.",
+            "The Great Pacific Garbage Patch is twice the size of Texas.",
+            "Every ton of recycled paper saves 17 trees.",
+            "Bamboo can grow up to 35 inches in a single day.",
+            "Wind power is one of the fastest-growing renewable energy sources.",
+            "Electric cars reduce CO₂ emissions by up to 50% compared to gas cars.",
+            "Oceans produce more than half of the world’s oxygen.",
+            "One reusable water bottle can save 1,460 plastic bottles per year.",
+            "The Amazon rainforest produces 20% of the Earth’s oxygen.",
+            "Coral reefs support 25% of all marine life.",
+            "Plant-based diets can reduce your carbon footprint by up to 73%.",
+            "Each person generates an average of 4.5 pounds of trash daily.",
+            "Glass takes up to 1 million years to decompose in landfills.",
+            "Urban trees help cool cities by up to 8°C.",
+            "Earth Day was first celebrated in 1970.",
+            "Ozone protects us from harmful ultraviolet radiation.",
+            "Composting food waste prevents methane emissions.",
+            "A dripping tap can waste over 3,000 gallons of water a year.",
+            "Hydropower is the most widely used renewable energy source.",
+            "Almost 90% of seabirds have plastic in their stomachs.",
+            "Bees are responsible for pollinating one-third of our food supply.",
+            "One cotton T-shirt can require up to 2,700 liters of water to make.",
+            "Paper can be recycled up to seven times before it breaks down.",
+            "There are more trees on Earth than stars in the Milky Way.",
+            "Recycling one glass bottle saves enough energy to light a bulb for 4 hours.",
+            "Overfishing threatens 90% of global fish stocks.",
+            "A single plastic bag can kill numerous marine animals.",
+            "About 1.3 billion tons of food is wasted every year.",
+            "Recycling steel saves 74% of the energy needed to produce it from raw materials.",
+            "More than 60% of household waste could be recycled.",
+            "The world’s largest living structure is the Great Barrier Reef.",
+            "An acre of mature trees can provide oxygen for 18 people annually.",
+            "Paper products make up about 25% of landfill waste.",
+            "Fast fashion is one of the largest polluters in the world.",
+            "Walking or biking short distances can reduce carbon emissions significantly.",
+            "Climate change is causing more extreme weather patterns.",
+            "Mangroves protect coastlines from erosion and storms.",
+            "Recycling a ton of plastic saves 2,000 gallons of gasoline.",
+            "The Arctic is warming nearly four times faster than the rest of the world.",
+            "An energy-efficient home can save up to 30% on electricity bills.",
+            "Cows produce methane, a greenhouse gas 28x stronger than CO₂.",
+            "The global temperature has risen by about 1.1°C since pre-industrial times.",
+            "Over 80% of wastewater is released untreated into the environment.",
+            "Around 10 million tons of plastic enter the ocean each year.",
+            "Turning off your car instead of idling saves fuel and cuts emissions.",
+            "Using rechargeable batteries reduces toxic waste.",
+            "Solar panels can last more than 25 years.",
+            "Switching to e-bills saves trees and paper waste.",
+            "Earth’s population uses 1.7 times the resources the planet can regenerate yearly.",
+            "Organic farming helps maintain healthy soil and biodiversity.",
+            "Coral bleaching is caused by ocean temperature rise.",
+            "Wind turbines generate no pollution during operation.",
+            "Rainforests are home to more than half of Earth’s species.",
+            "The ozone layer is slowly recovering due to reduced CFC emissions.",
+            "Public transport reduces CO₂ emissions per person by 45%.",
+            "Recycling just one ton of plastic saves about 7 cubic yards of landfill space.",
+            "Each ton of recycled cardboard saves 46 gallons of oil.",
+            "Using cold water for laundry saves energy and money.",
+            "Electric buses produce zero tailpipe emissions.",
+            "Nuclear power produces no direct carbon emissions.",
+            "Upcycling turns waste materials into useful products.",
+            "Replacing old appliances with energy-efficient ones saves energy.",
+            "LEDs last 25 times longer than traditional bulbs.",
+            "Eco-friendly insulation reduces heating and cooling costs.",
+            "Almost 30% of global energy is wasted due to inefficiency.",
+            "Airplanes account for around 2.5% of global CO₂ emissions.",
+            "Every minute, one garbage truck worth of plastic enters the ocean.",
+            "Switching to solar can cut electricity bills by 70%.",
+            "More than 90% of the world’s population breathes polluted air.",
+            "Heatwaves are becoming more frequent due to climate change.",
+            "Electric bikes emit 90% less CO₂ than cars.",
+            "A mature tree can absorb 48 pounds of CO₂ per year.",
+            "The Sahara Desert expands by about 30 miles per year.",
+            "Over 1 billion people lack access to safe drinking water.",
+            "Earth’s magnetic field protects it from solar radiation.",
+            "Turning electronics off completely saves standby power.",
+            "Recycling aluminum saves 95% of the energy of producing new aluminum.",
+            "Water covers 71% of Earth's surface, but only 1% is drinkable.",
+            "Every ton of recycled steel saves 2,500 pounds of iron ore.",
+            "Composting can cut household waste by 30%.",
+            "Agriculture uses about 70% of the world's freshwater supply.",
+            "A laptop uses 80% less power than a desktop computer.",
+            "Reforestation helps reverse climate change effects.",
+            "Switching to a vegetarian meal once a week makes a big impact.",
+            "Solar power could supply all of Earth’s energy needs in one hour of sunlight.",
+            "The Earth’s atmosphere extends up to 10,000 kilometers.",
+            "The world produces 380 million tons of plastic annually.",
+            "Wind energy capacity has grown over 1,000% since 2000.",
+            "Small lifestyle changes can collectively make a massive environmental impact."
+        ];
+
+
+        ecoFact.textContent = facts[Math.floor(Math.random() * facts.length)];
+
+        async function getWeatherAndAir(city) {
+            try {
+                const geoRes = await fetch(
+                    `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`
+                );
+                const geoData = await geoRes.json();
+                if (!geoData.length) {
+                    weatherInfo.textContent = "City not found.";
+                    airInfo.textContent = "—";
+                    return;
+                }
+
+                const { lat, lon } = geoData[0];
+                const weatherRes = await fetch(
+                    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+                );
+                const weatherData = await weatherRes.json();
+
+                const airRes = await fetch(
+                    `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+                );
+                const airData = await airRes.json();
+
+                displayWeather(weatherData);
+                displayAir(airData);
+            } catch (error) {
+                console.error(error);
+                weatherInfo.textContent = "Error fetching data.";
+                airInfo.textContent = "Error fetching data.";
+            }
+        }
+
+        function displayWeather(data) {
+            const { name, main, weather } = data;
+            weatherInfo.innerHTML = `
+        <div class="data-item"><strong>City:</strong> <span>${name}</span></div>
+        <div class="data-item"><strong>Temperature:</strong> <span>${main.temp}°C</span></div>
+        <div class="data-item"><strong>Condition:</strong> <span>${weather[0].description}</span></div>
+        <div class="data-item"><strong>Humidity:</strong> <span>${main.humidity}%</span></div>
+      `;
+        }
+
+        function displayAir(data) {
+            const aqi = data.list[0].main.aqi;
+            const comps = data.list[0].components;
+            const levels = ["Good", "Fair", "Moderate", "Poor", "Very Poor"];
+            airInfo.innerHTML = `
+        <div class="data-item"><strong>AQI:</strong> <span>${aqi} (${levels[aqi - 1]})</span></div>
+        <div class="data-item"><strong>PM2.5:</strong> <span>${comps.pm2_5}</span></div>
+        <div class="data-item"><strong>PM10:</strong> <span>${comps.pm10}</span></div>
+        <div class="data-item"><strong>NO₂:</strong> <span>${comps.no2}</span></div>
+        <div class="data-item"><strong>O₃:</strong> <span>${comps.o3}</span></div>
+      `;
+        }
+
+        searchBtn.addEventListener("click", () => {
+            const city = cityInput.value.trim();
+            if (city) getWeatherAndAir(city);
+        });
+
+        themeToggle.addEventListener("click", () => {
+            const theme = body.getAttribute("data-theme") === "light" ? "dark" : "light";
+            body.setAttribute("data-theme", theme);
+            themeToggle.textContent = theme === "light" ? "🌙" : "☀️";
+        });
+    </script>
+
+    <script src="../script.js"></script>
+    <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

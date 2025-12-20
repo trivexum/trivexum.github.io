@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LifeScale | TRIVEXUM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="shortcut icon" href="../icon.png" type="image/x-icon">
+    <style>
+        #result {
+            list-style-type: disc;
+            padding: 0;
+            width: fit-content;
+            margin: auto;
+            text-align: left;
+            user-select: text;
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="nav-left">
+            <img src="../icon.png" alt="Icon">
+            <p>TRIVEXUM</p>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+            <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+            
+            <a href="../about.html"><i class="fas fa-user"></i> About</a>
+            
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+
+
+        <div class="hamburger" onclick="openSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <div id="sidebar" class="sidebar hidden">
+        <div class="sidebar-brand-horizontal">
+            <img src="../icon.png" alt="Trivexum Icon" />
+            <p>TRIVEXUM</p>
+        </div>
+
+        <hr class="sidebar-divider">
+
+        <div class="close-btn" onclick="closeSidebar()">
+            <i class="fas fa-times"></i>
+        </div>
+
+        <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+        <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+        
+        <a href="../about.html"><i class="fas fa-user"></i> About</a>
+        
+    </div>
+
+    <div id="overlay" class="overlay hidden" onclick="closeSidebar()"></div>
+
+    <div class="container">
+        <h1>LifeScale</h1>
+        <p>Put your life into perspective.</p>
+
+        <select id="mode">
+            <option value="age">Age</option>
+            <option value="height">Height (cm)</option>
+            <option value="screen">Daily Screen Time (hours)</option>
+        </select>
+
+        <br><br>
+
+        <input id="value" type="number" placeholder="Enter value…" />
+
+        <br><br>
+
+        <button onclick="calculate()">Show Me The Reality</button>
+
+        <br><br>
+
+        <div class="output" id="output">
+            <ul id="result"></ul>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2025 TRIVEXUM. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function calculate() {
+            const mode = document.getElementById("mode").value;
+            const value = Number(document.getElementById("value").value);
+            const output = document.getElementById("output");
+            const result = document.getElementById("result");
+
+            if (!value || value <= 0) {
+                alert("Bro enter a real number 😭");
+                return;
+            }
+
+            result.innerHTML = "";
+
+            if (mode === "age") {
+                const seconds = value * 365 * 24 * 60 * 60;
+                const heartbeats = value * 365 * 24 * 60 * 70;
+                const sleepYears = (value * 8) / 24;
+
+                add(`🕰 You lived ~ <b>${seconds.toLocaleString()}</b> seconds`);
+                add(`❤️ Your heart beat ~ <b>${heartbeats.toLocaleString()}</b> times`);
+                add(`😴 You slept ~ <b>${sleepYears.toFixed(1)}</b> years of your life`);
+                add(`📱 And yes… too much screen time 💀`);
+            }
+
+            if (mode === "height") {
+                add(`📱 You are ~ <b>${(value / 14.7).toFixed(1)}</b> iPhones tall`);
+                add(`🧱 About <b>${(value / 20).toFixed(1)}</b> school bricks`);
+                add(`🚪 Almost <b>${(value / 200).toFixed(2)}</b> doors tall`);
+                add(`🧍 Still short compared to your potential 😤`);
+            }
+
+            if (mode === "screen") {
+                const yearly = value * 365;
+                add(`📆 That’s <b>${yearly}</b> hours per year`);
+                add(`📺 ≈ <b>${(yearly / 24).toFixed(1)}</b> full days gone`);
+                add(`📚 Could’ve learned <b>${Math.floor(value / 2)}</b> skills`);
+                add(`👀 Eyes officially tired`);
+            }
+
+            output.style.display = "block";
+        }
+
+        function add(text) {
+            const li = document.createElement("li");
+            li.innerHTML = text;
+            document.getElementById("result").appendChild(li);
+        }
+    </script>
+
+    <script src="../script.js"></script>
+    <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

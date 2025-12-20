@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>AgeSync | TRIVEXUM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="shortcut icon" href="../icon.png" type="image/x-icon">
+    <style>
+        .quote {
+            font-style: italic;
+            color: var(--color-text);
+            margin-top: 10px;
+        }
+
+        ul{
+            width: fit-content;
+            text-align: left;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="nav-left">
+            <img src="../icon.png" alt="Icon">
+            <p>TRIVEXUM</p>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+            <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+            
+            <a href="../about.html"><i class="fas fa-user"></i> About</a>
+
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+
+
+        <div class="hamburger" onclick="openSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <div id="sidebar" class="sidebar hidden">
+        <div class="sidebar-brand-horizontal">
+            <img src="../icon.png" alt="Trivexum Icon" />
+            <p>TRIVEXUM</p>
+        </div>
+
+        <hr class="sidebar-divider">
+
+        <div class="close-btn" onclick="closeSidebar()">
+            <i class="fas fa-times"></i>
+        </div>
+
+        <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+        <a href="../projects.html"><i class="fas fa-laptop-code"></i> Projects</a>
+        
+        <a href="../about.html"><i class="fas fa-user"></i> About</a>
+
+    </div>
+
+    <div id="overlay" class="overlay hidden" onclick="closeSidebar()"></div>
+
+    <div class="container">
+        <h1>🌍 AgeSync</h1>
+        <p class="subtitle">Your age, across the world.</p>
+
+        <div class="input-row">
+            <input type="number" id="ageInput" placeholder="Enter your age (e.g. 21)" />
+            <button onclick="syncAge()">Sync</button>
+        </div>
+        <div id="result"></div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 TRIVEXUM. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const data = {
+            1: {
+                people: [
+                    "John Stuart Mill was exposed to classical education by age 1",
+                    "Wolfgang Amadeus Mozart showed early musical sensitivity by age 1",
+                    "Leonardo da Vinci was raised in a stimulating artisan household at age 1"
+                ],
+                events: [
+                    "Neural connections form at the fastest rate in human life",
+                    "Language comprehension begins before speech",
+                    "Emotional bonding shapes lifelong behavior"
+                ]
+            },
+
+            2: {
+                people: [
+                    "Mozart could identify musical notes by age 2",
+                    "John Stuart Mill began structured learning exposure at age 2",
+                    "Albert Einstein showed delayed speech but deep observation by age 2"
+                ],
+                events: [
+                    "Language explosion begins globally",
+                    "Self-recognition develops",
+                    "Curiosity-driven exploration dominates"
+                ]
+            },
+
+            3: {
+                people: [
+                    "Mozart began basic keyboard play at age 3",
+                    "Pablo Picasso was already drawing recognizable figures at age 3",
+                    "Blaise Pascal showed unusual numerical awareness at age 3"
+                ],
+                events: [
+                    "Imagination becomes vivid",
+                    "Pattern recognition strengthens",
+                    "Creative play becomes structured"
+                ]
+            },
+
+            4: {
+                people: [
+                    "Mozart composed simple pieces by age 4",
+                    "Pablo Picasso received formal art training at age 4",
+                    "John Stuart Mill began reading Greek around age 4"
+                ],
+                events: [
+                    "Foundational cognitive frameworks form",
+                    "Symbolic thinking develops",
+                    "Early talent becomes observable"
+                ]
+            },
+
+            5: {
+                people: [
+                    "Wolfgang Amadeus Mozart began composing music at age 5",
+                    "Pablo Picasso showed exceptional artistic skill at age 5",
+                    "John Stuart Mill was taught Greek at age 5"
+                ],
+                events: [
+                    "Early childhood education systems begin shaping cognition",
+                    "Formal schooling often starts around this age worldwide",
+                    "Language acquisition peaks globally in early childhood"
+                ]
+            },
+
+            6: {
+                people: [
+                    "Mozart performed publicly for European royalty at age 6",
+                    "Blaise Pascal showed early mathematical ability around age 6",
+                    "Carl Friedrich Gauss impressed teachers with calculations at age 6"
+                ],
+                events: [
+                    "Basic literacy education becomes structured",
+                    "Industrial societies emphasize early schooling",
+                    "Child development theories emerge historically"
+                ]
+            },
+
+            7: {
+                people: [
+                    "Isaac Newton enrolled in grammar school at age 7",
+                    "Marie Curie began formal education around this age",
+                    "Leonardo da Vinci learned reading and writing late but began observation early"
+                ],
+                events: [
+                    "Primary education becomes compulsory in many nations historically",
+                    "Logical thinking begins forming",
+                    "Curiosity-driven learning dominates"
+                ]
+            },
+
+            8: {
+                people: [
+                    "Mozart composed his first symphony at age 8",
+                    "Bobby Fischer learned chess seriously around age 8",
+                    "Agatha Christie developed love for reading at age 8"
+                ],
+                events: [
+                    "Cognitive skills rapidly expand",
+                    "Creative confidence strengthens",
+                    "Children begin competitive learning"
+                ]
+            },
+
+            9: {
+                people: [
+                    "Blaise Pascal wrote early work on geometry at age 9",
+                    "Serena Williams began elite tennis training at age 9",
+                    "Elon Musk learned programming by age 9"
+                ],
+                events: [
+                    "Skill specialization begins",
+                    "Educational tracking emerges",
+                    "Early talent recognition occurs"
+                ]
+            },
+
+            10: {
+                people: [
+                    "Thomas Edison began working odd jobs at age 10",
+                    "Magnus Carlsen began competing seriously in chess at age 10",
+                    "Mark Twain published early writing at age 10"
+                ],
+                events: [
+                    "Pre-adolescence learning accelerates",
+                    "Industrial-era child labor historically common",
+                    "Creative experimentation increases"
+                ]
+            },
+
+            11: {
+                people: [
+                    "Blaise Pascal invented an early calculator at age 11",
+                    "Mozart composed operas by age 11",
+                    "Jane Austen began writing stories at age 11"
+                ],
+                events: [
+                    "Abstract thinking improves",
+                    "Identity awareness increases",
+                    "Early specialization becomes visible"
+                ]
+            },
+
+            12: {
+                people: [
+                    "Galileo built mechanical devices around age 12",
+                    "Taylor Swift learned guitar at age 12",
+                    "Marie Curie showed excellence in science by age 12"
+                ],
+                events: [
+                    "Middle school education expands globally",
+                    "Discipline starts forming",
+                    "Skill repetition matters"
+                ]
+            },
+
+            13: {
+                people: [
+                    "Albert Einstein taught himself algebra at age 13",
+                    "Bill Gates wrote his first software program at age 13",
+                    "Malala Yousafzai became socially aware at age 13"
+                ],
+                events: [
+                    "Teenage cognitive leap",
+                    "Self-awareness intensifies",
+                    "Rebellion against norms begins"
+                ]
+            },
+
+            14: {
+                people: [
+                    "Bobby Fischer won his first US Chess Championship match at 14",
+                    "Mark Zuckerberg began programming seriously at age 14",
+                    "Steve Jobs became interested in electronics at age 14"
+                ],
+                events: [
+                    "Skill beats age",
+                    "Talent becomes undeniable",
+                    "Passion locks in"
+                ]
+            },
+
+            15: {
+                people: [
+                    "Albert Einstein studied advanced mathematics at 15",
+                    "Malala Yousafzai survived an assassination attempt at 15",
+                    "Pablo Picasso held his first exhibition at 15"
+                ],
+                events: [
+                    "Foundations for greatness form",
+                    "Ideology shapes identity",
+                    "Silent hard work phase"
+                ]
+            },
+
+            16: {
+                people: [
+                    "Isaac Newton enrolled at Cambridge at age 16",
+                    "Bill Gates co-founded Traf-O-Data at 16",
+                    "Anne Frank began writing her diary at 16"
+                ],
+                events: [
+                    "Higher education decisions begin",
+                    "Responsibility increases",
+                    "Risk-taking peaks"
+                ]
+            },
+
+            17: {
+                people: [
+                    "Alexander the Great became king at 17",
+                    "Blaise Pascal wrote scientific papers at 17",
+                    "Mark Zuckerberg launched early projects at 17"
+                ],
+                events: [
+                    "Adulthood approaches",
+                    "Pressure intensifies",
+                    "Identity solidifies"
+                ]
+            },
+
+            18: {
+                people: [
+                    "Lionel Messi debuted professionally at 18",
+                    "Blaise Pascal built a mechanical calculator at 18",
+                    "Napoleon Bonaparte joined the army at 18"
+                ],
+                events: [
+                    "Legal adulthood begins",
+                    "Freedom meets responsibility",
+                    "Career paths open"
+                ]
+            },
+
+            19: {
+                people: [
+                    "Albert Einstein published first paper at 19",
+                    "Steve Jobs dropped out of college at 19",
+                    "Nikola Tesla left home at 19"
+                ],
+                events: [
+                    "Independence phase",
+                    "Major life decisions",
+                    "Failure teaches fast"
+                ]
+            },
+
+            20: {
+                people: [
+                    "Isaac Newton began developing calculus at 20",
+                    "Mark Zuckerberg expanded Facebook at 20",
+                    "Charles Darwin joined the HMS Beagle at 20"
+                ],
+                events: [
+                    "Exploration phase",
+                    "Worldview expands",
+                    "Risk-taking rewarded"
+                ]
+            },
+
+            21: {
+                people: [
+                    "Mark Zuckerberg launched Facebook publicly at 21",
+                    "Isaac Newton studied gravity at 21",
+                    "Leonardo da Vinci began professional work at 21"
+                ],
+                events: [
+                    "Momentum begins",
+                    "Confidence rises",
+                    "Execution matters"
+                ]
+            },
+
+            22: {
+                people: [
+                    "Nikola Tesla began engineering work at 22",
+                    "Elon Musk sold first company at 22",
+                    "Marie Curie studied physics seriously at 22"
+                ],
+                events: [
+                    "Skill monetization",
+                    "Career acceleration",
+                    "Learning compounds"
+                ]
+            },
+
+            23: {
+                people: [
+                    "Steve Jobs founded Apple at 23",
+                    "Alexander Hamilton became a political force at 23",
+                    "Mozart composed major works at 23"
+                ],
+                events: [
+                    "Reality check phase",
+                    "Responsibility spikes",
+                    "Ambition tested"
+                ]
+            },
+
+            24: {
+                people: [
+                    "Albert Einstein worked as a patent clerk at 24",
+                    "Nikola Tesla immigrated to the US at 24",
+                    "Frida Kahlo survived her life-altering accident at 24"
+                ],
+                events: [
+                    "Struggle before recognition",
+                    "Skill refinement",
+                    "Patience tested"
+                ]
+            },
+
+            25: {
+                people: [
+                    "Marie Curie gained scientific recognition at 25",
+                    "Nikola Tesla pursued independence at 25",
+                    "Charles Darwin published early research at 25"
+                ],
+                events: [
+                    "Experimentation over stability",
+                    "Identity solidifies",
+                    "Bold risks taken"
+                ]
+            },
+
+            26: {
+                people: [
+                    "Isaac Newton developed major theories at 26",
+                    "Alan Turing began foundational work at 26",
+                    "Elon Musk founded Zip2 at 26"
+                ],
+                events: [
+                    "Breakthrough age",
+                    "Focus sharpens",
+                    "Hard work pays"
+                ]
+            },
+
+            27: {
+                people: [
+                    "Vincent van Gogh committed fully to art at 27",
+                    "Alexander the Great conquered Persia by 27",
+                    "J.K. Rowling began serious writing at 27"
+                ],
+                events: [
+                    "Skill compounds",
+                    "Life direction locks",
+                    "Commitment deepens"
+                ]
+            },
+
+            28: {
+                people: [
+                    "Albert Einstein published work leading to relativity at 28",
+                    "Nikola Tesla invented AC motor at 28",
+                    "Mark Zuckerberg became a billionaire at 28"
+                ],
+                events: [
+                    "Peak creative output",
+                    "Pressure increases",
+                    "Legacy begins forming"
+                ]
+            },
+
+            29: {
+                people: [
+                    "Alan Turing published major computing work at 29",
+                    "Leonardo da Vinci mastered engineering concepts at 29",
+                    "Marie Curie earned doctorate-level recognition at 29"
+                ],
+                events: [
+                    "Expert status emerging",
+                    "Reputation matters",
+                    "Long-term thinking begins"
+                ]
+            },
+
+            30: {
+                people: [
+                    "Alan Turing shaped modern computing at 30",
+                    "Van Gogh created iconic art at 30",
+                    "Jesus began his public ministry at 30"
+                ],
+                events: [
+                    "Clarity after chaos",
+                    "Purpose over speed",
+                    "Depth replaces experimentation"
+                ]
+            },
+
+            31: {
+                people: [
+                    "Isaac Newton was Lucasian Professor of Mathematics at 31",
+                    "Charles Darwin was shaping evolutionary ideas at 31",
+                    "Elon Musk became CEO of SpaceX at 31"
+                ],
+                events: [
+                    "Professional authority begins",
+                    "Ideas gain institutional support",
+                    "Responsibility outweighs experimentation"
+                ]
+            },
+
+            32: {
+                people: [
+                    "Marie Curie discovered polonium at 32",
+                    "Alan Turing deepened cryptographic research at 32",
+                    "Leonardo da Vinci was commissioned for major works at 32"
+                ],
+                events: [
+                    "Expertise solidifies",
+                    "Recognition increases",
+                    "Long-term projects dominate"
+                ]
+            },
+
+            33: {
+                people: [
+                    "Jesus completed his ministry at 33",
+                    "Alexander the Great died after building an empire by 33",
+                    "Alexander Hamilton shaped early U.S. governance at 33"
+                ],
+                events: [
+                    "Peak influence age",
+                    "Legacy-defining moments",
+                    "History accelerates impact"
+                ]
+            },
+
+            34: {
+                people: [
+                    "Nikola Tesla worked on revolutionary electrical systems at 34",
+                    "Galileo refined astronomical observations at 34",
+                    "Steve Jobs led Apple’s early growth at 34"
+                ],
+                events: [
+                    "Mastery over tools",
+                    "Vision becomes practical",
+                    "Innovation stabilizes"
+                ]
+            },
+
+            35: {
+                people: [
+                    "Charles Darwin finalized natural selection concepts at 35",
+                    "Steve Jobs refined Apple’s long-term vision at 35",
+                    "Nelson Mandela became a key resistance leader at 35"
+                ],
+                events: [
+                    "Long-term thinking begins",
+                    "Ideologies crystalize",
+                    "Purpose overtakes ambition"
+                ]
+            },
+
+            36: {
+                people: [
+                    "Abraham Lincoln began gaining political traction at 36",
+                    "Marie Curie led independent research at 36",
+                    "Jeff Bezos scaled Amazon rapidly at 36"
+                ],
+                events: [
+                    "Leadership becomes visible",
+                    "Risk is calculated",
+                    "Systems outperform talent"
+                ]
+            },
+
+            37: {
+                people: [
+                    "Nikola Tesla patented key inventions at 37",
+                    "Alan Turing contributed to early AI theory at 37",
+                    "Leonardo da Vinci completed advanced engineering studies at 37"
+                ],
+                events: [
+                    "Reputation hardens",
+                    "Expert status achieved",
+                    "Contribution outweighs learning"
+                ]
+            },
+
+            38: {
+                people: [
+                    "Albert Einstein developed unified field concepts at 38",
+                    "Henry Ford perfected mass production ideas at 38",
+                    "Nelson Mandela organized resistance movements at 38"
+                ],
+                events: [
+                    "Systems thinking dominates",
+                    "Efficiency becomes priority",
+                    "Vision meets execution"
+                ]
+            },
+
+            39: {
+                people: [
+                    "Marie Curie won her second Nobel Prize at 39",
+                    "Isaac Newton was Master of the Royal Mint at 39",
+                    "Leonardo da Vinci led large workshops at 39"
+                ],
+                events: [
+                    "Authority is recognized",
+                    "Influence expands",
+                    "Trust is institutional"
+                ]
+            },
+
+            40: {
+                people: [
+                    "Galileo defended heliocentrism at 40",
+                    "Nelson Mandela symbolized resistance globally at 40",
+                    "Henry Ford launched mass-market automobiles at 40"
+                ],
+                events: [
+                    "Experience beats ambition",
+                    "Public scrutiny increases",
+                    "Legacy begins forming"
+                ]
+            },
+
+            41: {
+                people: [
+                    "Abraham Lincoln served in U.S. Congress at 41",
+                    "Charles Darwin refined evolutionary theory at 41",
+                    "J.K. Rowling gained global success at 41"
+                ],
+                events: [
+                    "Perspective widens",
+                    "Impact becomes visible",
+                    "Patience pays off"
+                ]
+            },
+
+            42: {
+                people: [
+                    "Alan Turing advanced computing theory at 42",
+                    "Thomas Edison held numerous patents by 42",
+                    "Leonardo da Vinci engineered military designs at 42"
+                ],
+                events: [
+                    "Optimization phase",
+                    "Efficiency matters more than novelty",
+                    "Experience compounds"
+                ]
+            },
+
+            43: {
+                people: [
+                    "Marie Curie led major scientific institutions at 43",
+                    "Nelson Mandela was imprisoned at 43",
+                    "Steve Jobs reshaped Pixar at 43"
+                ],
+                events: [
+                    "Adversity defines character",
+                    "Leadership under pressure",
+                    "Values are tested"
+                ]
+            },
+
+            44: {
+                people: [
+                    "Charles Darwin published major works at 44",
+                    "Galileo mentored younger scientists at 44",
+                    "Abraham Lincoln debated slavery nationally at 44"
+                ],
+                events: [
+                    "Mentorship phase",
+                    "Legacy thinking begins",
+                    "Influence multiplies"
+                ]
+            },
+
+            45: {
+                people: [
+                    "Leonardo da Vinci refined the Mona Lisa at 45",
+                    "Isaac Newton dominated British science at 45",
+                    "Nelson Mandela became global symbol of justice at 45"
+                ],
+                events: [
+                    "Depth over quantity",
+                    "Refinement stage",
+                    "Enduring work emerges"
+                ]
+            },
+
+            46: {
+                people: [
+                    "Marie Curie directed major research labs at 46",
+                    "Henry Ford scaled automobile dominance at 46",
+                    "Abraham Lincoln prepared for national leadership at 46"
+                ],
+                events: [
+                    "Strategic leadership",
+                    "Delegation replaces execution",
+                    "Wisdom informs action"
+                ]
+            },
+
+            47: {
+                people: [
+                    "Thomas Edison expanded industrial influence at 47",
+                    "Nelson Mandela inspired movements globally at 47",
+                    "Galileo shaped future astronomers at 47"
+                ],
+                events: [
+                    "Meaning overtakes ambition",
+                    "Influence becomes indirect",
+                    "Legacy strengthens"
+                ]
+            },
+
+            48: {
+                people: [
+                    "Charles Darwin became scientific authority at 48",
+                    "Leonardo da Vinci advised rulers and states at 48",
+                    "Marie Curie shaped global science policy at 48"
+                ],
+                events: [
+                    "Expert voice matters",
+                    "Consultative leadership",
+                    "Long-term impact focus"
+                ]
+            },
+
+            49: {
+                people: [
+                    "Abraham Lincoln emerged as national figure at 49",
+                    "Isaac Newton shaped economic policy at 49",
+                    "Henry Ford simplified production systems at 49"
+                ],
+                events: [
+                    "Clarity wins over complexity",
+                    "Authority stabilizes",
+                    "Experience dominates decisions"
+                ]
+            },
+
+            50: {
+                people: [
+                    "Colonel Sanders franchised KFC at 50",
+                    "Leonardo da Vinci completed major Renaissance works at 50",
+                    "Nelson Mandela led anti-apartheid efforts at 50"
+                ],
+                events: [
+                    "Reinvention is possible",
+                    "Wisdom guides ambition",
+                    "Impact outlives energy"
+                ]
+            },
+
+            51: {
+                people: [
+                    "Leonardo da Vinci continued scientific studies at 51",
+                    "Nelson Mandela became a senior leader of the ANC at 51",
+                    "Galileo published influential works in his early 50s"
+                ],
+                events: [
+                    "Experience outweighs experimentation",
+                    "Authority deepens",
+                    "Influence becomes strategic"
+                ]
+            },
+
+            52: {
+                people: [
+                    "Isaac Newton served as President of the Royal Society at 52",
+                    "Marie Curie expanded radiology research at 52",
+                    "Abraham Lincoln strengthened national leadership at 52"
+                ],
+                events: [
+                    "Institutional leadership phase",
+                    "Decisions shape generations",
+                    "Wisdom guides systems"
+                ]
+            },
+
+            53: {
+                people: [
+                    "Charles Darwin refined later editions of evolutionary theory at 53",
+                    "Nelson Mandela influenced global opinion from prison at 53",
+                    "Leonardo da Vinci advised political leaders at 53"
+                ],
+                events: [
+                    "Indirect influence grows",
+                    "Ideas outlive presence",
+                    "Legacy takes shape"
+                ]
+            },
+
+            54: {
+                people: [
+                    "Galileo defended scientific truth under pressure at 54",
+                    "Thomas Edison led large research teams at 54",
+                    "Marie Curie shaped international science collaboration at 54"
+                ],
+                events: [
+                    "Mentorship phase",
+                    "Resistance tests convictions",
+                    "Leadership through example"
+                ]
+            },
+
+            55: {
+                people: [
+                    "Nelson Mandela became a global moral symbol at 55",
+                    "Isaac Newton influenced British economic policy at 55",
+                    "Leonardo da Vinci focused on theoretical work at 55"
+                ],
+                events: [
+                    "Moral authority strengthens",
+                    "Perspective replaces urgency",
+                    "Wisdom spreads quietly"
+                ]
+            },
+
+            56: {
+                people: [
+                    "Charles Darwin completed major revisions of his work at 56",
+                    "Marie Curie oversaw large-scale medical research at 56",
+                    "Abraham Lincoln shaped wartime leadership legacy at 56"
+                ],
+                events: [
+                    "Long-term vision dominates",
+                    "Impact over activity",
+                    "Systems outlast individuals"
+                ]
+            },
+
+            57: {
+                people: [
+                    "Galileo mentored future astronomers at 57",
+                    "Thomas Edison simplified industrial processes at 57",
+                    "Nelson Mandela inspired resistance movements worldwide at 57"
+                ],
+                events: [
+                    "Knowledge transfer phase",
+                    "Influence multiplies through others",
+                    "Stability over expansion"
+                ]
+            },
+
+            58: {
+                people: [
+                    "Leonardo da Vinci focused on legacy projects at 58",
+                    "Marie Curie shaped science education policies at 58",
+                    "Isaac Newton solidified his historical reputation at 58"
+                ],
+                events: [
+                    "Preservation of knowledge",
+                    "Teaching becomes central",
+                    "Reputation solidifies"
+                ]
+            },
+
+            59: {
+                people: [
+                    "Charles Darwin became a scientific icon by 59",
+                    "Nelson Mandela’s ideals spread globally at 59",
+                    "Galileo’s ideas influenced generations at 59"
+                ],
+                events: [
+                    "Recognition outweighs output",
+                    "Legacy enters textbooks",
+                    "Respect is established"
+                ]
+            },
+
+            60: {
+                people: [
+                    "Leonardo da Vinci reflected on life’s work at 60",
+                    "Isaac Newton focused on administration over discovery at 60",
+                    "Nelson Mandela prepared successors at 60"
+                ],
+                events: [
+                    "Purpose replaces pressure",
+                    "Reflection phase",
+                    "Guidance over execution"
+                ]
+            },
+
+            61: {
+                people: [
+                    "Charles Darwin preserved research for future generations at 61",
+                    "Marie Curie influenced international science institutions at 61",
+                    "Galileo’s work remained central despite persecution at 61"
+                ],
+                events: [
+                    "Legacy protection",
+                    "Institutional influence",
+                    "Long-term impact ensured"
+                ]
+            },
+
+            62: {
+                people: [
+                    "Leonardo da Vinci documented inventions at 62",
+                    "Nelson Mandela became a symbol of perseverance at 62",
+                    "Isaac Newton was regarded as Britain’s greatest scientist at 62"
+                ],
+                events: [
+                    "Stories matter more than action",
+                    "Symbolic leadership",
+                    "Influence without presence"
+                ]
+            },
+
+            63: {
+                people: [
+                    "Charles Darwin finalized scientific correspondence at 63",
+                    "Marie Curie mentored future Nobel laureates at 63",
+                    "Galileo’s teachings shaped astronomy at 63"
+                ],
+                events: [
+                    "Quiet mentorship",
+                    "Knowledge consolidation",
+                    "Teaching without spotlight"
+                ]
+            },
+
+            64: {
+                people: [
+                    "Leonardo da Vinci focused on preservation of ideas at 64",
+                    "Nelson Mandela’s legacy influenced global justice movements at 64",
+                    "Isaac Newton shaped scientific institutions at 64"
+                ],
+                events: [
+                    "Preservation phase",
+                    "Legacy maintenance",
+                    "Values transmission"
+                ]
+            },
+
+            65: {
+                people: [
+                    "Galileo continued intellectual correspondence at 65",
+                    "Charles Darwin was celebrated internationally at 65",
+                    "Marie Curie influenced medical science direction at 65"
+                ],
+                events: [
+                    "Respect is universal",
+                    "Wisdom acknowledged",
+                    "Contribution remembered"
+                ]
+            },
+
+            66: {
+                people: [
+                    "Leonardo da Vinci finalized notebooks at 66",
+                    "Nelson Mandela inspired future leaders at 66",
+                    "Isaac Newton remained scientific authority at 66"
+                ],
+                events: [
+                    "Indirect impact dominates",
+                    "Legacy management",
+                    "Ideas endure"
+                ]
+            },
+
+            67: {
+                people: [
+                    "Charles Darwin reflected on lifetime achievements at 67",
+                    "Marie Curie became a global scientific symbol at 67",
+                    "Galileo’s work influenced education systems at 67"
+                ],
+                events: [
+                    "Joy in contribution",
+                    "Recognition without effort",
+                    "Life’s work acknowledged"
+                ]
+            },
+
+            68: {
+                people: [
+                    "Leonardo da Vinci’s influence shaped Renaissance thought at 68",
+                    "Nelson Mandela’s ideals guided global movements at 68",
+                    "Isaac Newton’s laws dominated science education at 68"
+                ],
+                events: [
+                    "Legacy spreads globally",
+                    "Impact transcends time",
+                    "Ideas live independently"
+                ]
+            },
+
+            69: {
+                people: [
+                    "Charles Darwin’s theories defined biology at 69",
+                    "Galileo remained central to scientific debate at 69",
+                    "Marie Curie’s work guided future research at 69"
+                ],
+                events: [
+                    "Acceptance phase",
+                    "Completion without closure",
+                    "Influence continues"
+                ]
+            },
+
+            70: {
+                people: [
+                    "Galileo accepted life’s journey at 70",
+                    "Isaac Newton’s legacy peaked at 70",
+                    "Nelson Mandela’s moral authority endured at 70"
+                ],
+                events: [
+                    "Wisdom peaks",
+                    "Life lessons dominate",
+                    "Presence becomes symbolic"
+                ]
+            },
+
+            71: {
+                people: [
+                    "Leonardo da Vinci’s ideas outlived him at 71",
+                    "Charles Darwin’s influence spanned continents at 71",
+                    "Marie Curie’s scientific legacy was permanent by 71"
+                ],
+                events: [
+                    "Truth simplifies",
+                    "Legacy outlives lifespan",
+                    "Ideas become timeless"
+                ]
+            },
+
+            72: {
+                people: [
+                    "Galileo’s teachings echoed globally at 72",
+                    "Isaac Newton’s work remained foundational at 72",
+                    "Nelson Mandela’s principles guided new generations at 72"
+                ],
+                events: [
+                    "Impact echoes",
+                    "Knowledge becomes heritage",
+                    "History carries the torch"
+                ]
+            },
+
+            73: {
+                people: [
+                    "Charles Darwin became immortalized in science at 73",
+                    "Leonardo da Vinci’s notebooks shaped future innovation",
+                    "Marie Curie’s discoveries saved lives globally"
+                ],
+                events: [
+                    "Influence outlives presence",
+                    "Ideas become culture",
+                    "Legacy fully realized"
+                ]
+            },
+
+            74: {
+                people: [
+                    "Galileo’s contributions dominated astronomy education at 74",
+                    "Isaac Newton’s laws governed physics teaching at 74",
+                    "Nelson Mandela’s life symbolized justice at 74"
+                ],
+                events: [
+                    "Peace dominates",
+                    "Historical recognition",
+                    "Completion phase"
+                ]
+            },
+
+            75: {
+                people: [
+                    "Leonardo da Vinci became a symbol of human potential",
+                    "Charles Darwin became a pillar of modern science",
+                    "Marie Curie symbolized scientific perseverance"
+                ],
+                events: [
+                    "Respect is universal",
+                    "Legacy is unquestioned",
+                    "Life’s work stands"
+                ]
+            },
+
+            76: {
+                people: [
+                    "Galileo lived through his students’ work",
+                    "Isaac Newton’s influence shaped future scientists",
+                    "Nelson Mandela’s ideals guided institutions"
+                ],
+                events: [
+                    "Knowledge lives on",
+                    "People carry ideas forward",
+                    "Legacy becomes collective"
+                ]
+            },
+
+            77: {
+                people: [
+                    "Charles Darwin’s principles defined biology",
+                    "Leonardo da Vinci’s influence shaped innovation",
+                    "Marie Curie inspired generations of scientists"
+                ],
+                events: [
+                    "Values remain",
+                    "Ideas transcend individuals",
+                    "Legacy stabilizes"
+                ]
+            },
+
+            78: {
+                people: [
+                    "Galileo’s worldview shaped modern science",
+                    "Isaac Newton’s laws remained unchallenged",
+                    "Nelson Mandela’s life defined moral leadership"
+                ],
+                events: [
+                    "Completion nears",
+                    "History settles judgment",
+                    "Enduring relevance"
+                ]
+            },
+
+            79: {
+                people: [
+                    "Charles Darwin’s name became synonymous with evolution",
+                    "Leonardo da Vinci symbolized Renaissance genius",
+                    "Marie Curie represented scientific courage"
+                ],
+                events: [
+                    "Meaning settles",
+                    "Legacy fully absorbed",
+                    "Influence eternal"
+                ]
+            },
+
+            80: {
+                people: [
+                    "Legends are remembered beyond their lifetimes",
+                    "Ideas outlive creators",
+                    "History preserves contribution"
+                ],
+                events: [
+                    "Life completes its circle",
+                    "Legacy becomes history",
+                    "Impact becomes timeless"
+                ]
+            }
+        };
+
+
+        const reflections = [
+            "There is no universal timeline for success.",
+            "Progress isn’t loud — it’s consistent.",
+            "Most people bloom off-schedule.",
+            "Comparison hides context.",
+            "Momentum matters more than milestones.",
+            "Growth often looks like confusion before clarity.",
+            "Being early or late only matters on a train, not in life.",
+            "Quiet discipline beats loud motivation.",
+            "Small wins compound into big shifts.",
+            "You don’t need permission to evolve.",
+            "Not knowing yet is part of knowing later.",
+            "Stability is built, not discovered.",
+            "Your pace is valid, even when it feels slow.",
+            "Consistency is a form of self-respect.",
+            "Most breakthroughs are boring from the outside.",
+            "Detours still move you forward.",
+            "Rest is not a reset — it’s a requirement.",
+            "You’re allowed to outgrow old versions of yourself.",
+            "Progress can be invisible before it’s undeniable.",
+            "Alignment matters more than speed."
+        ];
+
+
+        function syncAge() {
+            const age = document.getElementById("ageInput").value;
+            const result = document.getElementById("result");
+            result.innerHTML = "";
+
+            if (!data[age]) {
+                result.innerHTML = `
+          <div class="card">
+            <p class="muted">
+              No curated data for this age yet.<br>
+              That doesn’t mean nothing is happening.
+            </p>
+          </div>
+        `;
+                return;
+            }
+
+            const block = data[age];
+
+            result.innerHTML = `
+        <div class="card">
+          <h2>🧑‍🚀 People</h2>
+          <ul>
+            ${block.people.map(p => `<li>${p}</li>`).join("")}
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>📜 History</h2>
+          <ul>
+            ${block.events.map(e => `<li>${e}</li>`).join("")}
+          </ul>
+        </div>
+
+        <div class="card">
+          <p class="quote">“${reflections[Math.floor(Math.random() * reflections.length)]}”</p>
+        </div>
+      `;
+        }
+    </script>
+    <script src="../script.js"></script>
+    <script src="https://kit.fontawesome.com/5ba3ca3a53.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
